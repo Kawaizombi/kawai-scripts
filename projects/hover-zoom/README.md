@@ -4,7 +4,7 @@ Show image preview on link hover
  
 ### Install
 
-If you already browser plugin to run user scripts just hit [Install](https://github.com/Kawaizombi/kawai-scripts/raw/master/dist/hover-zoom.user.js)
+If you already have browser plugin to run user scripts just hit [Install](https://github.com/Kawaizombi/kawai-scripts/raw/master/dist/hover-zoom.user.js)
 or install one of listed bellow
 
 | Browser | Install url |
