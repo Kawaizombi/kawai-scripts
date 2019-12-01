@@ -1,0 +1,11 @@
+{
+  "name": "@kawai-script/hover-zoom",
+  "version": "1.0.0",
+  "author": "kawaizombi",
+  "description": "Show image preview on link hover",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {}
+}
