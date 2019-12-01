@@ -2,14 +2,11 @@ import { Configuration, ConfigurationFactory } from 'webpack';
 import getProjectConfig from './utils/get-project-config';
 import merge from 'webpack-merge';
 import WebpackUserScript from 'webpack-userscript';
-import { version } from '../projects/hover-zoom/package.json';
 
 const COMMON_CONFIG: Configuration = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-
-  devtool: 'inline-source-map',
 
   module: {
     rules: [

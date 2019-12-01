@@ -10,9 +10,10 @@ function getPkgHeaders(basePath: string) {
     author,
     homepage,
     bugs,
+    license,
   } = require(resolve(basePath, 'package.json'));
 
-  return { version, name, description, author, homepage, bugs };
+  return { version, name, description, author, homepage, bugs, license };
 }
 
 function getScriptHeaders(basePath: string) {

@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "author": "kawaizombi",
   "description": "Show image preview on link hover",
+  "homepage": "https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/hover-zoom",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
     "typescript": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "license": "MIT"
 }

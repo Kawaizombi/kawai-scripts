@@ -4,6 +4,7 @@
 // @author      kawaizombi
 // @description Show image preview on link hover
 // @match       *://*/*
+// @license     MIT
 // @grunt       none
 // ==/UserScript==
 

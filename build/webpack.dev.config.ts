@@ -5,6 +5,7 @@ import { resolve } from 'path';
 
 const DEV_CONFIG: Configuration = {
   mode: 'development',
+  devtool: 'inline-source-map',
   devServer: {
     compress: true,
     port: 9000,
