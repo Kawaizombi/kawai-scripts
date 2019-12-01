@@ -1,0 +1,17 @@
+{
+  "name": "@kawai-scripts/animespirit-ost-downloader",
+  "version": "1.0.0",
+  "dependencies": {
+    "@kawai-scripts/archive": "^1.0.0",
+    "@kawai-scripts/gm-axios-adapter": "^1.0.0",
+    "@kawai-scripts/save-file": "^1.0.0",
+    "axios": "^0.19.0",
+    "typescript": "^3.7.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "jszip": "^3.2.2",
+    "p-queue": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/jszip": "^3.1.6"
+  }
+}

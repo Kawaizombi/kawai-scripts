@@ -8,7 +8,9 @@
     "dev:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack-dev-server --config=build/webpack.dev.config.ts --mode=development",
     "build:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.prod.config.ts --mode=production",
     "dev:hover-zoom": "npm run dev:base -- --project=\"hover-zoom\"",
-    "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\""
+    "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\"",
+    "dev:animespirit-ost-downloader": "npm run dev:base -- --project=\"animespirit-ost-downloader\"",
+    "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\""
   },
   "keywords": [],
   "workspaces": [
