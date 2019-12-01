@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "link": "lerna run build && lerna link",
     "dev:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack-dev-server --config=build/webpack.dev.config.ts --mode=development",
     "build:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.prod.config.ts --mode=production",
     "dev:hover-zoom": "npm run dev:base -- --project=\"hover-zoom\"",
     "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\""
   },
   "keywords": [],
+  "workspaces": [
+    "core/*",
+    "projects/*"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +24,7 @@
     "@types/webpack-merge": "^4.1.5",
     "awesome-typescript-loader": "^5.2.1",
     "cross-env": "^6.0.3",
+    "lerna": "^3.19.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
