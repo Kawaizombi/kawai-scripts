@@ -1,6 +1,6 @@
 ### Hover zoom
 
-Show image preview on link hover
+Show image preview on hover(mouse over) link
  
 ### Install
 

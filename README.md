@@ -8,7 +8,7 @@ Awesome user scripts for your browser
 |------|-------------|-------------|
 | [Hover zoom](https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/hover-zoom#readme) | Show image preview on link hover | [Install](https://github.com/Kawaizombi/kawai-scripts/raw/master/dist/hover-zoom.user.js) |
 
-Note: If you dont have browser plugin to run user scripts install one listed bellow
+Note: If you don't have browser plugin to run user scripts install one listed bellow
 
 | Browser | Install url |
 |---------|-------------|
