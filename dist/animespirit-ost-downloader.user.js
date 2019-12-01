@@ -2,6 +2,7 @@
 // @name    @kawai-scripts/animespirit-ost-downloader
 // @version 1.0.0
 // @match   *://*/*
+// @license MIT
 // @grant   GM_xmlhttpRequest
 // @connect mp3.animespirit.ru
 // ==/UserScript==
