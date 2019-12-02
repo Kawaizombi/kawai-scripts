@@ -1,6 +1,9 @@
 {
   "name": "@kawai-scripts/archive",
   "version": "1.0.0",
+  "description": "Wrapper to run jszip inside webworker",
+  "author": "kawaizombi",
+  "license": "MIT",
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
   },
