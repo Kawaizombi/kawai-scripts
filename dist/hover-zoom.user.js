@@ -1,8 +1,10 @@
 // ==UserScript==
-// @name        @kawai-script/hover-zoom
+// @name        @kawai-scripts/hover-zoom
 // @version     1.0.0
 // @author      kawaizombi
 // @description Show image preview on link hover
+// @homepage    https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/hover-zoom
+// @supportURL  https://github.com/Kawaizombi/kawai-scripts/issues
 // @match       *://*/*
 // @license     MIT
 // @grunt       none
