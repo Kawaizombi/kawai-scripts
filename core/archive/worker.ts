@@ -1,12 +1,12 @@
 import { JSZipGeneratorOptions } from 'jszip';
 import JSZip from 'jszip';
-import { FileEntry } from '.';
+import { FileEntry } from './index';
 
 interface Message {
   data: {
-    entries: FileEntry[],
-    options?: JSZipGeneratorOptions,
-  }
+    entries: FileEntry[];
+    options?: JSZipGeneratorOptions;
+  };
 }
 
 module.exports = function(self: Worker) {

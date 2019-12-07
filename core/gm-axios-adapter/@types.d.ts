@@ -9,7 +9,7 @@ export interface GMXMLHttpRequestResponse {
   responseHeaders: string;
   responseText: string;
   status: number;
-  response: any,
+  response: any;
   statusText: string;
   context: any;
   finalUrl: string;
@@ -21,7 +21,7 @@ export interface GMXMLHttpRequestOptions {
   binary?: boolean;
   context?: any;
   data?: string;
-  headers?: Object;
+  headers?: Record<string, any>;
   onabort?: (response: GMXMLHttpRequestResponse) => any;
   onerror?: (response: GMXMLHttpRequestResponse) => any;
   onload?: (response: GMXMLHttpRequestResponse) => any;
@@ -31,7 +31,7 @@ export interface GMXMLHttpRequestOptions {
   overrideMimeType?: string;
   username?: string;
   password?: string;
-  responseType?: string,
+  responseType?: string;
   timeout?: number;
 }
 

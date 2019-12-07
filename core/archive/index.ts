@@ -7,7 +7,7 @@ export interface FileEntry {
 }
 
 interface WorkifyWorker extends Worker {
-  objectURL: string,
+  objectURL: string;
 }
 
 interface Message {
