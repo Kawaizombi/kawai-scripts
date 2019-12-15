@@ -1,0 +1,16 @@
+{
+  "name": "@kawai-scripts/gm-storage",
+  "version": "1.0.0",
+  "description": "Storage for user scripts based on GM_setValue GM_getValue",
+  "dependencies": {},
+  "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "ts-node": "^8.5.4"
+  }
+}

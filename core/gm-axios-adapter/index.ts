@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { GMXMLHttpRequestOptions, GMXMLHttpRequestResponse, GMXMLHttpRequestResult } from './@types';
 
