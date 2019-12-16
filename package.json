@@ -39,8 +39,5 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
     "webpack-userscript": "^2.4.0"
-  },
-  "lint-staged": {
-    "**/*.[jt]s": ["eslint --fix", "git add"]
   }
 }
