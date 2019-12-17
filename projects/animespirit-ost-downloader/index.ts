@@ -1,8 +1,11 @@
+import './polyfills';
 import axios from 'axios';
 import gmAxiosAdapter from '@kawai-scripts/gm-axios-adapter';
 import saveFile from '@kawai-scripts/save-file';
 import PQueue from 'p-queue';
 import archive from '@kawai-scripts/archive';
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { App } from "./app";
 
 const instance = axios.create({ adapter: gmAxiosAdapter });
 const queue = new PQueue({
@@ -59,3 +62,8 @@ function addDownloadButton() {
 }
 
 addDownloadButton();
+
+const mountPoint = document.createElement('app');
+document.querySelector('.accordion').prepend(mountPoint);
+
+platformBrowserDynamic().bootstrapModule(App);
