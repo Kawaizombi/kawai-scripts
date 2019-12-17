@@ -1,11 +1,21 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { AppComponent } from "./app.component";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { Downloader } from '../downloader/downloader.service';
+import { HttpClient, HttpClientModule, HttpBackend } from '@angular/common/http';
+import GMBackend from '@kawai-scripts/gm-http-backend';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+  ],
   bootstrap: [AppComponent],
+  providers: [
+    { provide: Downloader, useClass: Downloader },
+    { provide: HttpBackend, useClass: GMBackend },
+  ],
 })
 export class AppModule {
 }

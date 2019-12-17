@@ -1,10 +1,54 @@
-import { HttpEvent, HttpHandler, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpHandler,
+  HttpHeaders,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
+import { GMXMLHttpRequestOptions, GMXMLHttpRequestResult } from './@types';
+import { headerStringToObject } from './utils';
+
+// eslint-disable-next-line @typescript-eslint/camelcase
+declare function GM_xmlhttpRequest(options: GMXMLHttpRequestOptions): GMXMLHttpRequestResult;
 
 class GMBackend implements HttpHandler {
   handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
-    return new Observable((subscriber) => {
-
+    return new Observable((observer) => {
+      GM_xmlhttpRequest({
+        url: req.urlWithParams,
+        method: req.method,
+        headers: req.headers,
+        data: req.body,
+        responseType: req.responseType,
+        onprogress: (event) => observer.next({
+          type: HttpEventType.DownloadProgress,
+          loaded: event.loaded,
+          total: event.total,
+        }),
+        onload: (res) => {
+          debugger;
+          observer.next(new HttpResponse({
+            headers: new HttpHeaders(headerStringToObject(res.responseHeaders)),
+            body: res.response,
+            status: res.status,
+            statusText: res.statusText,
+            url: res.finalUrl,
+          }));
+          observer.complete();
+        },
+        onerror: (err) => observer.error(new HttpErrorResponse({
+          error: err.response,
+          headers: new HttpHeaders(headerStringToObject(err.responseHeaders)),
+          status: err.status,
+          statusText: err.statusText,
+          url: err.finalUrl,
+        })),
+      });
     });
   }
 }
+
+export default GMBackend;

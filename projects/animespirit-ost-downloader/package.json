@@ -5,6 +5,7 @@
   "author": "kawaizombi",
   "description": "Adds bulk download for www.animespirit.ru/ost",
   "dependencies": {
+    "@kawai-scripts/gm-http-backend": "^1.0.0",
     "@angular/core": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/platform-browser": "^8.2.14",

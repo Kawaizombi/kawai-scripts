@@ -1,11 +1,18 @@
 {
   "name": "@kawai-scripts/gm-http-backend",
   "version": "1.0.0",
+  "scripts": {
+    "build": "rimraf dist && tsc -b"
+  },
+  "typings": "dist",
+  "main": "dist/index.js",
   "dependencies": {
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
   },
   "devDependencies": {
-    "typescript": "^3.7.3",
-    "@angular/common": "^8.2.14"
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.3"
   }
 }
