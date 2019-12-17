@@ -10,6 +10,14 @@ const CONFIG: Configuration = {
       new TsConfigPathsPlugin({ configFileName: resolve(__dirname, 'tsconfig.json') }),
     ],
   },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'angular2-template-loader',
+      },
+    ],
+  }
 };
 
 export default CONFIG;

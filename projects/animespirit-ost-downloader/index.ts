@@ -5,7 +5,7 @@ import saveFile from '@kawai-scripts/save-file';
 import PQueue from 'p-queue';
 import archive from '@kawai-scripts/archive';
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-import { App } from "./app";
+import { AppModule } from "./src/components/app/app.module";
 
 const instance = axios.create({ adapter: gmAxiosAdapter });
 const queue = new PQueue({
@@ -66,4 +66,4 @@ addDownloadButton();
 const mountPoint = document.createElement('app');
 document.querySelector('.accordion').prepend(mountPoint);
 
-platformBrowserDynamic().bootstrapModule(App);
+platformBrowserDynamic().bootstrapModule(AppModule);

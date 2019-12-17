@@ -2,6 +2,7 @@ import { Configuration, ConfigurationFactory } from 'webpack';
 import getProjectConfig from './utils/get-project-config';
 import merge from 'webpack-merge';
 import WebpackUserScript from 'webpack-userscript';
+import { DEV_PORT } from "./constants";
 
 const COMMON_CONFIG: Configuration = {
   resolve: {
@@ -10,6 +11,10 @@ const COMMON_CONFIG: Configuration = {
 
   module: {
     rules: [
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
+      },
       {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
@@ -31,9 +36,10 @@ const COMMON_CONFIG_PROVIDER: ConfigurationFactory = (env, args) => {
   const userScriptPlugin: Configuration = {
     plugins: [
       new WebpackUserScript({
-        metajs: false,
+        metajs: true,
         proxyScript: {
-          enable: false,
+          baseUrl: `http://localhost:${DEV_PORT}`,
+          enable: true,
         },
         headers,
       })

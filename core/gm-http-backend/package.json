@@ -1,0 +1,11 @@
+{
+  "name": "@kawai-scripts/gm-http-backend",
+  "version": "1.0.0",
+  "dependencies": {
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3",
+    "@angular/common": "^8.2.14"
+  }
+}
