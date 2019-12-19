@@ -36,10 +36,10 @@ const COMMON_CONFIG_PROVIDER: ConfigurationFactory = (env, args) => {
   const userScriptPlugin: Configuration = {
     plugins: [
       new WebpackUserScript({
-        metajs: true,
+        metajs: false,
         proxyScript: {
           baseUrl: `http://localhost:${DEV_PORT}`,
-          enable: true,
+          enable: args.mode === 'development',
         },
         headers,
       })

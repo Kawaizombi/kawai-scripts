@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 
   createArchive() {
     this.status = 'Archiving';
-    this.cd.detectChanges();
 
     return archive(this.trackList.map((item) => ({...item, file: this.files[item.name]})));
   }
@@ -43,13 +42,11 @@ export class AppComponent implements OnInit {
           saveFile(zip, this.downloader.getAlbumName());
 
           this.inProgress = false;
-          this.cd.detectChanges();
         })
       )
       .subscribe(({name, file}) => {
         this.files = {...this.files, [name]: file};
         this.trackList[name] = Object.assign({}, this.trackList[name], {file});
-        this.cd.detectChanges();
       });
   }
 }
