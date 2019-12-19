@@ -14,8 +14,7 @@ import GMBackend from '@kawai-scripts/gm-http-backend';
   bootstrap: [AppComponent],
   providers: [
     { provide: Downloader, useClass: Downloader },
-    GMBackend,
-    { provide: HttpBackend, useExisting: GMBackend },
+    { provide: HttpBackend, useClass: GMBackend },
   ],
 })
 export class AppModule {

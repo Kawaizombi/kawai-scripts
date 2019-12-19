@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ALBUM_NAME_SELECTOR, TRACK_LIST_SELECTOR } from './constants';
 import PQueue from 'p-queue';
-import { from, pipe } from 'rxjs';
-import { filter, mergeMap, tap } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 
 @Injectable()
