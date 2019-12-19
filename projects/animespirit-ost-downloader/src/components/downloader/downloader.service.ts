@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ALBUM_NAME_SELECTOR, TRACK_LIST_SELECTOR } from './constants';
-import PQueue from 'p-queue';
-import { filter, tap } from 'rxjs/operators';
-import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { map, mergeAll } from "rxjs/operators";
+import { from } from "rxjs";
 
 @Injectable()
 export class Downloader {
-  private readonly queue = new PQueue({
-    concurrency: 4,
-  });
-
   constructor(
     private readonly http: HttpClient,
   ) {
-    console.log(http);
   }
 
   getTrackList() {
@@ -26,7 +21,7 @@ export class Downloader {
       const num = (i + 1).toString().padStart(digits, '0');
       const [ext] = url.split('.').reverse();
 
-      return { name: `${ num } ${ title }.${ ext }`, url };
+      return {name: `${num} ${title}.${ext}`, url};
     });
   }
 
@@ -34,18 +29,14 @@ export class Downloader {
     return document.querySelector(ALBUM_NAME_SELECTOR).textContent;
   }
 
-  async download() {
-    const trackList = this.getTrackList();
-    this.http.get(trackList[0].url, {responseType: 'arraybuffer', observe: "events"})
+  download() {
+    return from(this.getTrackList())
       .pipe(
-        tap((event: HttpEvent<any>) => console.log(event instanceof HttpResponse)),
-        filter((event: HttpEvent<any>) => event instanceof HttpResponse)
-      )
-      .subscribe(console.log);
-
-    /*from(trackList)
-      .pipe(
-        mergeMap((url) => {}),
-      );*/
+        map(({url, name}) =>
+          this.http.get(url, {responseType: 'arraybuffer'})
+            .pipe(map((file) => ({file, name, url})))
+        ),
+        mergeAll(4),
+      );
   }
 }
