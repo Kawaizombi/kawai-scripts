@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ALBUM_NAME_SELECTOR, TRACK_LIST_SELECTOR } from './constants';
 import PQueue from 'p-queue';
-import { from } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { from, pipe } from 'rxjs';
+import { filter, mergeMap, tap } from 'rxjs/operators';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 
 @Injectable()
 export class Downloader {
@@ -14,6 +14,7 @@ export class Downloader {
   constructor(
     private readonly http: HttpClient,
   ) {
+    console.log(http);
   }
 
   getTrackList() {
@@ -36,7 +37,12 @@ export class Downloader {
 
   async download() {
     const trackList = this.getTrackList();
-    console.log(await this.http.get(trackList[0].url, {responseType: 'arraybuffer'}).toPromise());
+    this.http.get(trackList[0].url, {responseType: 'arraybuffer', observe: "events"})
+      .pipe(
+        tap((event: HttpEvent<any>) => console.log(event instanceof HttpResponse)),
+        filter((event: HttpEvent<any>) => event instanceof HttpResponse)
+      )
+      .subscribe(console.log);
 
     /*from(trackList)
       .pipe(

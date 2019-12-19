@@ -9,6 +9,10 @@ const CONFIG: Configuration = {
     plugins: [
       new TsConfigPathsPlugin({ configFileName: resolve(__dirname, 'tsconfig.json') }),
     ],
+    alias: {
+      '@angular': resolve(__dirname, './node_modules/@angular'),
+      rxjs: resolve(__dirname, './node_modules/rxjs'),
+    }
   },
   module: {
     rules: [

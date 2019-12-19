@@ -5,11 +5,15 @@
     "sourceMap": true,
     "declaration": true,
     "declarationDir": "dist",
+    "moduleResolution": "node",
     "outDir": "dist",
+    "removeComments": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "setup-jest.ts"
   ]
 }

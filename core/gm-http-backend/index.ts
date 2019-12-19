@@ -1,16 +1,16 @@
 import { Observable } from 'rxjs';
 import {
-  HttpErrorResponse,
   HttpEvent,
-  HttpEventType,
   HttpHandler,
   HttpHeaders,
   HttpRequest,
   HttpResponse,
+  HttpEventType,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { GMXMLHttpRequestOptions, GMXMLHttpRequestResult } from './@types';
 import { headerStringToObject } from './utils';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 // eslint-disable-next-line @typescript-eslint/camelcase
 declare function GM_xmlhttpRequest(options: GMXMLHttpRequestOptions): GMXMLHttpRequestResult;
@@ -18,7 +18,7 @@ declare function GM_xmlhttpRequest(options: GMXMLHttpRequestOptions): GMXMLHttpR
 @Injectable()
 class GMBackend implements HttpHandler {
   handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
-    return new Observable((observer) => {
+    return new Observable<HttpEvent<any>>((observer) => {
       const request = GM_xmlhttpRequest({
         url: req.urlWithParams,
         method: req.method,
@@ -45,7 +45,7 @@ class GMBackend implements HttpHandler {
         onerror: (err) => {
           observer.error(new HttpErrorResponse({
             error: err.response,
-            headers: new HttpHeaders(headerStringToObject(err.responseHeaders)),
+            //headers: new HttpHeaderResponse(headerStringToObject(err.responseHeaders)),
             status: err.status,
             statusText: err.statusText,
             url: err.finalUrl,
@@ -53,7 +53,7 @@ class GMBackend implements HttpHandler {
         },
       });
 
-      observer.next({ type: HttpEventType.Sent });
+      observer.next({type: HttpEventType.Sent});
 
       return () => request.abort();
     });
