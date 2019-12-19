@@ -1,34 +1,35 @@
 {
   "name": "@kawai-scripts/animespirit-ost-downloader",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "author": "kawaizombi",
   "description": "Adds bulk download for www.animespirit.ru/ost",
   "dependencies": {
-    "@kawai-scripts/gm-http-backend": "^1.0.0",
     "@angular/core": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/compiler": "^8.2.14",
     "@kawai-scripts/archive": "^1.0.0",
-    "@kawai-scripts/gm-axios-adapter": "^1.0.0",
+    "@kawai-scripts/gm-http-backend": "^1.0.0",
     "@kawai-scripts/save-file": "^1.0.0",
-    "axios": "^0.19.0",
     "core-js": "^2.6.11",
     "rxjs": "^6.5.3",
-    "rxjs-etc": "^9.6.2",
     "zone.js": "^0.10.2",
     "typescript": "^3.7.2",
     "awesome-typescript-loader": "^5.2.1",
-    "jszip": "^3.2.2",
-    "p-queue": "^6.2.1"
+    "jszip": "^3.2.2"
   },
   "devDependencies": {
     "@types/jszip": "^3.1.6",
     "@types/webpack": "^4.41.0",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
-    "angular2-template-loader": "^0.6.2"
+    "angular2-template-loader": "^0.6.2",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "css-loader": "^3.4.0",
+    "style-loader": "^1.0.2",
+    "to-string-loader": "^1.1.6"
   }
 }

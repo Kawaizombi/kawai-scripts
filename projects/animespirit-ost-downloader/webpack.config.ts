@@ -20,6 +20,15 @@ const CONFIG: Configuration = {
         test: /\.tsx?$/,
         loader: 'angular2-template-loader',
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'to-string-loader',
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      }
     ],
   }
 };

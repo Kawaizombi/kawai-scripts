@@ -1,8 +1,10 @@
-<button (click)="download()">Download!</button>
+<button (click)="download()" [disabled]="inProgress">{{inProgress ? status : 'Download'}}</button>
 
-<div>
-  <div *ngFor="let item of trackList">
+<div *ngIf="inProgress">
+  <div class="track-name"
+       *ngFor="let item of trackList"
+       [class.in-progress]="!files[item.name]"
+       [class.ready]="files[item.name]">
     <span>{{item.name}}</span>
-    <span *ngIf="files[item.name]">✔️</span>
   </div>
 </div>

@@ -1,0 +1,31 @@
+@mixin spinner {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  border: 1px solid transparent;
+  border-top: 1px solid #0089cc;
+  border-radius: 50%;
+  animation: 1s rotate infinite linear;
+  @keyframes rotate {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.track-name {
+  &:after {
+    content: '';
+  }
+  &.in-progress:after{
+    @include spinner;
+  }
+  &.ready:after {
+    content: '✔';
+    color: green;
+  }
+}

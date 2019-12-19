@@ -41,6 +41,11 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
-    "webpack-userscript": "^2.4.0"
+    "webpack-userscript": "^2.4.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "css-loader": "^3.4.0",
+    "style-loader": "^1.0.2",
+    "to-string-loader": "^1.1.6"
   }
 }

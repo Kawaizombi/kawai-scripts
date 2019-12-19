@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { Downloader } from '../downloader/downloader.service';
-import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import GMBackend from '@kawai-scripts/gm-http-backend';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpBackend, HttpClientModule } from '@angular/common/http';
+import { Downloader } from '../downloader/downloader.service';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
