@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { Downloader } from '../downloader/downloader.service';
-import { HttpClient, HttpClientModule, HttpBackend } from '@angular/common/http';
+import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import GMBackend from '@kawai-scripts/gm-http-backend';
 
 @NgModule({
@@ -14,7 +14,8 @@ import GMBackend from '@kawai-scripts/gm-http-backend';
   bootstrap: [AppComponent],
   providers: [
     { provide: Downloader, useClass: Downloader },
-    { provide: HttpBackend, useClass: GMBackend },
+    GMBackend,
+    { provide: HttpBackend, useExisting: GMBackend },
   ],
 })
 export class AppModule {

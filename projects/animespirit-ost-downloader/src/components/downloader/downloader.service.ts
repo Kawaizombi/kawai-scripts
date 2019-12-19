@@ -36,8 +36,7 @@ export class Downloader {
 
   async download() {
     const trackList = this.getTrackList();
-    console.log(this.http);
-    this.http.get(trackList[0].url, { responseType: 'arraybuffer' }).subscribe(() => console.log(1111))
+    console.log(await this.http.get(trackList[0].url, {responseType: 'arraybuffer'}).toPromise());
 
     /*from(trackList)
       .pipe(
