@@ -1,3 +1,3 @@
 {
-  "*.[jt]s": ["eslint --fix --ext .ts .js", "git add"]
+  "*.[jt]s": ["eslint --fix", "git add"]
 }

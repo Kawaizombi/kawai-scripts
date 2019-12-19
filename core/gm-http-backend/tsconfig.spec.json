@@ -3,7 +3,9 @@
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
-    "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },

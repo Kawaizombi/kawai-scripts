@@ -2,13 +2,14 @@ import { Configuration, ConfigurationFactory } from 'webpack';
 import COMMON_CONFIG_PROVIDER from './webpack.common.config';
 import merge from 'webpack-merge';
 import { resolve } from 'path';
+import { DEV_PORT } from "./constants";
 
 const DEV_CONFIG: Configuration = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
     compress: true,
-    port: 9000,
+    port: DEV_PORT,
     contentBase: resolve(process.cwd(), 'dist'),
     writeToDisk: true,
     injectHot: false,
