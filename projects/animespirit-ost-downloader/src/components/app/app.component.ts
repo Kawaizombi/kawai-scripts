@@ -1,7 +1,7 @@
 import { finalize } from 'rxjs/operators';
 import archive from '@kawai-scripts/archive';
 import saveFile from '@kawai-scripts/save-file';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Downloader } from '../downloader/downloader.service';
 
 @Component({
@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly downloader: Downloader,
-    private readonly cd: ChangeDetectorRef,
   ) {
   }
 
