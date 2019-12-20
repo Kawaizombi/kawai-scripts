@@ -1,7 +1,7 @@
-import { TestBed } from "@angular/core/testing";
-import { HttpBackend, HttpClient, HttpClientModule } from "@angular/common/http";
-import GMBackend from "..";
 import { Injectable } from "@angular/core";
+import { HttpBackend, HttpClient, HttpClientModule } from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
+import GMBackend from "..";
 
 @Injectable()
 class TestService {
@@ -17,13 +17,14 @@ describe('GMBackend', () => {
   let service: TestService;
 
   beforeAll(() => {
+    // eslint-disable-next-line @typescript-eslint/camelcase
     (global as any).GM_xmlhttpRequest = jest.fn(({onload, url}) => {
       onload({
         response: "test",
         responseHeaders: "accept: all\ncontent: text",
         status: 200,
         statusCode: "OK",
-        urlWithParams: url,
+        finalUrl: url,
       })
     });
   });
