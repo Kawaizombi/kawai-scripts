@@ -7,10 +7,12 @@
     "bootstrap": "lerna run build && lerna bootstrap",
     "dev:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack-dev-server --config=build/webpack.dev.config.ts --mode=development",
     "build:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.prod.config.ts --mode=production",
+    "analyze:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.analyzer.config.ts --mode=production",
     "dev:hover-zoom": "npm run dev:base -- --project=\"hover-zoom\"",
     "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\"",
     "dev:animespirit-ost-downloader": "npm run dev:base -- --project=\"animespirit-ost-downloader\"",
-    "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\""
+    "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\"",
+    "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\""
   },
   "keywords": [],
   "workspaces": [
@@ -44,6 +46,7 @@
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
