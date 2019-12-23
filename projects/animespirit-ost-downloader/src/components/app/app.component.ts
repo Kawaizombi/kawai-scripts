@@ -1,7 +1,8 @@
-import { finalize } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { finalize, tap } from 'rxjs/operators';
 import archive from '@kawai-scripts/archive';
 import saveFile from '@kawai-scripts/save-file';
-import { Component, OnInit } from '@angular/core';
+import { FaviconService, ProgressIcon, ReadyIcon } from '@kawai-scripts/favicon-indicator';
 import { Downloader } from '../downloader/downloader.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly downloader: Downloader,
+    private readonly favicon: FaviconService,
   ) {
   }
 
@@ -33,14 +35,21 @@ export class AppComponent implements OnInit {
   download() {
     this.inProgress = true;
     this.status = 'Downloading';
+    this.favicon.useIcon(new ProgressIcon());
 
     this.downloader.download()
       .pipe(
+        tap(() => {
+          const percentage = 100 / this.trackList.length * Object.keys(this.files).length;
+
+          this.favicon.useIcon(new ProgressIcon().setPercentage(percentage));
+        }),
         finalize(async () => {
           const zip = await this.createArchive();
           saveFile(zip, this.downloader.getAlbumName());
 
           this.inProgress = false;
+          this.favicon.useIcon(new ReadyIcon())
         })
       )
       .subscribe(({name, file}) => {
