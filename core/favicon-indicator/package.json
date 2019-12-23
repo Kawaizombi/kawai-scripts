@@ -2,8 +2,9 @@
   "name": "@kawai-scripts/favicon-indicator",
   "version": "1.0.0",
   "scripts": {
-    "build": "rimraf && tsc -b"
+    "build": "rimraf dist && tsc -b"
   },
+  "module": "dist/index.js",
   "main": "dist/index.js",
   "dependencies": {
     "rxjs": "^6.5.3",
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "typescript": "^3.7.4",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0"
   }
 }

@@ -1,17 +1,17 @@
-import { FaviconProvider } from './@types';
+import { Provider } from './@types';
 import { getCanvas } from '../utils';
-import { ProviderBase } from './provider-base';
+import { IconProvider } from './icon-provider';
 
 const DEFAULT_OPTIONS = {
   color: '#00a100',
   backgroundColor: '#bbb',
 };
 
-export class Progress extends ProviderBase implements FaviconProvider {
+export class ProgressIcon extends IconProvider implements Provider {
   percentage = 0;
   options = DEFAULT_OPTIONS;
 
-  constructor(optionsPartial: Partial<typeof DEFAULT_OPTIONS>) {
+  constructor(optionsPartial: Partial<typeof DEFAULT_OPTIONS> = {}) {
     super(optionsPartial);
   }
 

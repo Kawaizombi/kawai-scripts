@@ -4,7 +4,7 @@
 
 ```typescript
 import { Injectable, NgModule } from '@angular/core';
-import { FaviconModule, FaviconService, Progress } from '@kawai-scripts/favicon-indicator';
+import { FaviconModule, FaviconService, ProgressIcon } from '@kawai-scripts/favicon-indicator';
 
 @NgModule({
   imports: [FaviconModule],
@@ -17,7 +17,7 @@ class Service {
 
   someWork() {
     // ...
-    this.faviconService.useIcon(new Progress().setPercentage(10));
+    this.faviconService.useIcon(new ProgressIcon().setPercentage(10));
   }
 }
 ```

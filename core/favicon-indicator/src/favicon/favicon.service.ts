@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { FaviconProvider } from './events/@types';
+import { Provider } from './icons/@types';
 import { createIcon, removeAllIcons } from './utils';
 
 export const FAVICON_SIZE = new InjectionToken<number>('FAVICON_SIZE');
@@ -11,7 +11,7 @@ export class FaviconService {
   ) {
   }
 
-  useIcon(provider: FaviconProvider) {
+  useIcon(provider: Provider) {
     const url = provider.getUrl({ size: this.faviconSize });
     const icon = createIcon(url);
 

@@ -2,6 +2,6 @@ export interface Params {
   size: number;
 }
 
-export interface FaviconProvider {
+export interface Provider {
   getUrl(params: Params): string;
 }

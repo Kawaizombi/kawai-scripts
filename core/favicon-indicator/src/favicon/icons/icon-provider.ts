@@ -1,4 +1,4 @@
-export class ProviderBase {
+export class IconProvider {
   options = {};
 
   constructor(optionsPartial = {}) {
