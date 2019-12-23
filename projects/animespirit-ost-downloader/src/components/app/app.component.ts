@@ -1,9 +1,9 @@
+import { Component, OnInit } from '@angular/core';
 import { finalize, tap } from 'rxjs/operators';
 import archive from '@kawai-scripts/archive';
 import saveFile from '@kawai-scripts/save-file';
-import { Component, OnInit } from '@angular/core';
+import { FaviconService, ProgressIcon, ReadyIcon } from '@kawai-scripts/favicon-indicator';
 import { Downloader } from '../downloader/downloader.service';
-import { FaviconService, ProgressIcon } from "@kawai-scripts/favicon-indicator";
 
 @Component({
   selector: 'app',
@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
           saveFile(zip, this.downloader.getAlbumName());
 
           this.inProgress = false;
+          this.favicon.useIcon(new ReadyIcon())
         })
       )
       .subscribe(({name, file}) => {

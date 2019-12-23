@@ -1,6 +1,7 @@
 import { Provider } from './@types';
 import { getCanvas } from '../utils';
 import { IconProvider } from './icon-provider';
+import { drawCircle } from './canvas.utils';
 
 const DEFAULT_OPTIONS = {
   color: '#00a100',
@@ -20,7 +21,7 @@ export class ProgressIcon extends IconProvider implements Provider {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, size, size);
 
-    this.redrawBg(ctx, { size });
+    drawCircle(ctx, {size, color: this.options.backgroundColor});
 
     if(this.percentage > 0) {
       this.redrawPie(ctx, { size });
@@ -39,16 +40,6 @@ export class ProgressIcon extends IconProvider implements Provider {
     ctx.arc(half, half, half, startAngle, endAngle, false);
     ctx.lineTo(half, half);
     ctx.fillStyle = this.options.color;
-    ctx.fill();
-  }
-
-  private redrawBg(ctx, { size }) {
-    const half = size / 2;
-
-    ctx.beginPath();
-    ctx.moveTo(half, half);
-    ctx.arc(half, half, half, 0, Math.PI * 2, false);
-    ctx.fillStyle = this.options.backgroundColor;
     ctx.fill();
   }
 
