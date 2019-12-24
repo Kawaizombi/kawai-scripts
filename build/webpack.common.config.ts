@@ -38,7 +38,7 @@ const COMMON_CONFIG_PROVIDER: ConfigurationFactory = (env, args) => {
       new WebpackUserScript({
         metajs: false,
         proxyScript: {
-          baseUrl: `http://localhost:${DEV_PORT}`,
+          baseUrl: `http://localhost:${ DEV_PORT }`,
           enable: args.mode === 'development',
         },
         headers,

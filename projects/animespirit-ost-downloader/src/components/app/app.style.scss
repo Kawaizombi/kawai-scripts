@@ -21,9 +21,11 @@
   &:after {
     content: '';
   }
-  &.in-progress:after{
+
+  &.in-progress:after {
     @include spinner;
   }
+
   &.ready:after {
     content: '✔';
     color: green;

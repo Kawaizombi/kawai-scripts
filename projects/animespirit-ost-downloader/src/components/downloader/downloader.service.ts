@@ -21,7 +21,7 @@ export class Downloader {
       const num = (i + 1).toString().padStart(digits, '0');
       const [ext] = url.split('.').reverse();
 
-      return {name: `${num} ${title}.${ext}`, url};
+      return { name: `${ num } ${ title }.${ ext }`, url };
     });
   }
 
@@ -33,10 +33,10 @@ export class Downloader {
     return from(this.getTrackList())
       .pipe(
         delay(500),
-        map(({url, name}) =>
-          this.http.get(url, {responseType: 'arraybuffer'}).pipe(
+        map(({ url, name }) =>
+          this.http.get(url, { responseType: 'arraybuffer' }).pipe(
             retry(3),
-            map((file) => ({file, name, url})),
+            map((file) => ({ file, name, url })),
           ),
         ),
         mergeAll(4),

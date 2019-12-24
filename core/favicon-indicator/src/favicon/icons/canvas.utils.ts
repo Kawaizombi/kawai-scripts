@@ -1,4 +1,4 @@
-export const drawCircle = (ctx: CanvasRenderingContext2D, {size, color}) => {
+export const drawCircle = (ctx: CanvasRenderingContext2D, { size, color }) => {
   const half = size / 2;
 
   ctx.beginPath();

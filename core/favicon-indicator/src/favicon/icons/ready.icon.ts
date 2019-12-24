@@ -15,21 +15,21 @@ export class ReadyIcon extends IconProvider implements Provider {
     super(optionsPartial);
   }
 
-  private drawCheck(ctx, {size}) {
-    ctx.font = `${size}px Arial`;
+  private drawCheck(ctx, { size }) {
+    ctx.font = `${ size }px Arial`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = this.options.color;
     ctx.fillText('✔', size / 2, size / 2);
   }
 
-  getUrl({size}: Params) {
+  getUrl({ size }: Params) {
     const canvas = getCanvas(size);
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, size, size);
 
-    drawCircle(ctx, {size, color: this.options.backgroundColor});
-    this.drawCheck(ctx, {size});
+    drawCircle(ctx, { size, color: this.options.backgroundColor });
+    this.drawCheck(ctx, { size });
 
     return canvas.toDataURL();
   }

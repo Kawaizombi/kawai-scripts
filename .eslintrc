@@ -1,6 +1,9 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["jest", "@typescript-eslint"],
+  "plugins": [
+    "jest",
+    "@typescript-eslint"
+  ],
   "env": {
     "browser": true,
     "node": true,

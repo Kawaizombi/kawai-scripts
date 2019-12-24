@@ -9,7 +9,7 @@ class TestService {
   }
 
   testRequest() {
-    return this.http.get('spec://test.com', {observe: 'response'});
+    return this.http.get('spec://test.com', { observe: 'response' });
   }
 }
 
@@ -18,7 +18,7 @@ describe('GMBackend', () => {
 
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/camelcase
-    (global as any).GM_xmlhttpRequest = jest.fn(({onload, url}) => {
+    (global as any).GM_xmlhttpRequest = jest.fn(({ onload, url }) => {
       onload({
         response: "test",
         responseHeaders: "accept: all\ncontent: text",
@@ -33,7 +33,7 @@ describe('GMBackend', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
-        {provide: HttpBackend, useClass: GMBackend},
+        { provide: HttpBackend, useClass: GMBackend },
         TestService,
       ],
     });

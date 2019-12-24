@@ -62,7 +62,7 @@ class GMBackend implements HttpHandler {
         },
       });
 
-      observer.next({type: HttpEventType.Sent});
+      observer.next({ type: HttpEventType.Sent });
 
       return () => request.abort();
     });

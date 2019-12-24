@@ -21,7 +21,7 @@ export class ProgressIcon extends IconProvider implements Provider {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, size, size);
 
-    drawCircle(ctx, {size, color: this.options.backgroundColor});
+    drawCircle(ctx, { size, color: this.options.backgroundColor });
 
     if(this.percentage > 0) {
       this.redrawPie(ctx, { size });

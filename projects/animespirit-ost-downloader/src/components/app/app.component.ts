@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   createArchive() {
     this.status = 'Archiving';
 
-    return archive(this.trackList.map((item) => ({...item, file: this.files[item.name]})));
+    return archive(this.trackList.map((item) => ({ ...item, file: this.files[item.name] })));
   }
 
   download() {
@@ -59,9 +59,9 @@ export class AppComponent implements OnInit {
           return throwError(error);
         }),
       )
-      .subscribe(({name, file}) => {
-        this.files = {...this.files, [name]: file};
-        this.trackList[name] = {...this.trackList[name], file};
+      .subscribe(({ name, file }) => {
+        this.files = { ...this.files, [name]: file };
+        this.trackList[name] = { ...this.trackList[name], file };
       });
   }
 }
