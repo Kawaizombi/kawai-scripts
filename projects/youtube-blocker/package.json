@@ -2,6 +2,7 @@
   "name": "@kawai-scripts/youtube-blocker",
   "version": "1.0.0",
   "dependencies": {
+    "@kawai-scripts/gm-storage": "^1.0.0",
     "@angular/core": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",

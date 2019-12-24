@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.template.html',
 })
 export class AppComponent {
-  constructor() {
-    console.log(11111);
-  }
 }
