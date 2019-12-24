@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import archive from '@kawai-scripts/archive';
 import saveFile from '@kawai-scripts/save-file';
-import { FaviconService, ProgressIcon, ReadyIcon } from '@kawai-scripts/favicon-indicator';
+import { FaviconService, ProgressIcon, ReadyIcon, ErrorIcon } from '@kawai-scripts/favicon-indicator';
 import { Downloader } from '../downloader/downloader.service';
 
 @Component({
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
     this.downloader.download()
       .pipe(
         tap(() => {
-          const percentage = 100 / this.trackList.length * Object.keys(this.files).length;
+          const readyCount = Object.keys(this.files).length + 1;
+          const percentage = 100 / this.trackList.length * readyCount;
 
           this.favicon.useIcon(new ProgressIcon().setPercentage(percentage));
         }),
@@ -50,11 +52,16 @@ export class AppComponent implements OnInit {
 
           this.inProgress = false;
           this.favicon.useIcon(new ReadyIcon())
-        })
+        }),
+        catchError((error) => {
+          this.favicon.useIcon(new ErrorIcon());
+
+          return throwError(error);
+        }),
       )
       .subscribe(({name, file}) => {
         this.files = {...this.files, [name]: file};
-        this.trackList[name] = Object.assign({}, this.trackList[name], {file});
+        this.trackList[name] = {...this.trackList[name], file};
       });
   }
 }

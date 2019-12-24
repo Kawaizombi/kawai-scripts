@@ -17,7 +17,7 @@ declare function GM_xmlhttpRequest(options: GMXMLHttpRequestOptions): GMXMLHttpR
 
 @Injectable()
 class GMBackend implements HttpHandler {
-  constructor(private zone: NgZone) {
+  constructor(private readonly zone: NgZone) {
   }
 
   handle(req: HttpRequest<any>): Observable<HttpEvent<any>> {
@@ -35,7 +35,7 @@ class GMBackend implements HttpHandler {
               loaded: event.loaded,
               total: event.total,
             });
-          })
+          });
         },
         onload: (res) => {
           this.zone.run(() => {

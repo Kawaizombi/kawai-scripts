@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ALBUM_NAME_SELECTOR, TRACK_LIST_SELECTOR } from './constants';
 import { HttpClient } from '@angular/common/http';
-import { map, mergeAll } from "rxjs/operators";
-import { from } from "rxjs";
+import { from } from 'rxjs';
+import { delay, map, mergeAll, retry } from 'rxjs/operators';
+import { ALBUM_NAME_SELECTOR, TRACK_LIST_SELECTOR } from './constants';
 
 @Injectable()
 export class Downloader {
@@ -32,9 +32,12 @@ export class Downloader {
   download() {
     return from(this.getTrackList())
       .pipe(
+        delay(500),
         map(({url, name}) =>
-          this.http.get(url, {responseType: 'arraybuffer'})
-            .pipe(map((file) => ({file, name, url})))
+          this.http.get(url, {responseType: 'arraybuffer'}).pipe(
+            retry(3),
+            map((file) => ({file, name, url})),
+          ),
         ),
         mergeAll(4),
       );
