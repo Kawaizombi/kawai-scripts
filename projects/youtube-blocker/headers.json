@@ -1,0 +1,4 @@
+{
+  "grant": ["GM_getValue", "GM_setValue", "GM_deleteValue"],
+  "match": "*://www.youtube.com/*"
+}

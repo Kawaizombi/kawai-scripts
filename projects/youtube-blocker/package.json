@@ -1,0 +1,21 @@
+{
+  "name": "@kawai-scripts/youtube-blocker",
+  "version": "1.0.0",
+  "dependencies": {
+    "@angular/core": "^8.2.14",
+    "@angular/common": "^8.2.14",
+    "@angular/compiler": "^8.2.14",
+    "@angular/platform-browser": "^8.2.14",
+    "@angular/platform-browser-dynamic": "^8.2.14",
+    "core-js": "^2.6.11",
+    "rxjs": "^6.5.3",
+    "zone.js": "^0.10.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "typescript": "^3.7.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "angular2-template-loader": "^0.6.2"
+  }
+}

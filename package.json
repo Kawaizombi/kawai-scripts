@@ -12,7 +12,9 @@
     "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\"",
     "dev:animespirit-ost-downloader": "npm run dev:base -- --project=\"animespirit-ost-downloader\"",
     "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\"",
-    "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\""
+    "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\"",
+    "dev:youtube-blocker": "npm run dev:base -- --project=\"youtube-blocker\"",
+    "build:youtube-blocker": "npm run dev:build -- --project=\"youtube-blocker\""
   },
   "keywords": [],
   "workspaces": [
