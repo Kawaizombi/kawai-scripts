@@ -39,7 +39,7 @@ document.querySelectorAll('a').forEach((link) => {
     const url = link.getAttribute('href');
     const [ext] = url.split('.').reverse();
 
-    if(IMAGE_FORMATS.includes(ext)) {
+    if(IMAGE_FORMATS.includes(ext) && !link.querySelector('img')) {
       const preview = createPreview(url);
 
       document.body.appendChild(preview);
