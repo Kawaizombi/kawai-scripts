@@ -28,6 +28,13 @@ const CONFIG: Configuration = {
           'css-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
       }
     ],
   }
