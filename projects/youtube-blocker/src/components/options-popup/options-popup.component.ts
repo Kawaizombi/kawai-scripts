@@ -5,6 +5,7 @@ import { BlockListState } from '../../store/block-list/block-list.state';
 import { Observable } from 'rxjs';
 import { AddFilterAction, RemoveFilterAction } from '../../store/block-list/block-list.actions';
 import { faPlusCircle, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { BlockerService } from '../blocker/blocker.service';
 
 @Component({
   selector: 'options-popup',
@@ -17,11 +18,13 @@ export class OptionsPopupComponent {
   faTimesCircle = faTimesCircle;
   searchTerm: string;
   newFilter: string;
+  suspend = false;
 
   @Select(BlockListState.getFilters) filters$: Observable<string[]>;
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<OptionsPopupComponent>,
+    private blocker: BlockerService,
     private store: Store,
   ) {
   }
@@ -37,5 +40,9 @@ export class OptionsPopupComponent {
   addFilter() {
     this.store.dispatch(new AddFilterAction(this.newFilter));
     this.newFilter = '';
+  }
+
+  toggleBlock() {
+    this.suspend ? this.blocker.suspendBlock() : this.filters$.subscribe(this.blocker.applyBlock);
   }
 }
