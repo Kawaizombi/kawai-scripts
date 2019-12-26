@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Select, Store } from '@ngxs/store';
 import { BlockListState } from '../../store/block-list/block-list.state';

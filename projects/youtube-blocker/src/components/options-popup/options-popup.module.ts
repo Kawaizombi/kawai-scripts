@@ -7,6 +7,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { FilterByTerm } from './filter-by-term.pipe';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [OptionsPopupComponent, FilterByTerm],
@@ -18,6 +19,7 @@ import { FilterByTerm } from './filter-by-term.pipe';
     ScrollingModule,
     MatInputModule,
     FormsModule,
+    MatTabsModule,
   ],
 })
 export class OptionsPopupModule {
