@@ -8,6 +8,7 @@ import { OptionsPopupModule } from '../options-popup/options-popup.module';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BlockerModule } from '../blocker/blocker.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgxsModule.forRoot([BlockListState]),
     OptionsPopupModule,
     MatButtonModule,
+    BlockerModule,
   ],
   bootstrap: [AppComponent],
 })

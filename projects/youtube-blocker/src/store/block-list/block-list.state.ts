@@ -1,5 +1,6 @@
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { AddFilterAction, RemoveFilterAction } from './block-list.actions';
+import { BlockerService } from '../../components/blocker/blocker.service';
 
 export interface BlockListStateModel {
   filters: string[];
@@ -9,9 +10,12 @@ const BLOCK_LIST_STATE_TOKEN = new StateToken<BlockListStateModel>('blockList');
 
 @State<BlockListStateModel>({
   name: BLOCK_LIST_STATE_TOKEN,
-  defaults: { filters: new Array(100000).fill(0).map((_, i) => i.toString()) },
+  defaults: { filters: [] },
 })
 export class BlockListState {
+  constructor(private blocker: BlockerService) {
+  }
+
   @Action(AddFilterAction)
   addFilter(ctx: StateContext<BlockListStateModel>, { filter }: AddFilterAction) {
     const { filters } = ctx.getState();
@@ -19,9 +23,10 @@ export class BlockListState {
 
     if(!alreadyExist) {
       ctx.patchState({
-        filters: [...filters, filter],
+        filters: [...filters, filter.trim()],
       });
     }
+    this.blocker.applyBlock(ctx.getState().filters)
   }
 
   @Action(RemoveFilterAction)

@@ -24,11 +24,12 @@
 
         <mat-list-item *ngIf="!(filters$ | async).length">
           <div class="filter-item">
-            <span>Nothing here</span>
+            <span>You don't have any filters</span>
           </div>
         </mat-list-item>
 
-        <mat-list-item *ngIf="searchTerm && !(filters$ | async | filterByTerm : searchTerm).length">
+        <mat-list-item
+          *ngIf="searchTerm && (filters$ | async).length && !(filters$ | async | filterByTerm : searchTerm).length">
           <div class="filter-item">
             <span>Nothing was found</span>
           </div>
