@@ -4,8 +4,10 @@ import GMStorage from '@kawai-scripts/gm-storage';
 const gmStorage = new GMStorage();
 
 export class GmStorageEngine implements StorageEngine {
-  async getItem(key: string) {
-    const value = await gmStorage.getValue(key);
+  getItem(key: string) {
+    const value = gmStorage.getValue(key);
+
+    if(!value) return value;
 
     return typeof value === 'string' ? JSON.parse(value) : value;
   }

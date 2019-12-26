@@ -16,6 +16,7 @@
     "@ngxs/store": "^3.6.0",
     "@ngxs/storage-plugin": "^3.6.0",
     "@kawai-scripts/gm-storage": "^1.0.0",
+    "@kawai-scripts/save-file": "^1.0.0",
     "core-js": "^2.6.11",
     "rxjs": "^6.5.3",
     "zone.js": "^0.10.2"

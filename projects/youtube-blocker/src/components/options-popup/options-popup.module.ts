@@ -10,6 +10,7 @@ import { FilterByTerm } from './filter-by-term.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [OptionsPopupComponent, FilterByTerm],
@@ -24,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatTabsModule,
     FontAwesomeModule,
     MatSlideToggleModule,
+    MatCardModule,
   ],
 })
 export class OptionsPopupModule {

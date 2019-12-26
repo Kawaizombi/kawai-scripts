@@ -10,6 +10,9 @@
 
 .tab-content {
   padding: 10px;
+  mat-card:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .add-new-wrapper {
