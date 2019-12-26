@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { FilterByTerm } from './filter-by-term.pipe';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [OptionsPopupComponent, FilterByTerm],
@@ -20,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     FormsModule,
     MatTabsModule,
+    FontAwesomeModule,
   ],
 })
 export class OptionsPopupModule {

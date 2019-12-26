@@ -35,7 +35,11 @@ const CONFIG: Configuration = {
           'style-loader',
           'css-loader',
         ]
-      }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
     ],
   }
 };

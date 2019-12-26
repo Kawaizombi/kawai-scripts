@@ -2,6 +2,8 @@
   "name": "@kawai-scripts/youtube-blocker",
   "version": "1.0.0",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/angular-fontawesome": "^0.5.0",
     "@angular/core": "^8.2.14",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
@@ -23,7 +25,6 @@
     "webpack-cli": "^3.3.10",
     "typescript": "^3.7.2",
     "awesome-typescript-loader": "^5.2.1",
-    "angular2-template-loader": "^0.6.2",
-    "raw-loader": "^4.0.0"
+    "angular2-template-loader": "^0.6.2"
   }
 }

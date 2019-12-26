@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { BlockListState } from '../../store/block-list/block-list.state';
 import { Observable } from 'rxjs';
 import { AddFilterAction, RemoveFilterAction } from '../../store/block-list/block-list.actions';
+import { faPlusCircle, faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'options-popup',
@@ -11,6 +12,9 @@ import { AddFilterAction, RemoveFilterAction } from '../../store/block-list/bloc
   styleUrls: ['./options-popup.styles.scss'],
 })
 export class OptionsPopupComponent {
+  faTimes = faTimes;
+  faPlusCircle = faPlusCircle;
+  faTimesCircle = faTimesCircle;
   searchTerm: string;
   newFilter: string;
 

@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { OptionsPopupModule } from '../options-popup/options-popup.module';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatBottomSheetModule,
     BrowserAnimationsModule,
     BrowserModule,
+    FontAwesomeModule,
     NgxsModule.forRoot([BlockListState]),
     OptionsPopupModule,
     MatButtonModule,

@@ -1,5 +1,7 @@
 <div class="header">
-  <button mat-icon-button (click)="close()">❌</button>
+  <button mat-icon-button (click)="close()">
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </button>
 </div>
 
 <mat-tab-group headerPosition="below">
@@ -14,7 +16,9 @@
         <mat-list-item *cdkVirtualFor="let filter of filters$ | async | filterByTerm : searchTerm">
           <div class="filter-item">
             <span>{{ filter }}</span>
-            <button mat-icon-button (click)="deleteFilter(filter)">❌</button>
+            <button mat-icon-button (click)="deleteFilter(filter)" color="warn">
+              <fa-icon [icon]="faTimesCircle"></fa-icon>
+            </button>
           </div>
         </mat-list-item>
 
@@ -39,7 +43,14 @@
         <mat-label>Add filter to block list</mat-label>
         <input matInput placeholder="Type name of chanel" [(ngModel)]="newFilter" (keyup.enter)="addFilter()">
       </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="!newFilter" (click)="addFilter()">Add +</button>
+      <button mat-raised-button color="primary" [disabled]="!newFilter" (click)="addFilter()">
+        <span>Add </span>
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
     </div>
+  </mat-tab>
+
+  <mat-tab label="Options">
+
   </mat-tab>
 </mat-tab-group>
