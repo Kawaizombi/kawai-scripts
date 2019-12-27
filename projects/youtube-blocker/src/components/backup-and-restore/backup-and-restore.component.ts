@@ -7,6 +7,8 @@ import readFile from './file-reader.promise';
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AddFilterAction } from '../../store/block-list/block-list.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RESTORE_ERROR_MSG } from './backup-and-restore.constants';
 
 @Component({
   selector: 'backup-and-restore',
@@ -20,6 +22,7 @@ export class BackupAndRestoreComponent {
 
   constructor(
     private store: Store,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -27,10 +30,21 @@ export class BackupAndRestoreComponent {
     const file = this.fileInput.nativeElement.files[0];
 
     if(file) {
-      from(readFile(file)).pipe(
-        map((result: string) => JSON.parse(result)),
-      ).subscribe(({ blockList: { filters } }) => this.store.dispatch(new AddFilterAction(filters)));
+      from(readFile(file))
+        .pipe(
+          map((result) => JSON.parse(result)),
+        )
+        .subscribe(({ blockList: { filters } }) => {
+          this.store.dispatch(new AddFilterAction(filters));
+        }, () => {
+          this.snackBar
+            .open(RESTORE_ERROR_MSG, 'Try another?', { duration: 3000 })
+            .onAction()
+            .subscribe(() => this.fileInput.nativeElement.click());
+        });
     }
+
+    this.fileInput.nativeElement.value = '';
   }
 
   createBackup() {

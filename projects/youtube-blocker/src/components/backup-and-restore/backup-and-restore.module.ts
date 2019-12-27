@@ -3,6 +3,7 @@ import { BackupAndRestoreComponent } from './backup-and-restore.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [BackupAndRestoreComponent],
@@ -10,7 +11,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     MatButtonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule,
   ]
 })
 export class BackupAndRestoreModule {
