@@ -2,3 +2,15 @@
   Create backup
   <fa-icon [icon]="faDownload"></fa-icon>
 </button>
+
+<button mat-raised-button (click)="fileInput.click()" color="primary">
+  Restore backup
+  <fa-icon [icon]="faUpload"></fa-icon>
+</button>
+<input
+  hidden
+  type="file"
+  accept=".json"
+  #fileInput
+  class="backup-file-input"
+  (change)="restoreBackup()">

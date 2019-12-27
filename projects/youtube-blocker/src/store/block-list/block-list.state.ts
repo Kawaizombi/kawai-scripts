@@ -20,13 +20,14 @@ export class BlockListState {
   @Action(AddFilterAction)
   addFilter(ctx: StateContext<BlockListStateModel>, { filter }: AddFilterAction) {
     const { filters } = ctx.getState();
-    const alreadyExist = filters.indexOf(filter) > -1;
+    const payload = filter
+      .filter((item) => filters.indexOf(item) < 0)
+      .map((item) => item.trim());
 
-    if(!alreadyExist) {
-      ctx.setState(patch<BlockListStateModel>({
-        filters: append([filter.trim()]),
-      }));
-    }
+    ctx.setState(patch<BlockListStateModel>({
+      filters: append(payload),
+    }));
+
     this.blocker.applyBlock(ctx.getState().filters)
   }
 
