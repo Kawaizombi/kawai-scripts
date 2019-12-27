@@ -1,0 +1,16 @@
+.search-box {
+  width: 100%;
+}
+
+.filters-list {
+  height: 250px;
+
+  .filter-item {
+    width: 100%;
+    height: 40px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -4,11 +4,11 @@ import { Store } from '@ngxs/store';
 import { AddFilterAction } from '../../store/block-list/block-list.actions';
 
 @Component({
-  selector: 'block-button',
-  templateUrl: './block-button.template.html',
-  styleUrls: ['./block-button.styles.scss'],
+  selector: 'block-video',
+  templateUrl: './block-video.template.html',
+  styleUrls: ['./block-video.styles.scss'],
 })
-export class BlockButtonComponent {
+export class BlockVideoComponent {
   faTimesCircle = faTimesCircle;
   @Input() chanelName: string;
 
@@ -17,7 +17,8 @@ export class BlockButtonComponent {
   ) {
   }
 
-  blockChanel() {
+  blockChanel(event: MouseEvent) {
     this.store.dispatch(new AddFilterAction(this.chanelName));
+    event.stopPropagation();
   }
 }

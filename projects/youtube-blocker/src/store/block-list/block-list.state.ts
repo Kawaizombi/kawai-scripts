@@ -1,6 +1,7 @@
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { AddFilterAction, RemoveFilterAction } from './block-list.actions';
 import { BlockerService } from '../../components/blocker/blocker.service';
+import { append, patch, removeItem } from '@ngxs/store/operators';
 
 export interface BlockListStateModel {
   filters: string[];
@@ -22,20 +23,18 @@ export class BlockListState {
     const alreadyExist = filters.indexOf(filter) > -1;
 
     if(!alreadyExist) {
-      ctx.patchState({
-        filters: [...filters, filter.trim()],
-      });
+      ctx.setState(patch<BlockListStateModel>({
+        filters: append([filter.trim()]),
+      }));
     }
     this.blocker.applyBlock(ctx.getState().filters)
   }
 
   @Action(RemoveFilterAction)
   removeFilter(ctx: StateContext<BlockListStateModel>, { filter }: RemoveFilterAction) {
-    const { filters } = ctx.getState();
-
-    ctx.patchState({
-      filters: filters.filter((item) => item !== filter),
-    });
+    ctx.setState(patch<BlockListStateModel>({
+      filters: removeItem((item: string) => item === filter),
+    }));
   }
 
   @Selector()

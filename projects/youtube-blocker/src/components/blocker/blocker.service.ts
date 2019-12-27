@@ -6,13 +6,13 @@ import {
   CHANEL_NAME_SELECTOR,
   VIDEO_ITEM_SELECTOR
 } from './blocker.constants';
-import { BlockButtonComponent } from './block-button.component';
+import { BlockVideoComponent } from '../block-video/block-video.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlockerService {
-  private blockButtons: ComponentRef<BlockButtonComponent>[] = [];
+  private blockButtons: ComponentRef<BlockVideoComponent>[] = [];
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -33,7 +33,7 @@ export class BlockerService {
   }
 
   addBlockButtons() {
-    const factory = this.componentFactoryResolver.resolveComponentFactory(BlockButtonComponent);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(BlockVideoComponent);
 
     this.blockButtons = Array.from(document.querySelectorAll(CHANEL_NAME_SELECTOR))
       .map((node) => {

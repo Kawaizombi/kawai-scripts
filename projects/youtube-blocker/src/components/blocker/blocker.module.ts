@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonModule } from '@angular/material/button';
 import { BlockerService } from './blocker.service';
-import { BlockButtonComponent } from './block-button.component';
+import { BlockVideoComponent } from '../block-video/block-video.component';
 
 @NgModule({
-  declarations: [BlockButtonComponent],
-  entryComponents: [BlockButtonComponent],
+  declarations: [BlockVideoComponent],
+  entryComponents: [BlockVideoComponent],
   providers: [BlockerService],
   imports: [
     FontAwesomeModule,

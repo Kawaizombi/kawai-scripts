@@ -1,0 +1,45 @@
+<div class="header">
+  <button mat-icon-button (click)="close()">
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </button>
+</div>
+
+<mat-tab-group headerPosition="below" mat-align-tabs="center">
+  <mat-tab label="List">
+    <div class="tab-content">
+      <mat-card>
+        <block-list></block-list>
+      </mat-card>
+
+      <mat-card>
+        <add-filter-form></add-filter-form>
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Preferences">
+    <div class="tab-content">
+      <mat-card>
+        <div>
+          <mat-slide-toggle
+            [ngModel]="(preferences$ | async).suspend"
+            (change)="toggleBlock()">
+            Suspend blocking
+          </mat-slide-toggle>
+        </div>
+
+        <div>
+          <mat-slide-toggle
+            [ngModel]="(preferences$ | async).insertButtons"
+            (change)="toggleButtons()">
+            Insert buttons
+          </mat-slide-toggle>
+        </div>
+      </mat-card>
+
+      <mat-card>
+        <backup-and-restore></backup-and-restore>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>
