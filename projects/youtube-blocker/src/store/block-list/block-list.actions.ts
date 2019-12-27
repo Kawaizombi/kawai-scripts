@@ -1,5 +1,10 @@
+export enum ActionTypes {
+  ADD_FILTER = '[Block list] Add filter',
+  REMOVE_FILTER  = '[Block list] Remove filter'
+}
+
 export class AddFilterAction {
-  static readonly type = '[Block list] Add filter';
+  static readonly type = ActionTypes.ADD_FILTER;
 
   constructor(
     public filter: string,
@@ -8,7 +13,7 @@ export class AddFilterAction {
 }
 
 export class RemoveFilterAction {
-  static readonly type = '[Block list] Remove filter';
+  static readonly type = ActionTypes.REMOVE_FILTER;
 
   constructor(
     public filter: string,

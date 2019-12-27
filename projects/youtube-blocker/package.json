@@ -14,7 +14,6 @@
     "@angular/material": "^8.2.3",
     "@angular/cdk": "^8.2.3",
     "@ngxs/store": "^3.6.0",
-    "@ngxs/storage-plugin": "^3.6.0",
     "@kawai-scripts/gm-storage": "^1.0.0",
     "@kawai-scripts/save-file": "^1.0.0",
     "core-js": "^2.6.11",
