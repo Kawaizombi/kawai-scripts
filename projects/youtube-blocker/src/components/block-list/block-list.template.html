@@ -7,8 +7,8 @@
   <cdk-virtual-scroll-viewport itemSize="40" class="filters-list">
     <mat-list-item *cdkVirtualFor="let filter of filters$ | async | filterByTerm : searchTerm">
       <div class="filter-item">
-        <span>{{ filter }}</span>
-        <button mat-icon-button (click)="deleteFilter(filter)" color="warn">
+        <span class="item-name">{{ filter }}</span>
+        <button color="warn" mat-icon-button (click)="deleteFilter(filter)">
           <fa-icon [icon]="faTimesCircle"></fa-icon>
         </button>
       </div>

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { BlockerService } from '../blocker/blocker.service';
 import { PreferencesState, PreferencesStateModel } from '../../store/preferences/preferences.state';
 import { ToggleButtonInsert, ToggleSuspend } from '../../store/preferences/preferences.actions';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'preferences-popup',
@@ -18,14 +17,9 @@ export class PreferencesPopupComponent {
   @Select(PreferencesState) preferences$: Observable<PreferencesStateModel>;
 
   constructor(
-    private bottomSheetRef: MatBottomSheetRef<PreferencesPopupComponent>,
-    private blocker: BlockerService,
+    public dialogRef: MatDialogRef<PreferencesPopupComponent>,
     private store: Store,
   ) {
-  }
-
-  close() {
-    this.bottomSheetRef.dismiss();
   }
 
   toggleBlock() {

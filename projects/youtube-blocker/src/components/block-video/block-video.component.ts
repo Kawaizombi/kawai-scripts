@@ -19,6 +19,7 @@ export class BlockVideoComponent {
 
   blockChanel(event: MouseEvent) {
     this.store.dispatch(new AddFilterAction(this.chanelName));
+    event.preventDefault();
     event.stopPropagation();
   }
 }

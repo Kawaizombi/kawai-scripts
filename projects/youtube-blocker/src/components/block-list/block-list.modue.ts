@@ -21,7 +21,7 @@ import { FilterByTerm } from './filter-by-term.pipe';
     CommonModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     BlockListComponent

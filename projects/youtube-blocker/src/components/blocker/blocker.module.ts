@@ -1,17 +1,12 @@
+import './blocker.styles.scss';
 import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatButtonModule } from '@angular/material/button';
 import { BlockerService } from './blocker.service';
-import { BlockVideoComponent } from '../block-video/block-video.component';
+import { BlockVideoModule } from '../block-video/block-video.module';
+import { BlockButtonInjectorService } from './block-button-injector.service';
 
 @NgModule({
-  declarations: [BlockVideoComponent],
-  entryComponents: [BlockVideoComponent],
-  providers: [BlockerService],
-  imports: [
-    FontAwesomeModule,
-    MatButtonModule,
-  ],
+  imports: [BlockVideoModule],
+  providers: [BlockerService, BlockButtonInjectorService],
 })
 export class BlockerModule {
 

@@ -4,6 +4,7 @@
 
 .filters-list {
   height: 250px;
+  width: 540px;
 
   .filter-item {
     width: 100%;
@@ -12,5 +13,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .item-name {
+      width: 450px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }

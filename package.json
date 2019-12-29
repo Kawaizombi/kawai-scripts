@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna run build && lerna bootstrap",
+    "bootstrap": "lerna bootstrap && lerna run build",
     "dev:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack-dev-server --config=build/webpack.dev.config.ts --mode=development",
     "build:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.prod.config.ts --mode=production",
     "analyze:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.analyzer.config.ts --mode=production",
