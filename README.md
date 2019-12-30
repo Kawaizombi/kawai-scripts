@@ -6,8 +6,9 @@ Awesome user scripts for your browser
 
 | Name | Description | Install url | 
 |------|-------------|-------------|
-| [Hover zoom](https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/hover-zoom#readme) | Show image preview on link hover | [Install](https://github.com/Kawaizombi/kawai-scripts/raw/master/dist/hover-zoom.user.js) |
-| [AnimeSpirit ost downloader](https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/animespirit-ost-downloader#readme) | Adds bulk download for www.animespirit.ru/ost | [Install](https://github.com/Kawaizombi/kawai-scripts/raw/master/dist/animespirit-ost-downloader.user.js) |
+| [Hover zoom](./projects/hover-zoom#readme) | Show image preview on link hover | [Install](./dist/hover-zoom.user.js?raw=true) |
+| [AnimeSpirit ost downloader](./projects/animespirit-ost-downloader#readme) | Adds bulk download for www.animespirit.ru/ost | [Install](./dist/animespirit-ost-downloader.user.js?raw=true) |
+| [Youtube blocker](./projects/youtube-blocker#readme) | Add ability to block youtube videos from specific channels and users | [Install](./dist/youtube-blocker.user.js?raw=true) |
 
 Note: If you don't have browser plugin to run user scripts install one listed bellow
 
