@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        @kawai-scripts/youtube-blocker
-// @version     1.0.1
+// @version     1.0.2
 // @author      kawaizombi
 // @description Add ability to block youtube videos from specific channels and users
 // @homepage    https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/youtube-blocker
@@ -10,6 +10,10 @@
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_deleteValue
+// @grant       GM.deleteValue
+// @grant       GM.getValue
+// @grant       GM.setValue
+// @noframes    true
 // @run-at      document-idle
 // ==/UserScript==
 
