@@ -12,7 +12,7 @@ export class BlockerService {
     Array.from(context.querySelectorAll(VIDEO_ITEM_SELECTOR))
       .map((node) => node.querySelector(CHANNEL_NAME_SELECTOR))
       .filter(Boolean)
-      .filter(({ textContent }) => blockList.includes(textContent.trim()))
+      .filter(({ textContent }) => blockList.find((item) => item.toLowerCase() === textContent.trim().toLowerCase()))
       .map((node) => node.closest(VIDEO_ITEM_SELECTOR))
       .forEach((node) => node.classList.add(BANNED_VIDEO_CLASS));
   }
