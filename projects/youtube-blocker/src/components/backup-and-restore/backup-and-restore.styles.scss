@@ -1,0 +1,8 @@
+backup-and-restore {
+  .wrapper {
+    display: flex;
+    button:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

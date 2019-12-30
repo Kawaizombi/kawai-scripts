@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna run build && lerna bootstrap",
+    "bootstrap": "lerna bootstrap && lerna run build",
     "dev:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack-dev-server --config=build/webpack.dev.config.ts --mode=development",
     "build:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.prod.config.ts --mode=production",
     "analyze:base": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack --config=build/webpack.analyzer.config.ts --mode=production",
@@ -12,7 +12,10 @@
     "build:hover-zoom": "npm run build:base -- --project=\"hover-zoom\"",
     "dev:animespirit-ost-downloader": "npm run dev:base -- --project=\"animespirit-ost-downloader\"",
     "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\"",
-    "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\""
+    "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\"",
+    "dev:youtube-blocker": "npm run dev:base -- --project=\"youtube-blocker\"",
+    "build:youtube-blocker": "npm run build:base -- --project=\"youtube-blocker\"",
+    "analyze:youtube-blocker": "npm run analyze:base -- --project=\"youtube-blocker\""
   },
   "keywords": [],
   "workspaces": [
@@ -41,6 +44,7 @@
     "lint-staged": "^9.5.0",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
+    "svg-inline-loader": "^0.8.0",
     "style-loader": "^1.0.2",
     "to-string-loader": "^1.1.6",
     "ts-node": "^8.5.4",

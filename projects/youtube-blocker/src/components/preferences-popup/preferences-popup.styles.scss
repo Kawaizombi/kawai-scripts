@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.tab-content {
+  padding: 10px;
+  mat-card:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+
+

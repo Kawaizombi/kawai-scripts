@@ -1,0 +1,9 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.cdk-overlay-container {
+  z-index: 1999999999;
+}
+
+.dialog-popup {
+  font-size: 15px;
+}
