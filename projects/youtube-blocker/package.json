@@ -1,6 +1,10 @@
 {
   "name": "@kawai-scripts/youtube-blocker",
   "version": "1.0.0",
+  "author": "kawaizombi",
+  "description": "Add ability to block youtube videos from specific channels and users",
+  "homepage": "https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/youtube-blocker",
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",

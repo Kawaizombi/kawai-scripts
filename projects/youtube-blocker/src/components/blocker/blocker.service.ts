@@ -11,6 +11,7 @@ export class BlockerService {
   applyBlock(blockList: string[], context: HTMLElement = document.body) {
     Array.from(context.querySelectorAll(VIDEO_ITEM_SELECTOR))
       .map((node) => node.querySelector(CHANNEL_NAME_SELECTOR))
+      .filter(Boolean)
       .filter(({ textContent }) => blockList.includes(textContent.trim()))
       .map((node) => node.closest(VIDEO_ITEM_SELECTOR))
       .forEach((node) => node.classList.add(BANNED_VIDEO_CLASS));

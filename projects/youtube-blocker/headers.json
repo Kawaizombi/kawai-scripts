@@ -1,4 +1,6 @@
 {
   "grant": ["GM_getValue", "GM_setValue", "GM_deleteValue"],
-  "match": "*://www.youtube.com/*"
+  "match": "*://www.youtube.com/*",
+  "run-at": "document-idle",
+  "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues"
 }

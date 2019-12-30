@@ -23,5 +23,5 @@ export const CHANNEL_NAME_SELECTOR = combineCssSelectors(
   '.yt-lockup-byline [href^="/user"]',
   'yt-formatted-string [href^="/channel"]',
   'yt-formatted-string [href^="/user"]',
-  'ytd-channel-name',
+  'ytd-channel-name yt-formatted-string.ytd-channel-name',
 );
