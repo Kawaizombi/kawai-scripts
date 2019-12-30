@@ -7,12 +7,23 @@ import combineCssSelectors from './utils/combine-css-rules';
 
 if(process.env.NODE_ENV === 'production') enableProdMode();
 
+const APP_ELEMENT = document.createElement('youtube-blocker');
 const MOUNT_POINT = combineCssSelectors(
   '#yt-masthead-user',
   '#yt-masthead-signin',
   '#end',
 );
 
-document.querySelector(MOUNT_POINT).prepend(document.createElement('youtube-blocker'));
+async function waitSelector(selector: string) {
+  while(document.querySelector(selector) === null) {
+    await new Promise(resolve => requestAnimationFrame(resolve));
+  }
+}
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+async function mountApp() {
+  await waitSelector(MOUNT_POINT);
+  document.querySelector(MOUNT_POINT).prepend(APP_ELEMENT);
+  platformBrowserDynamic().bootstrapModule(AppModule);
+}
+
+mountApp();
