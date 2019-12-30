@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 import { Store } from '@ngxs/store';
-import { AddFilterAction } from '../../store/block-list/block-list.actions';
+import { AddFilterAction, RemoveFilterAction } from '../../store/block-list/block-list.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'block-video',
@@ -14,12 +15,22 @@ export class BlockVideoComponent {
 
   constructor(
     private store: Store,
+    private snackBar: MatSnackBar,
   ) {
   }
 
   blockChanel(event: MouseEvent) {
-    this.store.dispatch(new AddFilterAction(this.chanelName));
     event.preventDefault();
     event.stopPropagation();
+
+    this.store.dispatch(new AddFilterAction(this.chanelName));
+
+    this.snackBar
+      .open(`Blocked ${ this.chanelName }`, 'Cancel?', {
+        duration: 3000,
+        horizontalPosition: 'end',
+      })
+      .onAction()
+      .subscribe(() => this.store.dispatch(new RemoveFilterAction(this.chanelName)));
   }
 }
