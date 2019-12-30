@@ -14,7 +14,8 @@
     "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\"",
     "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\"",
     "dev:youtube-blocker": "npm run dev:base -- --project=\"youtube-blocker\"",
-    "build:youtube-blocker": "npm run build:base -- --project=\"youtube-blocker\""
+    "build:youtube-blocker": "npm run build:base -- --project=\"youtube-blocker\"",
+    "analyze:youtube-blocker": "npm run analyze:base -- --project=\"youtube-blocker\""
   },
   "keywords": [],
   "workspaces": [

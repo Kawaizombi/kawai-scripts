@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { PreferencesState, PreferencesStateModel } from '../../store/preferences/preferences.state';
 import { ToggleButtonInsert, ToggleSuspend } from '../../store/preferences/preferences.actions';
 import { MatDialogRef } from '@angular/material/dialog';
