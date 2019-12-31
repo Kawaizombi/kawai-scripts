@@ -29,6 +29,7 @@ export class BlockButtonInjectorService {
     const addedButtons = Array.from(context.querySelectorAll(VIDEO_ITEM_SELECTOR))
       .filter((node) => !node.querySelector('block-video'))
       .map((node) => node.querySelector(CHANNEL_NAME_SELECTOR))
+      .filter(Boolean)
       .filter(({ textContent }: HTMLElement) => !WHITE_LISTED_CHANNELS.includes(textContent))
       .map((node) => this.attachButton(node));
 
