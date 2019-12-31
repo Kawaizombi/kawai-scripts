@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createHeader should return header 1`] = `
+"// ==UserScript==
+// @name User script
+// @noframes
+// @grant GM_getValue
+// @grant GM_setValue
+// ==/UserScript=="
+`;
