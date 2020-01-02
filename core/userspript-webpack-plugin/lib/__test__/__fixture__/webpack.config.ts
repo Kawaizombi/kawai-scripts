@@ -7,6 +7,16 @@ const webpackConfig: Configuration = {
   output: {
     path: '/',
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          UserScriptWebpackPlugin.loader,
+        ],
+      }
+    ]
+  },
   plugins: [new UserScriptWebpackPlugin()],
 };
 

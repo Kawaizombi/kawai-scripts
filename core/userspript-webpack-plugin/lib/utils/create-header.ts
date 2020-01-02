@@ -1,20 +1,13 @@
-type Item = boolean | string | string[];
+import { HeadersConfig } from '../types';
 
-interface Config {
-  [key: string]: Item;
-}
-
-function createHeaderPart(key: string, item: Item): string {
+function createHeaderPart(key: string, item: string | string[]): string {
   if(typeof item === 'string') {
     return `// @${ key } ${ item }`
-  } else if(typeof item === 'boolean') {
-    return item ? `// @${ key }` : '';
-  } else {
-    return item.map((i) => `// @${ key } ${ i }`).join('\n');
   }
+  return item.map((headers) => `// @${ key } ${ headers }`).join('\n');
 }
 
-export default function createHeader(config: Config) {
+export default function createHeader(config: HeadersConfig = {}) {
   const header = Object.entries(config)
     .map(([key, item]) => createHeaderPart(key, item))
     .join('\n');
