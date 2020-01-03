@@ -1,0 +1,26 @@
+{
+  "name": "@kawai-scripts/build-tools",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rimraf lib && tsc -b"
+  },
+  "dependencies": {
+    "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.2",
+    "@types/webpack": "^4.41.1",
+    "@types/webpack-dev-server": "^3.9.0",
+    "@types/webpack-merge": "^4.1.5",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-bundle-analyzer": "^3.6.0"
+  },
+  "peerDependencies": {
+    "webpack-bundle-analyzer": "^3.6.0",
+    "ts-loader": "^6.2.1",
+    "sass-loader": "^8.0.0",
+    "html-loader": "^0.5.5"
+  }
+}
