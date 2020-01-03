@@ -6,7 +6,7 @@ import { DEV_PORT } from "./constants";
 
 const COMMON_CONFIG: Configuration = {
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.html', '.css', '.scss'],
   },
 
   module: {

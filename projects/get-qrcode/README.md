@@ -1,6 +1,6 @@
 ### Youtube blocker
 
-Add ability to block youtube videos from specific channels and users
+Generates QR code for page
 
 ### Preparation
 
@@ -15,5 +15,5 @@ Install one of userscript manager(skip if you already have one)
 
 ### Install
 
-Just click [Install](../../dist/youtube-blocker.user.js?raw=true)
+Just click [Install](../../dist/get-qrcode.user.js?raw=true)
 

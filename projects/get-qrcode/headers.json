@@ -1,0 +1,7 @@
+{
+  "grant": [
+    "GM_openInTab",
+    "GM_registerMenuCommand"
+  ],
+  "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues"
+}
