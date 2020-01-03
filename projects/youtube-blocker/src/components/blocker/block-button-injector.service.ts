@@ -1,6 +1,7 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, Injector } from '@angular/core';
-import { CHANNEL_NAME_SELECTOR, VIDEO_ITEM_SELECTOR, WHITE_LISTED_CHANNELS } from './blocker.constants';
+import { CHANNEL_NAME_SELECTOR, WHITE_LISTED_CHANNELS } from './blocker.constants';
 import { BlockVideoComponent } from '../block-video/block-video.component';
+import { getVideoElements } from './blocker.utils';
 
 
 @Injectable()
@@ -26,7 +27,7 @@ export class BlockButtonInjectorService {
   }
 
   attachButtons(context: HTMLElement = document.body) {
-    const addedButtons = Array.from(context.querySelectorAll(VIDEO_ITEM_SELECTOR))
+    const addedButtons = getVideoElements(context)
       .filter((node) => !node.querySelector('block-video'))
       .map((node) => node.querySelector(CHANNEL_NAME_SELECTOR))
       .filter(Boolean)

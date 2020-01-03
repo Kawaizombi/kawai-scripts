@@ -11,8 +11,8 @@ export const VIDEO_ITEM_SELECTOR = combineCssSelectors(
   '.yt-lockup-video:not(.yt-lockup-grid)',
   '.yt-lockup-playlist:not(.yt-lockup-grid)',
   'ytd-rich-item-renderer',
-  '#dismissable.ytd-compact-video-renderer',
-  '#dismissable.ytd-video-renderer',
+  'ytd-compact-video-renderer',
+  'ytd-video-renderer',
 );
 
 export const CHANNEL_NAME_SELECTOR = combineCssSelectors(

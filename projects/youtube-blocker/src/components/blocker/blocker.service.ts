@@ -5,11 +5,12 @@ import {
   BANNED_VIDEO_SELECTOR,
   CHANNEL_NAME_SELECTOR,
 } from './blocker.constants';
+import { getVideoElements } from './blocker.utils';
 
 @Injectable()
 export class BlockerService {
   applyBlock(blockList: string[], context: HTMLElement = document.body) {
-    Array.from(context.querySelectorAll(VIDEO_ITEM_SELECTOR))
+    getVideoElements(context)
       .map((node) => node.querySelector(CHANNEL_NAME_SELECTOR))
       .filter(Boolean)
       .filter(({ textContent }) => blockList.find((item) => item.toLowerCase() === textContent.trim().toLowerCase()))
