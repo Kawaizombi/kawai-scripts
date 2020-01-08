@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import styles from './styles.scss';
-import template from './template.html';
-import qrCodeAsPromised from './utils/qr-code-as-promised';
+import modal from './utils/modal';
+import blobUrlAdapter from './adapters/blob-url.adapter';
+import iframeAdapter from './adapters/iframe.adapter';
+import buildQRCodePage from './utils/build-qr-code-page';
+import getQrCodeUrl from './utils/get-qr-code-url';
 
 interface GMTab {
   onclose?: () => void;
@@ -19,25 +21,32 @@ declare global {
   }
 }
 
-function getQRCodePage(qrCodeUrl: string) {
-  const doc = new DOMParser().parseFromString(template, 'text/html');
-  doc.querySelector('.qr-code').setAttribute('src', qrCodeUrl);
+const COMMANDS = [
+  {
+    caption: 'Get QR code(new tab)',
+    async command() {
+      const page = buildQRCodePage(await getQrCodeUrl());
+      const pageUrl = blobUrlAdapter(page);
 
-  return `<style>${ styles }</style>${ doc.body.innerHTML }`;
-}
+      const tab = window.GM_openInTab(pageUrl, false);
+      tab.onclose = () => URL.revokeObjectURL(pageUrl);
+    },
+    enabled: () => navigator.userAgent.toLowerCase().indexOf('firefox') < 0,
+  },
+  {
+    caption: 'Get QR code(current tab)',
+    async command() {
+      const page = buildQRCodePage(await getQrCodeUrl());
+      const iframe = iframeAdapter(page);
 
-window.GM_registerMenuCommand('Get QR code', async () => {
-  const { href: currentUrl } = document.location;
-  const { innerHeight, innerWidth } = window;
-  const minDimension = Math.min(innerHeight, innerWidth);
-  const qrCodeWidth = minDimension * 0.8;
+      modal(iframe).show();
+    },
+  }
+];
 
-  const qrCodeUrl = await qrCodeAsPromised(currentUrl, { width: qrCodeWidth });
-  const qrCodePage = getQRCodePage(qrCodeUrl);
-
-  const blob = new Blob([qrCodePage], { type: 'text/html' });
-  const tabUrl = URL.createObjectURL(blob);
-
-  const tab = window.GM_openInTab(tabUrl, false);
-  tab.onclose = () => URL.revokeObjectURL(tabUrl);
+COMMANDS.forEach(({ caption, command, enabled }) => {
+  if(!enabled || enabled()) {
+    window.GM_registerMenuCommand(caption, command);
+  }
 });
+
