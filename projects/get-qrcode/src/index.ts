@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import QRCode, { QRCodeToDataURLOptions } from 'qrcode';
 import styles from './styles.scss';
 import template from './template.html';
+import qrCodeAsPromised from './utils/qr-code-as-promised';
 
 interface GMTab {
   onclose?: () => void;
@@ -23,15 +23,7 @@ function getQRCodePage(qrCodeUrl: string) {
   const doc = new DOMParser().parseFromString(template, 'text/html');
   doc.querySelector('.qr-code').setAttribute('src', qrCodeUrl);
 
-  return `<style>${ styles }</style>${doc.body.innerHTML}`;
-}
-
-function qrCodeAsPromised(text: string, options: QRCodeToDataURLOptions) {
-  return new Promise<string>((resolve, reject) => {
-    QRCode.toDataURL(text, options, (err, url) => {
-      err ? reject(err) : resolve(url);
-    });
-  });
+  return `<style>${ styles }</style>${ doc.body.innerHTML }`;
 }
 
 window.GM_registerMenuCommand('Get QR code', async () => {
