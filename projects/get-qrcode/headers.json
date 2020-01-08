@@ -3,5 +3,6 @@
     "GM_openInTab",
     "GM_registerMenuCommand"
   ],
-  "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues"
+  "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues",
+  "noframes": true
 }
