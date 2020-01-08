@@ -4,7 +4,7 @@
   "homepage": "https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/get-qrcode",
   "author": "kawaizombi",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "dependencies": {
     "qrcode": "^1.4.4",
     "sakura.css": "^1.0.0"
