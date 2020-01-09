@@ -1,0 +1,11 @@
+{
+  "name": "@kawai-scripts/soundcloud-downloader",
+  "version": "1.0.0",
+  "dependencies": {
+    "@kawai-scripts/save-file": "^1.0.0",
+    "axios": "^0.19.1",
+    "m3u8-parser": "^4.4.0",
+    "browser-id3-writer": "^4.3.0",
+    "rxjs": "^6.5.3"
+  }
+}

@@ -17,7 +17,9 @@
     "build:youtube-blocker": "npm run build:base -- --project=\"youtube-blocker\"",
     "analyze:youtube-blocker": "npm run analyze:base -- --project=\"youtube-blocker\"",
     "dev:get-qrcode": "npm run dev:base -- --project=\"get-qrcode\"",
-    "build:get-qrcode": "npm run build:base -- --project=\"get-qrcode\""
+    "build:get-qrcode": "npm run build:base -- --project=\"get-qrcode\"",
+    "dev:soundcloud-downloader": "npm run dev:base -- --project=\"soundcloud-downloader\"",
+    "build:soundcloud-downloader": "npm run build:base -- --project=\"soundcloud-downloader\""
   },
   "keywords": [],
   "workspaces": [
