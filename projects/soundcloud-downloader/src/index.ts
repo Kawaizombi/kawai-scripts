@@ -1,11 +1,12 @@
 import axios from 'axios';
 import sniffer from './utils/http-sniffer';
+import combineBuffers from './utils/combine-buffers';
 import { filter, map } from 'rxjs/operators';
 import { BUTTON_TOOLBAR_SELECTOR } from './constants';
-import { Parser } from 'm3u8-parser';
 import ID3Writer from 'browser-id3-writer';
 import { getTracksMetadata, getPlaylist, getPlaylistUrl, resolveTrackId, downloadSegment } from './api';
 import saveFile from '@kawai-scripts/save-file';
+import getUrlsFromPlaylist from './utils/get-urls-from-playlist';
 
 let clientId;
 
@@ -34,18 +35,6 @@ function changeArtworkSize(url: string, size: number) {
   return url.replace(/(large)(\..+)$/, `t${ size }x${ size }$2`);
 }
 
-function combineBuffers(buffers: ArrayBuffer[]): ArrayBuffer {
-  let offset = 0;
-  const size = buffers.reduce((sum, { byteLength }) => sum + byteLength, 0);
-
-  return buffers.reduce((result: Uint8Array, buffer: ArrayBuffer) => {
-    result.set(new Uint8Array(buffer), offset);
-    offset += buffer.byteLength;
-
-    return result
-  }, new Uint8Array(size));
-}
-
 function init() {
   const button = document.createElement('button');
   button.innerText = 'Download';
@@ -55,14 +44,10 @@ function init() {
     const playlistUrl = await getPlaylistUrl(metadata[0].media.transcodings[0].url);
     const playlist = await getPlaylist(playlistUrl);
     const { data: artwork } = await axios(changeArtworkSize(metadata[0].artwork_url, 500), { responseType: 'arraybuffer' });
-    const parser = new Parser();
-    parser.push(playlist);
-    parser.end();
+    const segmentUrls = getUrlsFromPlaylist(playlist);
 
 
-    Promise.all(
-      parser.manifest.segments.map(({ uri }) => downloadSegment(uri)) as Promise<ArrayBuffer>[]
-    )
+    Promise.all(segmentUrls.map(downloadSegment))
       .then((buffers) => combineBuffers(buffers))
       .then((buffer) =>
         new ID3Writer(buffer)
