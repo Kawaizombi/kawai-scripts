@@ -1,3 +1,5 @@
+import './polyfills';
+import './styles/main.scss';
 import axios from 'axios';
 import sniffer from './utils/http-sniffer';
 import combineBuffers from './utils/combine-buffers';
@@ -5,8 +7,11 @@ import { filter, map } from 'rxjs/operators';
 import { BUTTON_TOOLBAR_SELECTOR } from './constants';
 import ID3Writer from 'browser-id3-writer';
 import { getTracksMetadata, getPlaylist, getPlaylistUrl, resolveTrackId, downloadSegment } from './api';
-import saveFile from '@kawai-scripts/save-file';
 import getUrlsFromPlaylist from './utils/get-urls-from-playlist';
+import saveFile from '@kawai-scripts/save-file';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './modules/app/app.module';
+import { enableProdMode } from '@angular/core';
 
 let clientId;
 
@@ -67,8 +72,11 @@ function init() {
 
   setTimeout(() => {
     document.querySelector(BUTTON_TOOLBAR_SELECTOR).append(button);
-  }, 1000)
-
+  }, 1000);
 }
 
 init();
+if(process.env.NODE_ENV === 'production') enableProdMode();
+const appElement = document.createElement('downloader-app');
+document.querySelector('header .header__right').append(appElement);
+platformBrowserDynamic().bootstrapModule(AppModule);
