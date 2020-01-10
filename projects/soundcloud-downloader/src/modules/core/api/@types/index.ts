@@ -148,4 +148,5 @@ export interface ResolveMetadata {
   label_id?: any;
   stream_url: string;
   playback_count: number;
+  tracks: ResolveMetadata[];
 }

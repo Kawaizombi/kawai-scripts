@@ -3,10 +3,13 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ApiService } from '../core/api/api.service';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
-import combineBuffers from '../../utils/combine-buffers';
 import saveFile from '@kawai-scripts/save-file';
 import ID3Writer from 'browser-id3-writer';
+import extractIds from '../core/api/utils/extract-ids';
+import { TrackMetadata } from '../core/api/@types';
+import extractMediaUrls from '../core/api/utils/extract-media-urls';
+import extractUrlsFromManifest from '../core/api/utils/extract-urls-from-manifest';
+import archive from '@kawai-scripts/archive';
 
 @Component({
   selector: 'downloader-popup',
@@ -27,41 +30,43 @@ export class PopupComponent {
   }
 
   download() {
-    let metadata;
+    let metadata: TrackMetadata[];
+    let root;
 
     this.api
-      .resolveTrackByUrl(document.location.href)
+      .resolveByUrl(document.location.href)
       .pipe(
-        switchMap(({ id }) => this.api.getTracksMetadata(id)),
-        tap(([meta]) => {
-          metadata = meta;
+        tap((entry) => (root = entry)),
+        map(extractIds),
+        switchMap((ids) => this.api.getTracksMetadata(ids)),
+        tap((meta) => (metadata = meta)),
+        map(extractMediaUrls),
+        switchMap((urls) => this.api.getPlaylistUrls(urls)),
+        switchMap((urls) => this.api.getPlaylists(urls)),
+        map(extractUrlsFromManifest),
+        switchMap((files) => this.api.downloadSegments(files)),
+        map((buffers: ArrayBuffer[]) => {
+          return buffers.map((buffer, index) => {
+            return new ID3Writer(buffer)
+              .setFrame('TCON', metadata[index].genre.split(' & '))
+              .setFrame('TIT2', metadata[index].title)
+              .setFrame('TPE1', [metadata[index].user.username])
+              .addTag() as ArrayBuffer;
+          });
         }),
-        map(([{ media }]) => media.transcodings[0].url),
-        switchMap((url) => this.api.getPlaylistUrl(url)),
-        switchMap((url) => this.api.getPlaylist(url)),
-        map((manifest) => manifest.segments.map(({ uri }) => uri)),
-        switchMap((urls: string[]) => forkJoin(urls.map((url) => this.api.downloadFile(url)))),
-        map(combineBuffers),
-        switchMap((buffer) => this.api
-          .downloadFile(metadata.artwork_url.replace(/(large)(\..+)$/, `t500x500$2`))
-          .pipe(
-            map((artwork) => {
-              return new ID3Writer(buffer)
-                .setFrame('TCON', metadata.genre.split(' & '))
-                .setFrame('TIT2', metadata.title)
-                .setFrame('TPE1', [metadata.user.username])
-                .setFrame('APIC', {
-                  type: 18,
-                  data: artwork,
-                  description: 'Artwork',
-                })
-                .addTag() as ArrayBuffer;
-            }),
-          ),
-        ),
+        switchMap((buffers: ArrayBuffer[]) => {
+          if(buffers.length > 1) {
+            return archive(buffers.map((file, index) => ({
+              file,
+              name: `${metadata[index].title}.mp3`,
+            })));
+          }
+          return Promise.resolve(new Blob([buffers[0]]));
+        }),
       )
-      .subscribe((buffer) => {
-        saveFile(new Blob([buffer]), `${metadata.title}.mp3`);
+      .subscribe((blob: Blob) => {
+        const name = metadata.length > 1 ? `${root.title}.zip` : `${ metadata[0].title }.mp3`;
+        saveFile(blob, name);
       });
   }
 }
