@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PopupModule } from '../popup/popup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '../core/core.module';
+import { StoreModule } from '../store/store.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { CoreModule } from '../core/core.module';
     MatBottomSheetModule,
     PopupModule,
     CoreModule,
+    StoreModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

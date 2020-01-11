@@ -3,7 +3,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ApiService } from '../core/api/api.service';
 import { map, switchMap, tap } from 'rxjs/operators';
-import saveFile from '@kawai-scripts/save-file';
+import gmDownload from '@kawai-scripts/gm-download';
 import ID3Writer from 'browser-id3-writer';
 import extractIds from '../core/api/utils/extract-ids';
 import { TrackMetadata } from '../core/api/@types';
@@ -66,7 +66,7 @@ export class PopupComponent {
       )
       .subscribe((blob: Blob) => {
         const name = metadata.length > 1 ? `${root.title}.zip` : `${ metadata[0].title }.mp3`;
-        saveFile(blob, name);
+        gmDownload(blob, name);
       });
   }
 }

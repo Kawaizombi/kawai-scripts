@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "@angular/animations": "^8.2.14",
-    "@angular/cli": "^8.3.22",
     "@angular/cdk": "^8.2.3",
+    "@angular/cli": "^8.3.22",
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
     "@angular/core": "^8.2.14",
@@ -16,12 +16,16 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@kawai-scripts/archive": "^1.0.0",
-    "@kawai-scripts/save-file": "^1.0.0",
+    "@kawai-scripts/gm-download": "^1.0.0",
+    "@ngxs/store": "^3.6.0",
     "axios": "^0.19.1",
     "browser-id3-writer": "^4.3.0",
     "core-js": "^2.6.11",
     "m3u8-parser": "^4.4.0",
-    "rxjs": "^6.5.3",
+    "rxjs": "6.4.0",
     "zone.js": "^0.10.2"
+  },
+  "devDependencies": {
+    "@ngxs/devtools-plugin": "^3.6.0"
   }
 }
