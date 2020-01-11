@@ -1,4 +1,4 @@
-import { Entry } from '../../@types/Entry';
+import { Entry } from '../../api/@types/Entry';
 
 export default function extractIds(entry: Entry) {
   if(entry.kind === 'playlist') {

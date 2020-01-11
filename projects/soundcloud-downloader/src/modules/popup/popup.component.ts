@@ -1,15 +1,7 @@
 import { Component } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { ApiService } from '../core/api/api.service';
-import { map, switchMap, tap } from 'rxjs/operators';
-import gmDownload from '@kawai-scripts/gm-download';
-import ID3Writer from 'browser-id3-writer';
-import extractIds from '../core/api/utils/extract-ids';
-import { TrackMetadata } from '../core/api/@types';
-import extractMediaUrls from '../core/api/utils/extract-media-urls';
-import extractUrlsFromManifest from '../core/api/utils/extract-urls-from-manifest';
-import archive from '@kawai-scripts/archive';
+import { DownloaderService } from '../core/downloader/downloader.service';
 
 @Component({
   selector: 'downloader-popup',
@@ -21,7 +13,7 @@ export class PopupComponent {
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<PopupComponent>,
-    private api: ApiService,
+    private downloader: DownloaderService,
   ) {
   }
 
@@ -30,43 +22,6 @@ export class PopupComponent {
   }
 
   download() {
-    let metadata: TrackMetadata[];
-    let root;
-
-    this.api
-      .resolveByUrl(document.location.href)
-      .pipe(
-        tap((entry) => (root = entry)),
-        map(extractIds),
-        switchMap((ids) => this.api.getTracksMetadata(ids)),
-        tap((meta) => (metadata = meta)),
-        map(extractMediaUrls),
-        switchMap((urls) => this.api.getPlaylistUrls(urls)),
-        switchMap((urls) => this.api.getPlaylists(urls)),
-        map(extractUrlsFromManifest),
-        switchMap((files) => this.api.downloadSegments(files)),
-        map((buffers: ArrayBuffer[]) => {
-          return buffers.map((buffer, index) => {
-            return new ID3Writer(buffer)
-              .setFrame('TCON', metadata[index].genre.split(' & '))
-              .setFrame('TIT2', metadata[index].title)
-              .setFrame('TPE1', [metadata[index].user.username])
-              .addTag() as ArrayBuffer;
-          });
-        }),
-        switchMap((buffers: ArrayBuffer[]) => {
-          if(buffers.length > 1) {
-            return archive(buffers.map((file, index) => ({
-              file,
-              name: `${metadata[index].title}.mp3`,
-            })));
-          }
-          return Promise.resolve(new Blob([buffers[0]]));
-        }),
-      )
-      .subscribe((blob: Blob) => {
-        const name = metadata.length > 1 ? `${root.title}.zip` : `${ metadata[0].title }.mp3`;
-        gmDownload(blob, name);
-      });
+    this.downloader.download(document.location.href);
   }
 }

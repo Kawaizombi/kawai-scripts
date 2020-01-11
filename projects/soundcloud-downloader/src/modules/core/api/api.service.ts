@@ -5,7 +5,7 @@ import { TrackMetadata } from './@types';
 import { forkJoin } from 'rxjs';
 import combineBuffers from '../../../utils/combine-buffers';
 import { Entry } from './@types/Entry';
-import buildPlaylistManifest from './utils/build-playlist-manifest';
+import buildPlaylistManifest from '../utils/build-playlist-manifest';
 
 const RESOLVE_URL = 'https://api.soundcloud.com/resolve';
 const TRACKS_URL = 'https://api-v2.soundcloud.com/tracks';
