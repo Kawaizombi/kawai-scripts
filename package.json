@@ -19,7 +19,8 @@
     "dev:get-qrcode": "npm run dev:base -- --project=\"get-qrcode\"",
     "build:get-qrcode": "npm run build:base -- --project=\"get-qrcode\"",
     "dev:soundcloud-downloader": "npm run dev:base -- --project=\"soundcloud-downloader\"",
-    "build:soundcloud-downloader": "npm run build:base -- --project=\"soundcloud-downloader\""
+    "build:soundcloud-downloader": "npm run build:base -- --project=\"soundcloud-downloader\"",
+    "analyze:soundcloud-downloader": "npm run analyze:base -- --project=\"soundcloud-downloader\""
   },
   "keywords": [],
   "workspaces": [

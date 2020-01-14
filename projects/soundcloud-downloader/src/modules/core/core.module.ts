@@ -5,7 +5,6 @@ import { HttpInterceptorsModule } from './http-interceptors/http-interceptors.mo
 import { ApiModule } from './api/api.module';
 import { DownloaderModule } from './downloader/downloader.module';
 
-
 @NgModule({
   imports: [
     CommonModule,

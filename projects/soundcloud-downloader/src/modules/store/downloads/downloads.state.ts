@@ -1,9 +1,8 @@
 import { Action, State, StateContext } from '@ngxs/store';
-import { DownloadItem } from './types';
-import { AddDownloadItem } from './downloads.actions';
+import { AddDownloadItem, RemoveDownloadItem } from './downloads.actions';
 
-interface DownloadsModel {
-  [key: string]: DownloadItem;
+export interface DownloadsModel {
+  [key: string]: boolean;
 }
 
 type Context = StateContext<DownloadsModel>
@@ -14,7 +13,15 @@ type Context = StateContext<DownloadsModel>
 })
 export class DownloadsState {
   @Action(AddDownloadItem)
-  addDownload(ctx: Context, { key, config }: AddDownloadItem) {
-    ctx.patchState({ [key]: config });
+  add(ctx: Context, { key }: AddDownloadItem) {
+    ctx.patchState({ [key]: true });
+  }
+
+  @Action(RemoveDownloadItem)
+  update(ctx: Context, { key }: RemoveDownloadItem) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { [key]: item, ...rest } = ctx.getState();
+
+    ctx.setState(rest);
   }
 }

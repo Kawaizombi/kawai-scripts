@@ -8,6 +8,7 @@ import { PopupModule } from '../popup/popup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '../core/core.module';
 import { StoreModule } from '../store/store.module';
+import { DomInjectorModule } from '../dom-injector/dom-injector.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { StoreModule } from '../store/store.module';
     PopupModule,
     CoreModule,
     StoreModule,
+    DomInjectorModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

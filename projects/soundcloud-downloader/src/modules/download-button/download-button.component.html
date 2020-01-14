@@ -1,0 +1,6 @@
+<button (click)="download()"
+        [disabled]="item$ | async"
+        class="sc-button sc-button-medium sc-button-responsive">
+  <span *ngIf="item$ | async; else waiting">In progress</span>
+  <ng-template #waiting>Download</ng-template>
+</button>

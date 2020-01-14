@@ -8,8 +8,9 @@ import extractMediaUrls from '../utils/extract-media-urls';
 import extractUrlsFromManifest from '../utils/extract-urls-from-manifest';
 import archive from '@kawai-scripts/archive';
 import addId3 from '../utils/add-id3';
-import gmDownload from '@kawai-scripts/gm-download';
 import { forkJoin } from 'rxjs';
+import saveFile from '@kawai-scripts/save-file';
+import { AddDownloadItem, RemoveDownloadItem, UpdateDownloadItem } from '../../store/downloads/downloads.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -22,23 +23,29 @@ export class DownloaderService {
   }
 
   private addId3(buffers: ArrayBuffer[], metadata: TrackMetadata[]) {
-    return forkJoin(buffers.map((buffer, index) => {
+    const sources = buffers.map((buffer, index) => {
+      const meta = metadata[index];
+      const artworkUrl = meta.artwork_url.replace(/(large)(\..+)$/, `t500x500$2`);
+
       return this.api
-        .downloadFiles([metadata[index].artwork_url.replace(/(large)(\..+)$/, `t500x500$2`)])
+        .downloadFiles([artworkUrl])
         .pipe(map(([artwork]) => {
-          return addId3(buffer, { ...metadata[index], artwork });
+          return addId3(buffer, { ...meta, artwork });
         }));
-    }));
+    });
+
+    return forkJoin(sources);
   }
 
   download(rootUrl: string) {
+    this.store.dispatch(new AddDownloadItem(rootUrl));
+    let rootMetadata;
     let metadata: TrackMetadata[];
-    let root;
 
     this.api
       .resolveByUrl(rootUrl)
       .pipe(
-        tap((entry) => (root = entry)),
+        tap((entry) => (rootMetadata = entry)),
         map(extractIds),
         switchMap((ids) => this.api.getTracksMetadata(ids)),
         tap((meta) => (metadata = meta)),
@@ -50,10 +57,11 @@ export class DownloaderService {
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if(buffers.length > 1) {
-            return archive(buffers.map((file, index) => ({
+            const files = buffers.map((file, index) => ({
               file,
               name: `${ metadata[index].title }.mp3`,
-            })));
+            }));
+            return archive(files);
           }
           return Promise.resolve(new Blob([buffers[0]]));
         }),
@@ -61,9 +69,10 @@ export class DownloaderService {
       .subscribe((blob: Blob) => {
         const multi = metadata.length > 1;
         const ext = multi ? 'zip' : 'mp3';
-        const name = `${ root.title }.${ ext }`;
+        const name = `${ rootMetadata.title }.${ ext }`;
 
-        gmDownload(blob, name);
+        saveFile(blob, name);
+        this.store.dispatch(new RemoveDownloadItem(rootUrl));
       });
   }
 }
