@@ -7,7 +7,7 @@ Awesome user scripts for your browser
 | Name | Description | Install url | 
 |------|-------------|-------------|
 | [Hover zoom](./projects/hover-zoom#readme) | Show image preview on link hover | [Install](./dist/hover-zoom.user.js?raw=true) |
-| [AnimeSpirit ost downloader](./projects/animespirit-ost-downloader#readme) | Adds bulk download for www.animespirit.ru/ost | [Install](./dist/animespirit-ost-downloader.user.js?raw=true) |
+| [AnimeSpirit ost downloader](./projects/animespirit-ost-downloader#readme) | Adds bulk download for www.animespirit.ru/ost and www.animespirit.su/ost | [Install](./dist/animespirit-ost-downloader.user.js?raw=true) |
 | [Youtube blocker](./projects/youtube-blocker#readme) | Add ability to block youtube videos from specific channels and users | [Install](./dist/youtube-blocker.user.js?raw=true) |
 | [Get Qr code](./projects/get-qrcode#readme) | Generates QR code for page | [Install](./dist/get-qrcode.user.js?raw=true) |
 

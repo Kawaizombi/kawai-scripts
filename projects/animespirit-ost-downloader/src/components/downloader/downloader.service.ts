@@ -18,10 +18,9 @@ export class Downloader {
     return rows.map((el, i) => {
       const title = el.querySelector(':nth-child(2)').textContent;
       const url = el.querySelector('a[href^=http]').getAttribute('href');
-      const num = (i + 1).toString().padStart(digits, '0');
       const [ext] = url.split('.').reverse();
 
-      return { name: `${ num } ${ title }.${ ext }`, url };
+      return { name: `${ title }.${ ext }`, url };
     });
   }
 

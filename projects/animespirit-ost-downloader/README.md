@@ -1,6 +1,6 @@
 ### AnimeSpirit ost downloader
 
-Adds bulk download for www.animespirit.ru/ost
+Adds bulk download for www.animespirit.ru/ost and http://www.animespirit.su/ost
 
 ### Install
 

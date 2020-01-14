@@ -1,5 +1,8 @@
 {
   "grant": "GM_xmlhttpRequest",
   "connect": "mp3.animespirit.ru",
-  "match": "*://www.animespirit.ru/ost/*"
+  "match": [
+    "*://www.animespirit.ru/ost/*",
+    "*://www.animespirit.su/ost/*"
+  ]
 }
