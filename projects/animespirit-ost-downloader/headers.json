@@ -3,6 +3,8 @@
   "connect": "mp3.animespirit.ru",
   "match": [
     "*://www.animespirit.ru/ost/*",
-    "*://www.animespirit.su/ost/*"
+    "*://animespirit.ru/ost/*",
+    "*://www.animespirit.su/ost/*",
+    "*://animespirit.su/ost/*"
   ]
 }

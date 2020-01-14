@@ -1,6 +1,6 @@
 {
   "name": "@kawai-scripts/animespirit-ost-downloader",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "MIT",
   "author": "kawaizombi",
   "description": "Adds bulk download for www.animespirit.ru/ost",

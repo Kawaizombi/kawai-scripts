@@ -13,9 +13,8 @@ export class Downloader {
 
   getTrackList() {
     const rows = Array.from(document.querySelectorAll(TRACK_LIST_SELECTOR));
-    const digits = rows.length.toString().length;
 
-    return rows.map((el, i) => {
+    return rows.map((el) => {
       const title = el.querySelector(':nth-child(2)').textContent;
       const url = el.querySelector('a[href^=http]').getAttribute('href');
       const [ext] = url.split('.').reverse();
