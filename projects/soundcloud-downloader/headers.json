@@ -1,7 +1,4 @@
 {
-  "grant": [
-    "GM_download"
-  ],
   "noframes": true,
   "match": [
     "*://www.soundcloud.com/*",

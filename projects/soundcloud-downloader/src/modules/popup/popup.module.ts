@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PopupComponent } from './popup.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     MatButtonModule,
     FontAwesomeModule,
+    MatCardModule,
   ],
   entryComponents: [PopupComponent],
 })

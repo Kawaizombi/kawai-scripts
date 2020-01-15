@@ -2,3 +2,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

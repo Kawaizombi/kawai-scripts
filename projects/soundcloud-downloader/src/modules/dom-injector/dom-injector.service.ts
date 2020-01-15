@@ -20,10 +20,9 @@ const OBSERVER_OPTIONS: MutationObserverInit = { childList: true, subtree: true 
 })
 export class DomInjectorService {
   private rootSubscription = new Subscription();
-  private mutations$ = domObserver(ROOT_SELECTOR, OBSERVER_OPTIONS)
-    .pipe(
-      filter(({ node }) => node instanceof HTMLElement),
-    );
+  private mutations$ = domObserver(ROOT_SELECTOR, OBSERVER_OPTIONS).pipe(
+    filter(({ node }) => node instanceof HTMLElement),
+  );
   private factory: ComponentFactory<DownloadButtonComponent>;
   private refs: ComponentRef<DownloadButtonComponent>[] = [];
 
@@ -34,7 +33,26 @@ export class DomInjectorService {
     this.factory = this.componentFactoryResolver.resolveComponentFactory(DownloadButtonComponent);
   }
 
+  private injectDownloadButton(el: Element) {
+    const componentRef = this.factory.create(this.injector);
+    const parent = el.closest(ROOT_ELEMENT_SELECTOR);
+    const base = document.location.href;
+    let url = base;
+
+    if(parent) {
+      const link = parent.querySelector<HTMLAnchorElement>(ROOT_URL_SELECTOR);
+      url = new URL(link.href, base).href;
+    }
+
+    componentRef.instance.rootUrl = url;
+    componentRef.changeDetectorRef.detectChanges();
+    el.append(componentRef.location.nativeElement);
+    this.refs.push(componentRef);
+  }
+
   enable() {
+    Array.from(document.querySelectorAll(SOUND_ACTIONS_SELECTOR)).forEach((el) => this.injectDownloadButton(el));
+
     const addSubscription = this.mutations$
       .pipe(
         ofType(ADD_TYPE),
@@ -43,22 +61,7 @@ export class DomInjectorService {
         filter<HTMLElement>(Boolean),
         filter((el) => !el.querySelector(this.factory.selector)),
       )
-      .subscribe((el) => {
-        const componentRef = this.factory.create(this.injector);
-        const parent = el.closest(ROOT_ELEMENT_SELECTOR);
-        const base = document.location.href;
-        let url = base;
-
-        if(parent) {
-          const link = parent.querySelector<HTMLAnchorElement>(ROOT_URL_SELECTOR);
-          url = new URL(link.href, base).href;
-        }
-
-        componentRef.instance.rootUrl = url;
-        componentRef.changeDetectorRef.detectChanges();
-        el.append(componentRef.location.nativeElement);
-        this.refs.push(componentRef);
-      });
+      .subscribe((el) => this.injectDownloadButton(el));
 
     const removeSubscription = this.mutations$.pipe(
       ofType(REMOVE_TYPE),
@@ -69,7 +72,7 @@ export class DomInjectorService {
         const ref = this.refs.find((ref) => ref.location.nativeElement === el);
         ref.destroy();
         this.refs.splice(this.refs.indexOf(ref), 1);
-      })
+      });
     });
 
     this.rootSubscription.add(addSubscription);

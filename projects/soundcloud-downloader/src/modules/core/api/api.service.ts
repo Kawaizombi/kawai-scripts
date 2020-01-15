@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TrackMetadata } from './@types';
 import { forkJoin } from 'rxjs';
-import combineBuffers from '../../../utils/combine-buffers';
+import combineBuffers from '../utils/combine-buffers';
 import { Entry } from './@types/Entry';
 import buildPlaylistManifest from '../utils/build-playlist-manifest';
 
