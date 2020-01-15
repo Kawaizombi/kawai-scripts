@@ -1,0 +1,8 @@
+{
+  "noframes": true,
+  "match": [
+    "*://www.soundcloud.com/*",
+    "*://soundcloud.com/*"
+  ],
+  "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues"
+}

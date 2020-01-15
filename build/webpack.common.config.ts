@@ -3,6 +3,7 @@ import getProjectConfig from './utils/get-project-config';
 import merge from 'webpack-merge';
 import WebpackUserScript from 'webpack-userscript';
 import { DEV_PORT } from "./constants";
+import { resolve } from "path";
 
 const COMMON_CONFIG: Configuration = {
   resolve: {
@@ -30,7 +31,10 @@ const COMMON_CONFIG_PROVIDER: ConfigurationFactory = (env, args) => {
   const filename = args.mode === 'development' ? `${ args['project'] }.dev.user.js` : `${ args['project'] }.user.js`;
 
   const OUTPUT: Configuration = {
-    output: { filename },
+    output: {
+      path: resolve(__dirname, '../dist'),
+      filename
+    },
   };
 
   const userScriptPlugin: Configuration = {
@@ -45,6 +49,7 @@ const COMMON_CONFIG_PROVIDER: ConfigurationFactory = (env, args) => {
       })
     ]
   };
+  process.chdir(resolve(process.cwd(), 'projects', args['project']));
 
   return merge(COMMON_CONFIG, OUTPUT, userScriptPlugin, webpackConfig);
 };
