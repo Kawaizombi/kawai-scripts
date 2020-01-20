@@ -22,8 +22,17 @@ const CONFIG: Configuration = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: resolve(__dirname, 'src/styles/main.scss'),
         use: [
           'to-string-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: resolve(__dirname, 'src/styles/main.scss'),
+        use: [
           'style-loader',
           'css-loader',
           'sass-loader',
