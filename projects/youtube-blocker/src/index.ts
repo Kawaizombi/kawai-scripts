@@ -1,5 +1,5 @@
 import './polyfills';
-import './styles/main.css';
+import './styles/main.scss';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './components/app/app.module';

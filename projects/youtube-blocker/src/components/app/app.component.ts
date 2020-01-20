@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'youtube-blocker',
   templateUrl: './app.template.html',
+  styleUrls: ['./app.styles.scss'],
 })
 export class AppComponent implements OnInit {
   private blockerSubscription = new Subscription();
