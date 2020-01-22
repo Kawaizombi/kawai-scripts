@@ -1,4 +1,3 @@
-import './blocker.styles.scss';
 import { NgModule } from '@angular/core';
 import { BlockerService } from './blocker.service';
 import { BlockVideoModule } from '../block-video/block-video.module';
