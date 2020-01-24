@@ -1,0 +1,91 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "youtube-blocker": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/youtube-blocker",
+      "sourceRoot": "projects/youtube-blocker/src",
+      "prefix": "yt-blocker",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "",
+            "main": "projects/youtube-blocker/src/index.ts",
+            "tsConfig": "projects/youtube-blocker/tsconfig.json",
+            "aot": false,
+            "extractLicenses": false,
+            "styles": [
+              "projects/youtube-blocker/src/styles/main.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "deleteOutputPath": false,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "sourceMap": false,
+            "aot": true,
+            "browserTarget": "youtube-blocker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "youtube-blocker:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "youtube-blocker:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/youtube-blocker/src/test.ts",
+            "polyfills": "projects/youtube-blocker/src/polyfills.ts",
+            "tsConfig": "projects/youtube-blocker/tsconfig.spec.json",
+            "karmaConfig": "projects/youtube-blocker/karma.conf.js",
+            "assets": [
+              "projects/youtube-blocker/src/favicon.ico",
+              "projects/youtube-blocker/src/assets"
+            ],
+            "styles": [
+              "projects/youtube-blocker/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}

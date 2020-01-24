@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "module": "esnext",
+    "target": "es2015",
     "sourceMap": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
@@ -13,6 +14,15 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "files": [
+    "src/index.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
   ]
 }

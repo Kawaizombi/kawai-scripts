@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Storage for user scripts based on GM_setValue GM_getValue",
   "dependencies": {},
+  "module": "dist/gm-storage.js",
+  "main": "dist/gm-storage.js",
   "scripts": {
     "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
   },

@@ -28,6 +28,8 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@ngxs/devtools-plugin": "^3.6.0"
+    "@ngxs/devtools-plugin": "^3.6.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0"
   }
 }
