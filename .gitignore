@@ -1,3 +1,4 @@
 .idea
 node_modules
-dist/*.dev.*.js
+dist
+!dist/*.user.js
