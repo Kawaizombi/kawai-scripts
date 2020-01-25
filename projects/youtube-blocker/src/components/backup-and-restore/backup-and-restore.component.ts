@@ -1,15 +1,18 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Store } from '@ngxs/store';
-import saveFile from '@kawai-scripts/save-file';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Select, Store } from '@ngxs/store';
 import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
-import readFile from './file-reader.promise';
-import { from } from 'rxjs';
+import saveFile from '@kawai-scripts/save-file';
+import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import readFile from './file-reader.promise';
 import { AddFilterAction } from '../../store/block-list/block-list.actions';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { RESTORE_ERROR_MSG } from './backup-and-restore.constants';
+import { BlockListState } from '../../store/block-list/block-list.state';
+
+const TRY_ANOTHER_MSG = 'Try another?';
+const RESTORE_ERROR_MSG = 'Error while restoring backup';
 
 @Component({
   selector: 'backup-and-restore',
@@ -19,12 +22,20 @@ import { RESTORE_ERROR_MSG } from './backup-and-restore.constants';
 export class BackupAndRestoreComponent {
   faDownload = faDownload;
   faUpload = faUpload;
+  @Select(BlockListState.getFiltersCount) filterCount$: Observable<number>;
   @ViewChild('fileInput', { static: true }) fileInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private store: Store,
     private snackBar: MatSnackBar,
   ) {
+  }
+
+  private showErrorMsg() {
+    this.snackBar
+      .open(RESTORE_ERROR_MSG, TRY_ANOTHER_MSG, { duration: 3000 })
+      .onAction()
+      .subscribe(() => this.fileInput.nativeElement.click());
   }
 
   restoreBackup() {
@@ -35,14 +46,10 @@ export class BackupAndRestoreComponent {
         .pipe(
           map((result) => JSON.parse(result)),
         )
-        .subscribe(({ blockList: { filters } }) => {
-          this.store.dispatch(new AddFilterAction(filters));
-        }, () => {
-          this.snackBar
-            .open(RESTORE_ERROR_MSG, 'Try another?', { duration: 3000 })
-            .onAction()
-            .subscribe(() => this.fileInput.nativeElement.click());
-        });
+        .subscribe(
+          ({ blockList: { filters } }) => this.store.dispatch(new AddFilterAction(filters)),
+          () => this.showErrorMsg()
+        );
     }
 
     this.fileInput.nativeElement.value = '';
@@ -50,9 +57,10 @@ export class BackupAndRestoreComponent {
 
   createBackup() {
     this.store.selectSnapshot(({ blockList }) => {
-      const str = JSON.stringify({ blockList });
-      const name = `youtube-blocker.backup.${ formatDate(new Date(), 'y-MM-d', 'en') }.json`;
-      saveFile(new Blob([str], { type: 'text/plain' }), name);
+      const timestamp = formatDate(new Date(), 'y-MM-d', 'en');
+      const backup = JSON.stringify({ blockList });
+      const name = `youtube-blocker.backup.${ timestamp }.json`;
+      saveFile(new Blob([backup], { type: 'text/plain' }), name);
     });
   }
 }

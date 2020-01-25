@@ -36,4 +36,9 @@ export class BlockListState {
   static getFilters(state: BlockListStateModel) {
     return state.filters;
   }
+
+  @Selector()
+  static getFiltersCount(state: BlockListStateModel) {
+    return state.filters.length;
+  }
 }

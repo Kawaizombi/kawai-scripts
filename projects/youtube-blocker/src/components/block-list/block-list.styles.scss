@@ -13,6 +13,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &.centered {
+      justify-content: center;
+    }
+
     .item-name {
       width: 450px;
       overflow: hidden;

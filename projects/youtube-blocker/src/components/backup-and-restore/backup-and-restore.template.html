@@ -1,18 +1,23 @@
 <div class="wrapper">
-  <button mat-raised-button (click)="createBackup()" color="primary">
-    Create backup
-    <fa-icon [icon]="faDownload"></fa-icon>
-  </button>
+  <div class="line">
+    <button mat-raised-button (click)="createBackup()" color="primary">
+      <span>Create backup</span>
+      <fa-icon [icon]="faDownload"></fa-icon>
+    </button>
 
-  <button mat-raised-button (click)="fileInput.click()" color="primary">
-    Restore backup
-    <fa-icon [icon]="faUpload"></fa-icon>
-  </button>
-  <input
-    hidden
-    type="file"
-    accept=".json"
-    #fileInput
-    class="backup-file-input"
-    (change)="restoreBackup()">
+    <button mat-raised-button (click)="fileInput.click()" color="primary">
+      <span>Restore backup</span>
+      <fa-icon [icon]="faUpload"></fa-icon>
+    </button>
+    <input
+      hidden
+      #fileInput
+      type="file"
+      accept=".json"
+      (change)="restoreBackup()">
+  </div>
+
+  <div class="line">
+    <p>Filter count: {{ filterCount$ | async }}</p>
+  </div>
 </div>

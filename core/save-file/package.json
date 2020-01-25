@@ -2,15 +2,13 @@
   "name": "@kawai-scripts/save-file",
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
+    "build": "rimraf dist && tsc -b"
   },
-  "main": "dist/save-file.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "devDependencies": {
-    "cross-env": "^6.0.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "typescript": "^3.7.2",
-    "awesome-typescript-loader": "^5.2.1"
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.2"
   }
 }

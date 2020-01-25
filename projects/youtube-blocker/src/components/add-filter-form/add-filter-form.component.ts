@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
-import { AddFilterAction } from '../../store/block-list/block-list.actions';
 import { Store } from '@ngxs/store';
+import { AddFilterAction } from '../../store/block-list/block-list.actions';
 
 @Component({
   selector: 'add-filter-form',

@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "description": "Storage for user scripts based on GM_setValue GM_getValue",
   "dependencies": {},
-  "module": "dist/gm-storage.js",
-  "main": "dist/gm-storage.js",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
+    "build": "rimraf dist && tsc -b"
   },
   "devDependencies": {
-    "cross-env": "^6.0.3",
-    "ts-loader": "^6.2.1",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "ts-node": "^8.5.4"
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.5"
   }
 }

@@ -1,8 +1,15 @@
-backup-and-restore {
-  .wrapper {
-    display: flex;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .line {
     button:not(:last-child) {
       margin-right: 10px;
     }
+
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
   }
 }
+

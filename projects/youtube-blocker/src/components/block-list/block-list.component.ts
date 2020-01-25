@@ -12,7 +12,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 })
 export class BlockListComponent {
   @Select(BlockListState.getFilters) filters$: Observable<string[]>;
-  searchTerm: string;
+  searchTerm = '';
   faTimesCircle = faTimesCircle;
 
   constructor(

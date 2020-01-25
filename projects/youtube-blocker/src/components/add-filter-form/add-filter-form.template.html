@@ -1,10 +1,11 @@
-<div class="add-new-wrapper">
-  <mat-form-field appearance="outline" class="add-new-box">
+<div class="wrapper">
+  <mat-form-field appearance="outline" class="box">
     <mat-label>Add filter to block list</mat-label>
     <input matInput placeholder="Type name of chanel" [(ngModel)]="newFilter" (keyup.enter)="addFilter()">
   </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="!newFilter || !newFilter.trim()" (click)="addFilter()">
-    <span>Add </span>
+
+  <button mat-raised-button color="primary" [disabled]="!newFilter.trim()" (click)="addFilter()">
+    <span>Add</span>
     <fa-icon [icon]="faPlusCircle"></fa-icon>
   </button>
 </div>

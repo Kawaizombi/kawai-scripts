@@ -2,12 +2,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
+    "outDir": "dist",
     "sourceMap": true,
+    "moduleResolution": "node",
     "declaration": true,
     "declarationDir": "dist"
   },
   "exclude": [
-    "node_modules",
-    "webpack.config.ts"
+    "node_modules"
   ]
 }
