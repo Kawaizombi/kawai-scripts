@@ -21,3 +21,31 @@ Note: If you don't have browser plugin to run user scripts install one listed be
 | Safari  | [Tampermonkey](https://www.tampermonkey.net/?ext=dhdg&browser=safari) |
 | Edge    | [Tampermonkey](https://www.microsoft.com/uk-ua/p/tampermonkey/9nblggh5162s) |
 
+### Development
+
+##### Setup
+```shell script
+npm i
+npx lerna bootstrap
+npx lerna run build
+```
+
+##### Build user script
+
+Run command in terminal `npm run build:<project-name>` for example:
+
+```shell script
+npm run build:hover-zoom
+```
+
+##### Develop user script
+
+Run command in terminal `npm run dev:<project-name>` for example:
+
+```shell script
+npm run dev:hover-zoom
+```
+
+then open dist folder and copy contents of `proxy script`(<project-name>.dev.proxy.user.js)
+into your your script manager or drag and drop `proxy script` into browser
+
