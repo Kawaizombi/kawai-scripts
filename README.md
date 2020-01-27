@@ -46,6 +46,6 @@ Run command in terminal `npm run dev:<project-name>` for example:
 npm run dev:hover-zoom
 ```
 
-then open dist folder and copy contents of `proxy script`(<project-name>.dev.proxy.user.js)
-into your your script manager or drag and drop `proxy script` into browser
+then open dist folder and copy contents of proxy script(`<project-name>.dev.proxy.user.js`)
+into your your script manager or drag and drop proxy script into browser
 
