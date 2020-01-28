@@ -49,3 +49,11 @@ npm run dev:hover-zoom
 then open dist folder and copy contents of proxy script(`<project-name>.dev.proxy.user.js`)
 into your your script manager or drag and drop proxy script into browser
 
+Also you can switch proxy to user file:// protocol with env variable for example:
+```shell script
+# Linux/Mac
+export FILE_PROTOCOL=1
+
+# Windows
+set FILE_PROTOCOL=1
+```  

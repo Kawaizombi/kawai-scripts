@@ -1,0 +1,4 @@
+{
+  "match": "*://www.youtube.com/*",
+  "run-at": "document-idle"
+}
