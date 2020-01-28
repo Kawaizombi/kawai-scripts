@@ -122,6 +122,7 @@
           "options": {
             "aot": true,
             "es5BrowserSupport": false,
+            "evalSourceMap": true,
             "browserTarget": "youtube-tweaks:build"
           },
           "configurations": {

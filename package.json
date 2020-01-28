@@ -16,7 +16,7 @@
     "dev:youtube-blocker": "ng serve --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.dev.config.js --plugin ~/build/angular-cli-dev-plugin",
     "build:youtube-blocker": "ng build --prod --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.prod.config.js",
     "analyze:youtube-blocker": "ng build --prod --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.analyze.config.js",
-    "dev:youtube-tweaks": "ng serve --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.dev.config.js --plugin \"~/build/angular-cli-dev-plugin\"",
+    "dev:youtube-tweaks": "ng serve --no-live-reload --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.dev.config.js --plugin \"~/build/angular-cli-dev-plugin\"",
     "build:youtube-tweaks": "ng build --prod --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.prod.config.js",
     "analyze:youtube-tweaks": "ng build --prod --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.analyze.config.js",
     "dev:get-qrcode": "npm run dev:base -- --project=\"get-qrcode\"",
