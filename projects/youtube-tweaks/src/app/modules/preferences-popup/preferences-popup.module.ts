@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PreferencesPopupComponent } from './preferences-popup.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [PreferencesPopupComponent],
   entryComponents: [PreferencesPopupComponent],
   imports: [
     CommonModule,
-    MatDialogModule,
-  ]
+    MatButtonModule,
+  ],
 })
 export class PreferencesPopupModule { }
