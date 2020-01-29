@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreferencesPopupModule } from './modules/preferences-popup/preferences-popup.module';
-import { OverlayFixModule } from './modules/overlay-fix/overlay-fix.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { OverlayFixModule } from './modules/overlay-fix/overlay-fix.module';
     MatDialogModule,
     BrowserAnimationsModule,
     PreferencesPopupModule,
-    OverlayFixModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
