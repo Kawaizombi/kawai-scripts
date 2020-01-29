@@ -1,4 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const commonConfigProvider = require('./webpack.common.config');
+const provider = require('../../build/ng-webpack-configs/production');
 
-module.exports = commonConfigProvider({ dev: false });
+module.exports = provider('youtube-blocker');

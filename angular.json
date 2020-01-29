@@ -52,7 +52,7 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "sourceMap": false,
+            "evalSourceMap": true,
             "aot": true,
             "browserTarget": "youtube-blocker:build"
           },

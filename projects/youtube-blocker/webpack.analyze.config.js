@@ -1,13 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const prodConfig = require('./webpack.prod.config');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const provider = require('../../build/ng-webpack-configs/analyze');
 
-module.exports = {
-  ...prodConfig,
-  plugins: [
-    ...prodConfig.plugins,
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-    }),
-  ],
-};
+module.exports = provider('youtube-blocker');
