@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreferencesPopupModule } from './modules/preferences-popup/preferences-popup.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PreferencesPopupModule } from './modules/preferences-popup/preferences-
     MatDialogModule,
     BrowserAnimationsModule,
     PreferencesPopupModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

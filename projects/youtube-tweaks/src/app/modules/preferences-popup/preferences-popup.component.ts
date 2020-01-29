@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 @Component({
   selector: 'yt-tweaks-preferences-popup',
@@ -8,21 +8,25 @@ import { OverlayContainer } from '@angular/cdk/overlay';
   styleUrls: ['./preferences-popup.component.scss'],
 })
 export class PreferencesPopupComponent {
+  faTimes = faTimes;
+
+  qualityChoices = [
+    {label: 'Auto'},
+    {label: '240p'},
+    {label: '360p'},
+    {label: '480p'},
+    {label: '720p'},
+    {label: '1080p'},
+    {label: 'Max'},
+  ];
+  defaultQuality = this.qualityChoices[0];
+
   constructor(
     public dialogRef: MatDialogRef<PreferencesPopupComponent>,
-    private cd: ChangeDetectorRef,
-    private overlayContainer: OverlayContainer,
   ) {
   }
 
   close() {
     this.dialogRef.close();
-    console.log(this.dialogRef);
-
-    // HACK: https://github.com/angular/components/issues/17899
-    if(this.overlayContainer['_containerElement']) {
-      this.overlayContainer['_containerElement'].remove();
-    }
-    this.overlayContainer['_containerElement'] = undefined;
   }
 }

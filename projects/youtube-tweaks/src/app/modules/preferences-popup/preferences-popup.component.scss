@@ -1,5 +1,11 @@
 .popup {
   .popup-header {
     display: flex;
+    justify-content: flex-end;
+  }
+  .popup-content {
+    .tab-content {
+      padding: 10px;
+    }
   }
 }

@@ -1,9 +1,26 @@
 <div class="popup">
   <div class="popup-header">
-    head
-    <button mat-icon-button (click)="close()">Close</button>
+    <button mat-icon-button (click)="close()">
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
   </div>
   <div class="popup-content">
-    content
+    <mat-tab-group headerPosition="below" mat-align-tabs="center">
+      <mat-tab label="Settings">
+        <div class="tab-content">
+          <mat-card>
+            <mat-slide-toggle>Remember video speed</mat-slide-toggle>
+            <mat-slide-toggle>Prevent auto start</mat-slide-toggle>
+            <div>
+              <span>Default quality</span>
+              <mat-radio-group [(ngModel)]="defaultQuality" aria-label="Default quality">
+                <mat-radio-button *ngFor="let quality of qualityChoices" [value]="quality">{{ quality.label }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Hot keys"></mat-tab>
+    </mat-tab-group>
   </div>
 </div>
