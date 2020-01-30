@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { QUALITY_CHOICES, SPEED_CHOICES, DEFAULT_QUALITY, DEFAULT_SPEED } from './preferences-popup.constants';
 
 @Component({
   selector: 'yt-tweaks-preferences-popup',
@@ -10,16 +11,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 export class PreferencesPopupComponent {
   faTimes = faTimes;
 
-  qualityChoices = [
-    {label: 'Auto'},
-    {label: '240p'},
-    {label: '360p'},
-    {label: '480p'},
-    {label: '720p'},
-    {label: '1080p'},
-    {label: 'Max'},
-  ];
-  defaultQuality = this.qualityChoices[0];
+  qualityChoices = QUALITY_CHOICES;
+  defaultQuality = DEFAULT_QUALITY;
+  speedChoices = SPEED_CHOICES;
+  defaultSpeed = DEFAULT_SPEED;
 
   constructor(
     public dialogRef: MatDialogRef<PreferencesPopupComponent>,

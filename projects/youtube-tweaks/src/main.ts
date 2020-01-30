@@ -21,13 +21,22 @@ async function waitSelector(selector: string) {
   while(document.querySelector(selector) === null) {
     await new Promise(resolve => requestAnimationFrame(resolve));
   }
+
+  return document.querySelector(selector);
 }
 
-async function mountApp() {
-  await waitSelector(MOUNT_POINT);
-  document.querySelector(MOUNT_POINT).prepend(ROOT_ELEMENT);
-  platformBrowserDynamic().bootstrapModule(AppModule)
+function mountApp() {
+  ROOT_ELEMENT.classList.add('booting');
+  document.body.append(ROOT_ELEMENT);
+
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
     .catch(err => console.error(err));
+
+  waitSelector(MOUNT_POINT).then((mountPoint) => {
+    mountPoint.prepend(ROOT_ELEMENT);
+    ROOT_ELEMENT.classList.remove('booting');
+  });
 }
 
 mountApp();

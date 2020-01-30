@@ -9,8 +9,13 @@
       <mat-tab label="Settings">
         <div class="tab-content">
           <mat-card>
-            <mat-slide-toggle>Remember video speed</mat-slide-toggle>
             <mat-slide-toggle>Prevent auto start</mat-slide-toggle>
+            <div>
+              <span>Default speed</span>
+              <mat-radio-group [(ngModel)]="defaultSpeed" aria-label="Default quality">
+                <mat-radio-button *ngFor="let speed of speedChoices" [value]="speed">{{ speed.label }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
             <div>
               <span>Default quality</span>
               <mat-radio-group [(ngModel)]="defaultQuality" aria-label="Default quality">

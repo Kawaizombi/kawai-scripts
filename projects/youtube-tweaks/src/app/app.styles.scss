@@ -4,3 +4,7 @@
     border-color: white;
   }
 }
+
+:host.booting {
+  display: none;
+}
