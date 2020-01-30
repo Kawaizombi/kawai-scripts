@@ -8,7 +8,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/angular-fontawesome": "^0.5.0",
     "@ngxs/store": "^3.6.1",
-    "@ngxs/devtools-plugin": "^3.6.1",
-    "key-event-to-string": "^1.2.0"
+    "@ngxs/devtools-plugin": "^3.6.1"
   }
 }

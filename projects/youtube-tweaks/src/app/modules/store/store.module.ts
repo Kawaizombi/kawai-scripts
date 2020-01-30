@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { HotkeysState } from './hotkeys/hotkeys.state';
+import { ShortcutsState } from './shortcuts/shortcuts.state';
 
 if(!environment.production) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -15,7 +15,7 @@ if(!environment.production) {
 @NgModule({
   imports: [
     NgxsModule.forRoot([
-      HotkeysState,
+      ShortcutsState,
     ], {
       developmentMode: !environment.production,
     }),

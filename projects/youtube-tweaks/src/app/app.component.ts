@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PreferencesPopupComponent } from './modules/preferences-popup/preferences-popup.component';
+import { ShortcutService } from './modules/shortcut/shortcut.service';
 
 @Component({
   selector: 'yt-tweaks-root',
@@ -10,6 +11,7 @@ import { PreferencesPopupComponent } from './modules/preferences-popup/preferenc
 export class AppComponent {
   constructor(
     private dialog: MatDialog,
+    private shortcutService: ShortcutService,
   ) {
   }
 

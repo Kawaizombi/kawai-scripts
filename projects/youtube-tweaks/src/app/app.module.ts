@@ -6,8 +6,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreferencesPopupModule } from './modules/preferences-popup/preferences-popup.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HotkeyListenerModule } from './modules/hotkey-listener/hotkey-listener.module';
 import { StoreModule } from './modules/store/store.module';
+import { ShortcutModule } from './modules/shortcut/shortcut.module';
+import { PlayerModule } from './modules/player/player.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { StoreModule } from './modules/store/store.module';
     BrowserAnimationsModule,
     PreferencesPopupModule,
     FontAwesomeModule,
-    HotkeyListenerModule,
     StoreModule,
+    ShortcutModule,
+    PlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,16 @@
 export const QUALITY_CHOICES = [
-  {label: 'Auto', value: 'AUTO'},
-  {label: '240p', value: 240},
-  {label: '360p', value: 360},
-  {label: '480p', value: 480},
-  {label: '720p', value: 720},
-  {label: '1080p', value: 1080},
-  {label: 'Max', value: 'MAX'},
+  {label: 'Auto', value: 'auto'},
+  {label: '144p', value: 'tiny'},
+  {label: '240p', value: 'small'},
+  {label: '360p', value: 'medium'},
+  {label: '480p', value: 'large'},
+  {label: '720p', value: 'hd720'},
+  {label: '1080p', value: 'hd1080'},
+  {label: '1440p', value: 'hd1440'},
+  {label: '2160p', value: 'hd2160'},
+  {label: 'Max', value: 'highres'},
 ];
+
 
 export const SPEED_CHOICES = [
   {label: 'x0.25', value: 0.25},
