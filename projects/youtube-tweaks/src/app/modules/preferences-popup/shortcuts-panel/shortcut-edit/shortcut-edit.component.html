@@ -1,0 +1,9 @@
+<yt-tweaks-shortcut-keys [shortcut]="shortcut"></yt-tweaks-shortcut-keys>
+
+<button mat-icon-button (click)="shortcutChange.emit(shortcut)">
+  <fa-icon [icon]="faCheck"></fa-icon>
+</button>
+
+<button mat-icon-button (click)="cancel.emit()">
+  <fa-icon [icon]="faTimes"></fa-icon>
+</button>

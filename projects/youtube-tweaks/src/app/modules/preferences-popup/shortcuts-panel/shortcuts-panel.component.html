@@ -1,14 +1,20 @@
 <mat-list role="list" class="shortcuts">
-  <mat-list-item role="listitem">
+  <mat-list-item *ngFor="let shortcut of shortcuts$ | async | keyvalue">
     <div class="item">
-      <span>Speed up</span>
-      <span [innerHTML]="(shortcuts$ | async).SPEED_UP | shortcut"></span>
-    </div>
-  </mat-list-item>
-  <mat-list-item>
-    <div class="item">
-      <span>Quality up</span>
-      <span [innerHTML]="(shortcuts$ | async).QUALITY_UP | shortcut"></span>
+      <span>{{ mapping[shortcut.key] }}</span>
+      <div>
+        <yt-tweaks-shortcut-keys [shortcut]="shortcut.value" *ngIf="editing !== shortcut.key; else editEl"></yt-tweaks-shortcut-keys>
+        <ng-template #editEl>
+          <yt-tweaks-shortcut-edit [shortcut]="shortcut.value"
+                                   matTooltip="Type new shortcut"
+                                   matTooltipPosition="left"
+                                   (cancel)="editDone()"
+                                   (shortcutChange)="editDone($event)"></yt-tweaks-shortcut-edit>
+        </ng-template>
+        <button mat-icon-button (click)="edit(shortcut.key)" *ngIf="editing !== shortcut.key">
+          <fa-icon [icon]="faPen"></fa-icon>
+        </button>
+      </div>
     </div>
   </mat-list-item>
 </mat-list>

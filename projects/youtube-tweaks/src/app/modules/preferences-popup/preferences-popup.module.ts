@@ -10,10 +10,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { ShortcutsPanelComponent } from './shortcuts-panel/shortcuts-panel.component';
 import { MatListModule } from '@angular/material/list';
-import { ShortcutPipe } from './shortcuts-panel/shortcut.pipe';
+import { ShortcutKeysComponent } from './shortcuts-panel/shortcut-keys/shortcut-keys.component';
+import { ShortcutEditComponent } from './shortcuts-panel/shortcut-edit/shortcut-edit.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [PreferencesPopupComponent, ShortcutsPanelComponent, ShortcutPipe, ShortcutPipe],
+  declarations: [PreferencesPopupComponent, ShortcutsPanelComponent, ShortcutKeysComponent, ShortcutEditComponent],
   entryComponents: [PreferencesPopupComponent],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { ShortcutPipe } from './shortcuts-panel/shortcut.pipe';
     MatRadioModule,
     FormsModule,
     MatListModule,
+    MatTooltipModule,
   ],
 })
 export class PreferencesPopupModule { }

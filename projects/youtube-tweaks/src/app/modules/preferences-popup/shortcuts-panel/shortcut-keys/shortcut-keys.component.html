@@ -1,0 +1,8 @@
+<span class="shortcut">
+  <span *ngFor="let key of keys; let last = last">
+    <span class="key">{{ key }}</span>
+    <span *ngIf="!last"> + </span>
+  </span>
+</span>
+
+
