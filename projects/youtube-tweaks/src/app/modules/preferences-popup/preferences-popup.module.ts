@@ -8,9 +8,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
+import { ShortcutsPanelComponent } from './shortcuts-panel/shortcuts-panel.component';
+import { MatListModule } from '@angular/material/list';
+import { ShortcutPipe } from './shortcuts-panel/shortcut.pipe';
 
 @NgModule({
-  declarations: [PreferencesPopupComponent],
+  declarations: [PreferencesPopupComponent, ShortcutsPanelComponent, ShortcutPipe, ShortcutPipe],
   entryComponents: [PreferencesPopupComponent],
   imports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatRadioModule,
     FormsModule,
+    MatListModule,
   ],
 })
 export class PreferencesPopupModule { }

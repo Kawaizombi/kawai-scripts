@@ -1,0 +1,14 @@
+<mat-list role="list" class="shortcuts">
+  <mat-list-item role="listitem">
+    <div class="item">
+      <span>Speed up</span>
+      <span [innerHTML]="(shortcuts$ | async).SPEED_UP | shortcut"></span>
+    </div>
+  </mat-list-item>
+  <mat-list-item>
+    <div class="item">
+      <span>Quality up</span>
+      <span [innerHTML]="(shortcuts$ | async).QUALITY_UP | shortcut"></span>
+    </div>
+  </mat-list-item>
+</mat-list>
