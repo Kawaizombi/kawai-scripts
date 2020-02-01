@@ -9,6 +9,7 @@ import { QualityShortcutService } from './providers/quality-shortcut.service';
   declarations: [ShortcutComponent],
   imports: [CommonModule],
   exports: [ShortcutComponent],
+  entryComponents: [ShortcutComponent],
   providers: [
     ShortcutService,
     { provide: SHORTCUT, useClass: SpeedShortcutService, multi: true },

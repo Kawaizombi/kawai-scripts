@@ -6,6 +6,9 @@ import { PreferencesModel, PreferencesState } from '../store/preferences/prefere
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
+// yt-navigate-finish - new youtube, spfdone - old youtube
+const NAVIGATE_EVENT = document.querySelector('ytd-app') ? 'yt-navigate-finish' : 'spfdone';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,20 +21,21 @@ export class PlayerPatcherService {
   }
 
   attach() {
+    window.addEventListener(NAVIGATE_EVENT, this.handle);
   }
 
   detach() {
+    window.removeEventListener(NAVIGATE_EVENT, this.handle);
   }
 
   @autobind
-  handle(event: string) {
-    if(event === 'dataloaded') {
-      this.preferences$
-        .pipe(first())
-        .subscribe(({ defaultQuality, defaultSpeed }) => {
-          this.playerService.setQuality(defaultQuality);
-          this.playerService.setSpeed(defaultSpeed);
-        });
-    }
+  handle() {
+    this.preferences$
+      .pipe(first())
+      .subscribe(({ defaultQuality, defaultSpeed, autoStart }) => {
+        this.playerService.setQuality(defaultQuality);
+        this.playerService.setSpeed(defaultSpeed);
+        if (!autoStart) this.playerService.stop();
+      });
   }
 }

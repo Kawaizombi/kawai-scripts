@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import eventToShortcut from './event-to-shortcut';
 import { ShortcutService } from './shortcut.service';
 
@@ -6,22 +6,19 @@ import { ShortcutService } from './shortcut.service';
   selector: 'yt-tweaks-shortcut',
   template: '',
 })
-export class ShortcutComponent implements OnInit, OnDestroy {
+export class ShortcutComponent {
   constructor(
     private shortcutService: ShortcutService,
   ) {
   }
 
-  ngOnInit() {
-    this.shortcutService.attach();
-  }
-
-  ngOnDestroy() {
-    this.shortcutService.detach();
-  }
-
   @HostListener('document:keypress', ['$event'])
   onKeyPress($event: KeyboardEvent) {
-    this.shortcutService.events.next(eventToShortcut($event));
+    const { target } = $event;
+    const fromInput = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement;
+
+    if(!fromInput) {
+      this.shortcutService.events.next(eventToShortcut($event));
+    }
   }
 }

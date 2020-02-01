@@ -22,6 +22,7 @@ export class ShortcutsPanelComponent {
   mapping: Mapping = {
     SPEED_UP: 'Speed up',
     SPEED_DOWN: 'Speed down',
+    SPEED_RESET: 'Reset speed',
     QUALITY_UP: 'Quality up',
     QUALITY_DOWN: 'Quality down',
   };
@@ -38,7 +39,9 @@ export class ShortcutsPanelComponent {
   }
 
   editDone(shortcut?: string) {
-    this.store.dispatch(new ChangeShortcut(this.editing, shortcut));
+    if(shortcut) {
+      this.store.dispatch(new ChangeShortcut(this.editing, shortcut));
+    }
     this.editing = null;
   }
 

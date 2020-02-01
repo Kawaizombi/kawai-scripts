@@ -11,7 +11,11 @@
                                    (cancel)="editDone()"
                                    (shortcutChange)="editDone($event)"></yt-tweaks-shortcut-edit>
         </ng-template>
-        <button mat-icon-button (click)="edit(shortcut.key)" *ngIf="editing !== shortcut.key">
+
+        <button mat-icon-button
+                aria-label="Edit shortcut"
+                (click)="edit(shortcut.key)"
+                *ngIf="editing !== shortcut.key">
           <fa-icon [icon]="faPen"></fa-icon>
         </button>
       </div>

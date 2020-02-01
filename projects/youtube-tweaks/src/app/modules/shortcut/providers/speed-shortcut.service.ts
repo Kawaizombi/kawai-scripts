@@ -15,12 +15,24 @@ export class SpeedShortcutService implements ShortcutHandler {
 
   handle(shortcut) {
     const speed = this.playerService.getSpeed();
-    const { SPEED_UP, SPEED_DOWN } = this.store.selectSnapshot(({ shortcuts }) => shortcuts);
+    const { SPEED_UP, SPEED_DOWN, SPEED_RESET } = this.store.selectSnapshot(({ shortcuts }) => shortcuts);
 
-    if(SPEED_UP === shortcut) {
-      this.playerService.setSpeed(speed + 0.25);
-    } else if(SPEED_DOWN === shortcut) {
-      this.playerService.setSpeed(speed - 0.25);
+    switch(shortcut) {
+      case SPEED_UP: {
+        this.playerService.setSpeed(speed + 0.25);
+        break;
+      }
+
+      case SPEED_DOWN: {
+        this.playerService.setSpeed(speed - 0.25);
+        break;
+      }
+
+      case SPEED_RESET: {
+        const defaultSpeed = this.store.selectSnapshot(({ preferences }) => preferences.defaultSpeed);
+        this.playerService.setSpeed(defaultSpeed);
+        break;
+      }
     }
   }
 }
