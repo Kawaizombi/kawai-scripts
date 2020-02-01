@@ -4,6 +4,8 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { ShortcutsState } from './shortcuts/shortcuts.state';
 import { PreferencesState } from './preferences/preferences.state';
+import { GMStorageEngine } from './storage.engine';
+import { NgxsAsyncStoragePluginModule } from '@ngxs-labs/async-storage-plugin';
 
 if(!environment.production) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -25,6 +27,7 @@ if(!environment.production) {
       name: 'Youtube tweaks',
       disabled: environment.production,
     }),
+    NgxsAsyncStoragePluginModule.forRoot(GMStorageEngine),
   ],
 })
 export class StoreModule {

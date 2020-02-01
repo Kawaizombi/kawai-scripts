@@ -7,6 +7,7 @@ import { Select } from '@ngxs/store';
 import { PreferencesModel, PreferencesState } from './modules/store/preferences/preferences.state';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import waitSelector from '@kawai-scripts/wait-selector';
 
 @Component({
   selector: 'yt-tweaks-root',
@@ -31,6 +32,8 @@ export class AppComponent implements OnInit {
       .subscribe((enabled) => {
         enabled ? this.shortcutService.attach() : this.shortcutService.detach();
       });
+
+    waitSelector('#movie_player').then(() => this.playerPatcherService.handle());
   }
 
   openOptionsPopup(event: MouseEvent) {

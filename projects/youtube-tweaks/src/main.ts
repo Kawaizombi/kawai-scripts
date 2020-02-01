@@ -5,6 +5,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import combineCssSelectors from '../../youtube-blocker/src/utils/combine-css-rules';
+import waitSelector from '@kawai-scripts/wait-selector';
 
 if (environment.production) {
   enableProdMode();
@@ -17,13 +18,6 @@ const MOUNT_POINT = combineCssSelectors(
   '#end',
 );
 
-async function waitSelector(selector: string) {
-  while(document.querySelector(selector) === null) {
-    await new Promise(resolve => requestAnimationFrame(resolve));
-  }
-
-  return document.querySelector(selector);
-}
 
 function mountApp() {
   ROOT_ELEMENT.classList.add('booting');

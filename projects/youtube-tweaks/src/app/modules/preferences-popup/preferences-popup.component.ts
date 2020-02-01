@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { QUALITY_CHOICES, SPEED_CHOICES } from './preferences-popup.constants';
 import { Select, Store } from '@ngxs/store';
 import { PreferencesModel, PreferencesState } from '../store/preferences/preferences.state';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   SetDefaultQuality,
   SetDefaultSpeed,
@@ -17,11 +17,16 @@ import {
   templateUrl: './preferences-popup.component.html',
   styleUrls: ['./preferences-popup.component.scss'],
 })
-export class PreferencesPopupComponent {
+export class PreferencesPopupComponent implements OnInit, OnDestroy {
+  private rootSub = new Subscription();
+
+
   faTimes = faTimes;
 
   qualityChoices = QUALITY_CHOICES;
   speedChoices = SPEED_CHOICES;
+  currentSpeed: string;
+  currentQuality: string;
 
   @Select(PreferencesState) preferences$: Observable<PreferencesModel>;
 
@@ -29,6 +34,20 @@ export class PreferencesPopupComponent {
     public dialogRef: MatDialogRef<PreferencesPopupComponent>,
     private store: Store,
   ) {
+  }
+
+  ngOnInit() {
+    this.rootSub.add(
+      this.preferences$
+        .subscribe(({ defaultQuality, defaultSpeed }) => {
+          this.currentQuality = this.qualityChoices.find(({ value }) => value === defaultQuality).label;
+          this.currentSpeed = this.speedChoices.find(({ value }) => value === defaultSpeed).label;
+        }),
+    );
+  }
+
+  ngOnDestroy() {
+    this.rootSub.unsubscribe();
   }
 
   close() {
@@ -48,6 +67,6 @@ export class PreferencesPopupComponent {
   }
 
   setQuality(quality: string) {
-    this.store.dispatch(new SetDefaultQuality(quality))
+    this.store.dispatch(new SetDefaultQuality(quality));
   }
 }

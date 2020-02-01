@@ -1,0 +1,13 @@
+{
+  "name": "@kawai-scripts/wait-selector",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5",
+    "rimraf": "^3.0.1"
+  }
+}

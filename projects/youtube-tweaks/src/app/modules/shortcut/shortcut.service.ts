@@ -34,6 +34,7 @@ export class ShortcutService {
 
   private buildShortcutListener() {
     this.shortcutListener = this.factory.create(this.injector);
+    this.shortcutListener.instance.events = this.events;
     document.body.append(this.shortcutListener.location.nativeElement);
     this.shortcutListener.changeDetectorRef.detectChanges();
   }
