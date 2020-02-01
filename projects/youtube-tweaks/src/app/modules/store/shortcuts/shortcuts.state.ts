@@ -1,4 +1,5 @@
-import { State } from '@ngxs/store';
+import { Action, State, StateContext } from '@ngxs/store';
+import { ChangeShortcut, ResetShortcuts } from './shortcuts.actions';
 
 export interface ShortcutsModel {
   SPEED_UP: string;
@@ -7,15 +8,27 @@ export interface ShortcutsModel {
   QUALITY_DOWN: string;
 }
 
+type Context = StateContext<ShortcutsModel>;
+
+const DEFAULTS: ShortcutsModel =  {
+  SPEED_UP: 'NumpadAdd',
+  SPEED_DOWN: 'NumpadSubtract',
+  QUALITY_UP: 'Shift + NumpadAdd',
+  QUALITY_DOWN: 'Shift + NumpadSubtract',
+};
+
 @State<ShortcutsModel>({
   name: 'shortcuts',
-  defaults: {
-    SPEED_UP: 'NumpadAdd',
-    SPEED_DOWN: 'NumpadSubtract',
-    QUALITY_UP: 'Shift + NumpadAdd',
-    QUALITY_DOWN: 'Shift + NumpadSubtract'
-  },
+  defaults: DEFAULTS,
 })
 export class ShortcutsState {
+  @Action(ChangeShortcut)
+  changeShortcut(ctx: Context, { key, shortcut }: ChangeShortcut) {
+    ctx.patchState({ [key]: shortcut });
+  }
 
+  @Action(ResetShortcuts)
+  reset(ctx: Context) {
+    ctx.setState(DEFAULTS);
+  }
 }

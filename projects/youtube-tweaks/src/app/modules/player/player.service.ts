@@ -31,4 +31,8 @@ export class PlayerService {
   setQuality(quality: string) {
     this.getPlayer().setPlaybackQualityRange(quality);
   }
+
+  stop() {
+    this.getPlayer().stopVideo();
+  }
 }

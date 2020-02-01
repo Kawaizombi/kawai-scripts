@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { ShortcutsModel, ShortcutsState } from '../../store/shortcuts/shortcuts.state';
 import { Observable } from 'rxjs';
 import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
+import { ChangeShortcut, ResetShortcuts } from '../../store/shortcuts/shortcuts.actions';
 
 type Mapping = {
   [key in keyof ShortcutsModel]: string;
@@ -27,12 +28,21 @@ export class ShortcutsPanelComponent {
 
   @Select(ShortcutsState) shortcuts$: Observable<ShortcutsModel>;
 
+  constructor(
+    private store: Store,
+  ) {
+  }
+
   edit(key: any) {
     this.editing = key;
   }
 
   editDone(shortcut?: string) {
+    this.store.dispatch(new ChangeShortcut(this.editing, shortcut));
     this.editing = null;
-    console.log(shortcut);
+  }
+
+  reset() {
+    this.store.dispatch(new ResetShortcuts());
   }
 }

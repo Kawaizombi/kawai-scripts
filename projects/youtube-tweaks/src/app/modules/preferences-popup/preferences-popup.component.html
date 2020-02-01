@@ -9,23 +9,43 @@
       <mat-tab label="Settings">
         <div class="tab-content">
           <mat-card>
-            <mat-slide-toggle>Prevent auto start</mat-slide-toggle>
-            <div>
-              <span>Default speed</span>
-              <mat-radio-group [(ngModel)]="defaultSpeed" aria-label="Default quality">
-                <mat-radio-button *ngFor="let speed of speedChoices" [value]="speed">{{ speed.label }}</mat-radio-button>
-              </mat-radio-group>
+            <div class="row">
+              <div class="column-block">
+                <mat-slide-toggle [ngModel]="(preferences$ | async).autoStart"
+                                  (ngModelChange)="toggleAutoStart()">Video auto start</mat-slide-toggle>
+
+                <mat-slide-toggle [ngModel]="(preferences$ | async).shortcutsEnabled"
+                                  (ngModelChange)="toggleShortcuts()">Enable shortcuts</mat-slide-toggle>
+              </div>
             </div>
-            <div>
-              <span>Default quality</span>
-              <mat-radio-group [(ngModel)]="defaultQuality" aria-label="Default quality">
-                <mat-radio-button *ngFor="let quality of qualityChoices" [value]="quality">{{ quality.label }}</mat-radio-button>
-              </mat-radio-group>
+
+            <div class="row">
+              <div class="column-block">
+                <span>Default speed</span>
+                <mat-radio-group class="column-block"
+                                 [ngModel]="(preferences$ | async).defaultSpeed"
+                                 (ngModelChange)="setSpeed($event)">
+                  <mat-radio-button class="radio-item"
+                                    *ngFor="let speed of speedChoices"
+                                    [value]="speed.value">{{ speed.label }}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <div class="column-block">
+                <span>Default quality</span>
+                <mat-radio-group class="column-block"
+                                 [ngModel]="(preferences$ | async).defaultQuality"
+                                 (ngModelChange)="setQuality($event)">
+                  <mat-radio-button class="radio-item"
+                                    *ngFor="let quality of qualityChoices"
+                                    [value]="quality.value">{{ quality.label }}</mat-radio-button>
+                </mat-radio-group>
+              </div>
             </div>
           </mat-card>
         </div>
       </mat-tab>
-      <mat-tab label="Shortcuts">
+      <mat-tab label="Shortcuts" [disabled]="!(preferences$ | async).shortcutsEnabled">
         <div class="tab-content">
           <mat-card>
             <yt-tweaks-shortcuts-panel></yt-tweaks-shortcuts-panel>
