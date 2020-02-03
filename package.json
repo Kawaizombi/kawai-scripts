@@ -13,7 +13,7 @@
     "dev:animespirit-ost-downloader": "npm run dev:base -- --project=\"animespirit-ost-downloader\"",
     "build:animespirit-ost-downloader": "npm run build:base -- --project=\"animespirit-ost-downloader\"",
     "analyze:animespirit-ost-downloader": "npm run analyze:base -- --project=\"animespirit-ost-downloader\"",
-    "dev:youtube-blocker": "ng serve --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.dev.config.js",
+    "dev:youtube-blocker": "ng serve --no-live-reload --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.dev.config.js",
     "build:youtube-blocker": "ng build --prod --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.prod.config.js",
     "analyze:youtube-blocker": "ng build --prod --project youtube-blocker --single-bundle --extra-webpack-config projects/youtube-blocker/webpack.analyze.config.js",
     "dev:youtube-tweaks": "ng serve --no-live-reload --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.dev.config.js",
