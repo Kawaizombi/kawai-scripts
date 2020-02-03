@@ -1,0 +1,29 @@
+.popup {
+  .popup-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .popup-content {
+    .tab-content {
+      padding: 10px;
+      .column-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .row {
+        display: flex;
+        padding: 10px 0;
+        > * {
+          margin: 0 10px;
+          &:first-child {
+            margin-left: 0;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

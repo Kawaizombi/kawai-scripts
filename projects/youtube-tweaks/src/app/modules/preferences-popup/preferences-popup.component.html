@@ -1,0 +1,55 @@
+<div class="popup">
+  <div class="popup-header">
+    <button mat-icon-button (click)="close()">
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
+  </div>
+  <div class="popup-content">
+    <mat-tab-group headerPosition="below" mat-align-tabs="center">
+      <mat-tab label="Settings">
+        <div class="tab-content">
+          <mat-card>
+            <div class="row">
+              <div class="column-block">
+                <mat-slide-toggle [ngModel]="(preferences$ | async).autoStart"
+                                  (ngModelChange)="toggleAutoStart()">
+                  Video auto start
+                </mat-slide-toggle>
+
+                <mat-slide-toggle [ngModel]="(preferences$ | async).shortcutsEnabled"
+                                  (ngModelChange)="toggleShortcuts()">
+                  Enable shortcuts
+                </mat-slide-toggle>
+              </div>
+
+
+              <button mat-button [matMenuTriggerFor]="speedMenu">Default speed: {{ currentSpeed }}</button>
+              <mat-menu #speedMenu="matMenu">
+                <button
+                  *ngFor="let speed of speedChoices"
+                  mat-menu-item
+                  (click)="setSpeed(speed.value)">{{ speed.label }}</button>
+              </mat-menu>
+
+              <button mat-button [matMenuTriggerFor]="qualityMenu">Default quality: {{ currentQuality }}</button>
+              <mat-menu #qualityMenu="matMenu">
+                <button
+                  *ngFor="let quality of qualityChoices"
+                  mat-menu-item
+                  (click)="setQuality(quality.value)">{{ quality.label }}</button>
+              </mat-menu>
+
+            </div>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Shortcuts" [disabled]="!(preferences$ | async).shortcutsEnabled">
+        <div class="tab-content">
+          <mat-card>
+            <yt-tweaks-shortcuts-panel></yt-tweaks-shortcuts-panel>
+          </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

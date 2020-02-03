@@ -52,7 +52,7 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "sourceMap": false,
+            "evalSourceMap": true,
             "aot": true,
             "browserTarget": "youtube-blocker:build"
           },
@@ -61,28 +61,73 @@
               "browserTarget": "youtube-blocker:build:production"
             }
           }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+        }
+      }
+    },
+    "youtube-tweaks": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/youtube-tweaks",
+      "sourceRoot": "projects/youtube-tweaks/src",
+      "prefix": "yt-tweaks",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
           "options": {
-            "browserTarget": "youtube-blocker:build"
-          }
-        },
-        "test": {
-          "builder": "ngx-build-plus:karma",
-          "options": {
-            "main": "projects/youtube-blocker/src/test.ts",
-            "polyfills": "projects/youtube-blocker/src/polyfills.ts",
-            "tsConfig": "projects/youtube-blocker/tsconfig.spec.json",
-            "karmaConfig": "projects/youtube-blocker/karma.conf.js",
-            "assets": [
-              "projects/youtube-blocker/src/favicon.ico",
-              "projects/youtube-blocker/src/assets"
-            ],
+            "extractLicenses": false,
+            "outputPath": "dist",
+            "index": "",
+            "main": "projects/youtube-tweaks/src/main.ts",
+            "tsConfig": "projects/youtube-tweaks/tsconfig.app.json",
             "styles": [
-              "projects/youtube-blocker/src/styles.scss"
+              "projects/youtube-tweaks/src/styles.scss"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/youtube-tweaks/src/environments/environment.ts",
+                  "with": "projects/youtube-tweaks/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "deleteOutputPath": false,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "es5BrowserSupport": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "aot": true,
+            "evalSourceMap": true,
+            "browserTarget": "youtube-tweaks:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "youtube-tweaks:build:production"
+            }
           }
         }
       }

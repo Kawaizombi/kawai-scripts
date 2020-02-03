@@ -1,0 +1,9 @@
+{
+  "match": "*://www.youtube.com/*",
+  "run-at": "document-end",
+  "grant": [
+    "GM_getValue",
+    "GM_setValue",
+    "GM_deleteValue"
+  ]
+}
