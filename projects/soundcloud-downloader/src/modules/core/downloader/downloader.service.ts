@@ -10,7 +10,8 @@ import archive from '@kawai-scripts/archive';
 import addId3 from '../utils/add-id3';
 import { forkJoin } from 'rxjs';
 import saveFile from '@kawai-scripts/save-file';
-import { AddDownloadItem, RemoveDownloadItem, UpdateDownloadItem } from '../../store/downloads/downloads.actions';
+import { AddDownloadItem, RemoveDownloadItem } from '../../store/downloads/downloads.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class DownloaderService {
   constructor(
     private api: ApiService,
     private store: Store,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -72,6 +74,12 @@ export class DownloaderService {
         const name = `${ rootMetadata.title }.${ ext }`;
 
         saveFile(blob, name);
+        this.store.dispatch(new RemoveDownloadItem(rootUrl));
+      }, () => {
+        this.snackBar.open('Error has occurred try again later', null, {
+          duration: 2000,
+        });
+
         this.store.dispatch(new RemoveDownloadItem(rootUrl));
       });
   }

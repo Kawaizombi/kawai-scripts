@@ -1,5 +1,4 @@
 import work from 'webworkify-webpack';
-import { JSZipGeneratorOptions } from 'jszip';
 
 export interface FileEntry {
   file: ArrayBuffer;
@@ -14,14 +13,8 @@ interface Message {
   data: ArrayBuffer;
 }
 
-const DEFAULT_OPTIONS: JSZipGeneratorOptions = {
-  compression: 'DEFLATE',
-  compressionOptions: {
-    level: 6,
-  },
-};
 
-function archive(entries: FileEntry[], options?: JSZipGeneratorOptions) {
+function archive(entries: FileEntry[]) {
   return new Promise<Blob>((resolve) => {
     const worker: WorkifyWorker = work(require.resolve('./worker.ts'));
     const transfer = entries.map(({ file }) => file);
@@ -33,7 +26,7 @@ function archive(entries: FileEntry[], options?: JSZipGeneratorOptions) {
       URL.revokeObjectURL(worker.objectURL);
     });
 
-    worker.postMessage({ entries, options: { ...DEFAULT_OPTIONS, ...options } }, transfer);
+    worker.postMessage({ entries }, transfer);
   });
 }
 

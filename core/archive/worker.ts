@@ -1,23 +1,21 @@
-import { JSZipGeneratorOptions } from 'jszip';
-import JSZip from 'jszip';
 import { FileEntry } from './index';
+import UZIP from 'uzip';
 
 interface Message {
   data: {
     entries: FileEntry[];
-    options?: JSZipGeneratorOptions;
   };
 }
 
 module.exports = function(self: Worker) {
-  self.addEventListener('message', async ({ data: { entries, options } }: Message) => {
+  self.addEventListener('message', async ({ data: { entries } }: Message) => {
     const archive = entries.reduce((accumulator, { file, name }) => {
-      accumulator.file(name, file);
+      accumulator[name] = new Uint8Array(file);
 
       return accumulator;
-    }, new JSZip());
+    }, {});
 
-    const zip = await archive.generateAsync({ ...options, type: 'arraybuffer' });
+    const zip = UZIP.encode(archive);
 
     self.postMessage(zip, [zip]);
   });

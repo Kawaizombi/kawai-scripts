@@ -170,6 +170,7 @@
               "extractCss": false,
               "namedChunks": false,
               "aot": true,
+              "es5BrowserSupport": false,
               "extractLicenses": false,
               "deleteOutputPath": false,
               "vendorChunk": false,

@@ -1,6 +1,6 @@
 ### Archive
 
-Wrapper to run [JSZip](https://stuk.github.io/jszip/) inside webworker
+Wrapper to run UZIP inside webworker
 
 ### Usage
 
@@ -13,8 +13,7 @@ const files = [
 ];
 
 archive(
-  files,
-  { compressionOptions: { level: 6 } },
+  files
 ).then((zip) => {
   // Do something with zip
 })
