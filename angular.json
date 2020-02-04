@@ -131,6 +131,74 @@
           }
         }
       }
+    },
+    "soundcloud-downloader": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/soundcloud-downloader",
+      "sourceRoot": "projects/soundcloud-downloader/src",
+      "prefix": "sc-downloader",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "",
+            "main": "projects/soundcloud-downloader/src/main.ts",
+            "tsConfig": "projects/soundcloud-downloader/tsconfig.json",
+            "aot": true,
+            "styles": [
+              "projects/soundcloud-downloader/src/styles/main.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/soundcloud-downloader/src/environments/environment.ts",
+                  "with": "projects/soundcloud-downloader/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "deleteOutputPath": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "evalSourceMap": true,
+            "aot": true,
+            "browserTarget": "soundcloud-downloader:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "soundcloud-downloader:build:production"
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -21,9 +21,9 @@
     "analyze:youtube-tweaks": "ng build --prod --project youtube-tweaks --single-bundle --extra-webpack-config projects/youtube-tweaks/webpack.analyze.config.js",
     "dev:get-qrcode": "npm run dev:base -- --project=\"get-qrcode\"",
     "build:get-qrcode": "npm run build:base -- --project=\"get-qrcode\"",
-    "dev:soundcloud-downloader": "npm run dev:base -- --project=\"soundcloud-downloader\"",
-    "build:soundcloud-downloader": "npm run build:base -- --project=\"soundcloud-downloader\"",
-    "analyze:soundcloud-downloader": "npm run analyze:base -- --project=\"soundcloud-downloader\""
+    "dev:soundcloud-downloader": "ng serve --no-live-reload --project soundcloud-downloader --single-bundle --extra-webpack-config projects/soundcloud-downloader/webpack.dev.config.js",
+    "build:soundcloud-downloader": "ng build --prod --project soundcloud-downloader --single-bundle --extra-webpack-config projects/soundcloud-downloader/webpack.prod.config.js",
+    "analyze:soundcloud-downloader": "ng build --prod --project=soundcloud-downloader --single-bundle --extra-webpack-config projects/soundcloud-downloader/webpack.analyze.config.js"
   },
   "keywords": [],
   "workspaces": [

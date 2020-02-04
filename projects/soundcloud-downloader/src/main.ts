@@ -3,8 +3,9 @@ import './styles/main.scss';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './modules/app/app.module';
 import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
 
-if(process.env.NODE_ENV === 'production') enableProdMode();
+if(environment.production) enableProdMode();
 
 function mountApp() {
   const MOUNT_POINT = 'header .header__right';
@@ -12,7 +13,9 @@ function mountApp() {
 
   document.querySelector(MOUNT_POINT).append(appElement);
 
-  platformBrowserDynamic().bootstrapModule(AppModule);
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((error) => console.log('Error has occurred while booting soundcloud-downloader', error));
 }
 
 mountApp();
