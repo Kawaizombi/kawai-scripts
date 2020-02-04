@@ -1,6 +1,11 @@
 <button (click)="download()"
-        [disabled]="item$ | async"
-        class="sc-button sc-button-medium sc-button-responsive">
-  <span *ngIf="item$ | async; else waiting">In progress</span>
-  <ng-template #waiting>Download</ng-template>
+        [disabled]="inProgress"
+        [class.sc-button-small]="size === 'small'"
+        [class.sc-button-medium]="size === 'medium'"
+        class="sc-button sc-button-responsive">
+  <span *ngIf="inProgress; else idle">In progress</span>
+  <ng-template #idle>
+    <fa-icon [icon]="faDownload"></fa-icon>
+    <span>Download</span>
+  </ng-template>
 </button>

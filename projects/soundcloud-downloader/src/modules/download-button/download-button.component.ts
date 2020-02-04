@@ -4,17 +4,21 @@ import { DownloadsModel, DownloadsState } from '../store/downloads/downloads.sta
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'downloader-download-button',
+  selector: 'sc-downloader-download-button',
   templateUrl: './download-button.component.html',
   styleUrls: ['./download-button.component.scss'],
 })
 export class DownloadButtonComponent implements OnInit, OnDestroy {
+  faDownload = faDownload;
+
   @Input() rootUrl: string;
+  @Input() size: 'small' | 'medium' = 'medium';
   @Select(DownloadsState) downloads$: Observable<DownloadsModel>;
-  item$: Observable<boolean>;
   private rootSub = new Subscription();
+  inProgress = false;
 
   constructor(
     private downloader: DownloaderService,
@@ -23,8 +27,11 @@ export class DownloadButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.item$ = this.downloads$.pipe(map(({ [this.rootUrl]: item }) => item));
-    this.rootSub.add(this.item$.subscribe(() => {
+    const item$ = this.downloads$.pipe(map(({ [this.rootUrl]: item }) => item));
+
+    this.rootSub.add(item$.subscribe((inProgress) => {
+      this.inProgress = inProgress;
+
       setTimeout(() => this.cd.detectChanges());
     }));
   }

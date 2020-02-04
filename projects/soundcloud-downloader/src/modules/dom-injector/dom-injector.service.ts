@@ -1,7 +1,7 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, Injector } from '@angular/core';
 import domObserver, { ADD_TYPE, ofType, REMOVE_TYPE } from '../core/utils/dom-observer';
-import { filter, map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
+import { from, Subscription } from 'rxjs';
 import { DownloadButtonComponent } from '../download-button/download-button.component';
 import combineCssSelectors from '../core/utils/combine-css-selectors';
 
@@ -10,6 +10,7 @@ const SOUND_ACTIONS_SELECTOR = combineCssSelectors(
   '.sound__soundActions .soundActions',
 );
 const ROOT_ELEMENT_SELECTOR = '.sound__body';
+const SMALL_UI_CLASSNAME = 'soundActions__small';
 const ROOT_URL_SELECTOR = '.soundTitle__title';
 const ROOT_SELECTOR = '[role=main]';
 
@@ -44,9 +45,12 @@ export class DomInjectorService {
       url = new URL(link.href, base).href;
     }
 
-    componentRef.instance.rootUrl = url;
-    componentRef.changeDetectorRef.detectChanges();
     el.append(componentRef.location.nativeElement);
+
+    componentRef.instance.rootUrl = url;
+    componentRef.instance.size = el.classList.contains(SMALL_UI_CLASSNAME) ? 'small' : 'medium';
+    componentRef.changeDetectorRef.detectChanges();
+
     this.refs.push(componentRef);
   }
 
@@ -57,8 +61,7 @@ export class DomInjectorService {
       .pipe(
         ofType(ADD_TYPE),
         map(({ node }) => node as HTMLElement),
-        map((el) => el.querySelector(SOUND_ACTIONS_SELECTOR)),
-        filter<HTMLElement>(Boolean),
+        switchMap((el) => from(el.querySelectorAll(SOUND_ACTIONS_SELECTOR))),
         filter((el) => !el.querySelector(this.factory.selector)),
       )
       .subscribe((el) => this.injectDownloadButton(el));

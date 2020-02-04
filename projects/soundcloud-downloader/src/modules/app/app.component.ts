@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons/faArrowAltCircleDown';
+import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { PopupComponent } from '../popup/popup.component';
 import { DomInjectorService } from '../dom-injector/dom-injector.service';
 
 @Component({
-  selector: 'downloader-app',
+  selector: 'sc-downloader-root',
   templateUrl: './app.template.html',
   styleUrls: ['./app.styles.scss'],
 })

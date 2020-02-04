@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { DownloaderService } from '../core/downloader/downloader.service';
 
 @Component({
-  selector: 'downloader-popup',
+  selector: 'sc-downloader-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss'],
 })

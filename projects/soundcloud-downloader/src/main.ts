@@ -9,7 +9,7 @@ if(environment.production) enableProdMode();
 
 function mountApp() {
   const MOUNT_POINT = 'header .header__right';
-  const appElement = document.createElement('downloader-app');
+  const appElement = document.createElement('sc-downloader-root');
 
   document.querySelector(MOUNT_POINT).append(appElement);
 
