@@ -9,11 +9,6 @@ const CONFIG: Configuration = {
     filename: 'archive.js',
     libraryTarget: 'commonjs2',
   },
-  resolve: {
-    alias: {
-      jszip: require.resolve('jszip/dist/jszip.min.js'),
-    },
-  },
   module: {
     rules: [
       {

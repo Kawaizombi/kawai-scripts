@@ -41,6 +41,7 @@ declare function GM_xmlhttpRequest(options: GMXMLHttpRequestOptions): GMXMLHttpR
 function gmAdapter(config: AxiosRequestConfig): Promise<AxiosResponse> {
   return new Promise((resolve, reject) => {
     const handler = createHandler(resolve, reject, config);
+    const { auth: { username, password } = {} as any } = config;
 
     GM_xmlhttpRequest({
       url: config.url,
@@ -49,8 +50,8 @@ function gmAdapter(config: AxiosRequestConfig): Promise<AxiosResponse> {
       data: config.data,
       timeout: config.timeout,
       responseType: config.responseType,
-      username: config?.auth?.username,
-      password: config?.auth?.password,
+      username,
+      password,
       onload: handler,
       onerror: handler,
       ontimeout: handler,
