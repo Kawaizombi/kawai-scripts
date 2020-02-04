@@ -1,6 +1,6 @@
 ### SoundCloud downloader
 
-Add ability to download and track or playlist from www.soundcloud.com
+Add ability to download track or playlist from www.soundcloud.com
 
 ### Preparation
 
