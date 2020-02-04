@@ -4,5 +4,6 @@
     "*://www.soundcloud.com/*",
     "*://soundcloud.com/*"
   ],
+  "run-at": "document-idle",
   "supportURL": "https://github.com/Kawaizombi/kawai-scripts/issues"
 }

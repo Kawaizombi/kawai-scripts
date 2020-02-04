@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        @kawai-scripts/soundcloud-downloader
-// @version     1.2.0
+// @version     1.2.1
 // @author      kawaizombi
 // @description Add ability to download track or playlist from www.soundcloud.com
 // @homepage    https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/youtube-blocker
@@ -8,6 +8,7 @@
 // @match       *://www.soundcloud.com/*
 // @match       *://soundcloud.com/*
 // @noframes    true
+// @run-at      document-idle
 // @license     MIT
 // ==/UserScript==
 
