@@ -2,17 +2,13 @@
   "name": "@kawai-scripts/gm-axios-adapter",
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" webpack"
+    "build": "rimraf dist && tsc -b"
   },
   "types": "dist/index.d.ts",
-  "main": "dist/gm-axios-adapter.js",
+  "main": "dist/index.js",
   "devDependencies": {
     "axios": "^0.19.0",
-    "cross-env": "^6.0.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.5"
-  },
-  "dependencies": {}
+    "typescript": "^3.7.5",
+    "rimraf": "^3.0.1"
+  }
 }
