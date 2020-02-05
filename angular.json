@@ -30,6 +30,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/youtube-blocker/src/environments/environment.ts",
+                  "with": "projects/youtube-blocker/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "deleteOutputPath": false,
               "outputHashing": "none",

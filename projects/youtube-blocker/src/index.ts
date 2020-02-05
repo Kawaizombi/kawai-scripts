@@ -4,8 +4,9 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './components/app/app.module';
 import combineCssSelectors from './utils/combine-css-rules';
+import { environment } from './environments/environment';
 
-if(process.env.NODE_ENV === 'production') enableProdMode();
+if(environment.production) enableProdMode();
 
 const APP_ELEMENT = document.createElement('youtube-blocker');
 const MOUNT_POINT = combineCssSelectors(
