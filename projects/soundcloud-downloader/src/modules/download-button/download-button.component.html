@@ -1,7 +1,6 @@
 <button (click)="download()"
         [disabled]="inProgress"
-        [class.sc-button-small]="size === 'small'"
-        [class.sc-button-medium]="size === 'medium'"
+        [ngClass]="'sc-button-' + size"
         class="sc-button sc-button-responsive">
   <span *ngIf="inProgress; else idle">In progress</span>
   <ng-template #idle>
