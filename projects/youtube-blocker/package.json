@@ -11,8 +11,13 @@
     "@fortawesome/angular-fontawesome": "^0.5.0",
     "@ngxs/devtools-plugin": "^3.6.1",
     "@ngxs/store": "^3.6.1",
+    "@ngxs-labs/async-storage-plugin": "0.1.1",
     "@kawai-scripts/gm-storage": "^1.0.0",
     "@kawai-scripts/save-file": "^1.0.0",
-    "element-matches-polyfill": "^1.0.0"
+    "element-matches-polyfill": "^1.0.0",
+    "minimatch": "^3.0.4"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^3.0.3"
   }
 }

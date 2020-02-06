@@ -5,6 +5,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './components/app/app.module';
 import combineCssSelectors from './utils/combine-css-rules';
 import { environment } from './environments/environment';
+import { migrate } from './utils/storage-migrate';
 
 if(environment.production) enableProdMode();
 
@@ -22,6 +23,7 @@ async function waitSelector(selector: string) {
 }
 
 async function mountApp() {
+  await migrate();
   await waitSelector(MOUNT_POINT);
   document.querySelector(MOUNT_POINT).prepend(APP_ELEMENT);
   platformBrowserDynamic().bootstrapModule(AppModule);

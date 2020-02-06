@@ -14,8 +14,8 @@ import { MatInputModule } from '@angular/material/input';
     FontAwesomeModule,
     FormsModule,
     MatButtonModule,
-    MatInputModule
-  ]
+    MatInputModule,
+  ],
 })
 export class AddFilterFormModule {
 
