@@ -5,7 +5,6 @@ import { TrackMetadata } from '../api/@types';
 import { map, switchMap, tap } from 'rxjs/operators';
 import extractIds from '../utils/extract-ids';
 import extractMediaUrls from '../utils/extract-media-urls';
-import extractUrlsFromManifest from '../utils/extract-urls-from-manifest';
 import archive from '@kawai-scripts/archive';
 import addId3 from '../utils/add-id3';
 import { forkJoin } from 'rxjs';
@@ -52,10 +51,7 @@ export class DownloaderService {
         switchMap((ids) => this.api.getTracksMetadata(ids)),
         tap((meta) => (metadata = meta)),
         map(extractMediaUrls),
-        switchMap((urls) => this.api.getPlaylistUrls(urls)),
-        switchMap((urls) => this.api.getPlaylists(urls)),
-        map(extractUrlsFromManifest),
-        switchMap((files) => this.api.downloadSegments(files)),
+        switchMap((source) => this.api.getTrackFromPlaylist(source)),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if(buffers.length > 1) {
