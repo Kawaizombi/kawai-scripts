@@ -19,7 +19,7 @@ export class BlockButtonInjectorService {
   attachButton(node: Element) {
     const componentRef = this.factory.create(this.injector);
 
-    componentRef.instance.chanelName = node.textContent.trim();
+    componentRef.instance.channelName = node.textContent.trim();
     componentRef.changeDetectorRef.detectChanges();
     node.prepend(componentRef.location.nativeElement);
 

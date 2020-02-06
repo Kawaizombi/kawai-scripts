@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BlockVideoComponent {
   faTimesCircle = faTimesCircle;
-  @Input() chanelName: string;
+  @Input() channelName: string;
 
   constructor(
     private store: Store,
@@ -19,18 +19,18 @@ export class BlockVideoComponent {
   ) {
   }
 
-  blockChanel(event: MouseEvent) {
+  blockChannel(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    this.store.dispatch(new AddFilterAction(this.chanelName));
+    this.store.dispatch(new AddFilterAction(this.channelName));
 
     this.snackBar
-      .open(`Blocked ${ this.chanelName }`, 'Cancel?', {
+      .open(`Blocked ${ this.channelName }`, 'Cancel?', {
         duration: 3000,
         horizontalPosition: 'end',
       })
       .onAction()
-      .subscribe(() => this.store.dispatch(new RemoveFilterAction(this.chanelName)));
+      .subscribe(() => this.store.dispatch(new RemoveFilterAction(this.channelName)));
   }
 }
