@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { TrackMetadata, Transcoding } from './@types';
 import { forkJoin } from 'rxjs';
 import combineBuffers from '../utils/combine-buffers';
@@ -28,21 +28,20 @@ export class ApiService {
     return this.http.get<TrackMetadata[]>(TRACKS_URL, { params: { ids: ids.join(',') } });
   }
 
-  private downloadProgressive(url: string) {
-    return this.http.get(url, { responseType: 'arraybuffer' });
-  }
-
-  private downloadFormChunks(urls: string[]) {
+  private downloadHlsSteam(urls: string[]) {
     return this.downloadFiles(urls).pipe(map(combineBuffers));
   }
 
-  private downloadHsl(url: string) {
+  private downloadHls(url: string) {
     return this.http
       .get(url, { responseType: 'text' })
       .pipe(
-        map(buildPlaylistManifest),
-        map((manifest) => manifest.segments.map(({ uri }) => uri as string)),
-        switchMap((urls) => this.downloadFormChunks(urls)),
+        map((playlist) => {
+          const manifest = buildPlaylistManifest(playlist);
+
+          return manifest.segments.map(({ uri }) => uri as string)
+        }),
+        switchMap((urls) => this.downloadHlsSteam(urls)),
       );
   }
 
@@ -52,55 +51,37 @@ export class ApiService {
       .pipe(map(({ url }) => url));
   }
 
-  private downloadFromPlaylist(source: Transcoding[]) {
+  private downloadTranscoding(source: Transcoding[]) {
     const ofProtocol = (p) => ({ format: { protocol } }) => protocol === p;
 
-    const hsl = source.find(ofProtocol('hsl'));
+    const hls = source.find(ofProtocol('hls'));
     const progressive = source.find(ofProtocol('progressive'));
+
+    const hlsDownload$ = this.getTranscodingUrl(hls.url)
+      .pipe(
+        switchMap((url) => this.downloadHls(url)),
+      );
 
     if(progressive) {
       return this.getTranscodingUrl(progressive.url)
         .pipe(
-          switchMap((url) => this.downloadProgressive(url)),
+          switchMap((url) => this.downloadFile(url)),
+          catchError(() => hlsDownload$),
         );
     }
 
-    return this.getTranscodingUrl(hsl.url)
-      .pipe(
-        switchMap((url) => this.downloadHsl(url)),
-      );
+    return hlsDownload$;
   }
 
-  getTrackFromPlaylist(items: Transcoding[][]) {
-    return forkJoin(items.map((t) => this.downloadFromPlaylist(t)));
+  downloadMedia(items: Transcoding[][]) {
+    return forkJoin(items.map((t) => this.downloadTranscoding(t)));
   }
 
-  getPlaylistUrls(urls: string[]) {
-    return forkJoin(urls.map((url) => {
-      return this.http
-        .get<{ url: string }>(url)
-        .pipe(map(({ url }) => url));
-    }));
-  }
-
-  getPlaylists(urls: string[]) {
-    return forkJoin(urls.map((url) => {
-      return this.http
-        .get(url, { responseType: 'text' })
-        .pipe(map(buildPlaylistManifest));
-    }));
-  }
-
-  downloadSegments(files: string[][]) {
-    return forkJoin(files.map((urls) => {
-      return this.downloadFiles(urls)
-        .pipe(map(combineBuffers));
-    }));
+  downloadFile(url: string) {
+    return this.http.get(url, { responseType: 'arraybuffer' });
   }
 
   downloadFiles(urls: string[]) {
-    return forkJoin(urls.map((url) => {
-      return this.http.get(url, { responseType: 'arraybuffer' });
-    }));
+    return forkJoin(urls.map((url) => this.downloadFile(url)));
   }
 }

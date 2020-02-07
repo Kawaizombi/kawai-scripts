@@ -51,7 +51,7 @@ export class DownloaderService {
         switchMap((ids) => this.api.getTracksMetadata(ids)),
         tap((meta) => (metadata = meta)),
         map(extractMediaUrls),
-        switchMap((source) => this.api.getTrackFromPlaylist(source)),
+        switchMap((source) => this.api.downloadMedia(source)),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if(buffers.length > 1) {
@@ -73,7 +73,7 @@ export class DownloaderService {
         this.store.dispatch(new RemoveDownloadItem(rootUrl));
       }, () => {
         this.snackBar.open('Error has occurred try again later', null, {
-          duration: 2000,
+          duration: 4000,
         });
 
         this.store.dispatch(new RemoveDownloadItem(rootUrl));
