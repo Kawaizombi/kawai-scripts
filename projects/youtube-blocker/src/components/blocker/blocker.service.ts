@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import minimatch, { IOptions } from 'minimatch';
 import { getVideoElements } from './blocker.utils';
 import {
   BANNED_VIDEO_CLASS,
@@ -8,15 +7,14 @@ import {
   CHANNEL_NAME_SELECTOR,
 } from './blocker.constants';
 
-const MINIMATCH_OPTIONS: IOptions = {
-  dot: false,
-  noext: true,
-  noglobstar: true,
-  nocase: true,
-};
-
-const isInBlockList = function (item: string, blockList: string[]) {
-  return blockList.find((rule) => minimatch(item, rule, MINIMATCH_OPTIONS));
+const isInBlockList = function(item: string, blockList: string[]) {
+  return blockList.find((rule) => {
+    if(rule.includes('*')) {
+      return RegExp(rule.replace('*', '.+'), 'i').test(item);
+    } else {
+      return item.toLowerCase() === rule.toLowerCase();
+    }
+  });
 };
 
 @Injectable()
