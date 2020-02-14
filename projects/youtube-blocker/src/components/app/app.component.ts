@@ -11,8 +11,9 @@ import { OBSERVER_CONFIG, OBSERVER_ELEMENT_SELECTOR } from './app.constants';
 import { first, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import autobind from 'autobind-decorator';
-import { YtPlayerControlService } from '../yt-control/yt-player-control.service';
+import { PLAYER_ELEMENT_SELECTOR, YtPlayerControlService } from '../yt-control/yt-player-control.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import waitSelector from '@kawai-scripts/wait-selector';
 
 const NAVIGATE_EVENT = document.querySelector('ytd-app') ? 'yt-navigate-finish' : 'spfdone';
 const VIDEO_WAS_STOPPED_MSG = 'This video was stopped by youtube blocker because it matches block list!';
@@ -78,7 +79,8 @@ export class AppComponent implements OnInit {
 
     this.preferences$
       .pipe(first())
-      .subscribe(({ suspend, stopBlocked }) => {
+      .subscribe(async ({ suspend, stopBlocked }) => {
+        await waitSelector(PLAYER_ELEMENT_SELECTOR);
         if(!suspend && stopBlocked) this.handleRedirect();
       });
   }

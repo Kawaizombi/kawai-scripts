@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Player } from './@types';
 
-const PLAYER_ELEMENT_SELECTOR = '#movie_player';
+export const PLAYER_ELEMENT_SELECTOR = '#movie_player';
 
 @Injectable({
   providedIn: 'root',

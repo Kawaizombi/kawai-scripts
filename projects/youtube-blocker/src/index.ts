@@ -6,6 +6,7 @@ import { AppModule } from './components/app/app.module';
 import combineCssSelectors from './utils/combine-css-rules';
 import { environment } from './environments/environment';
 import { migrate } from './utils/storage-migrate';
+import waitSelector from '@kawai-scripts/wait-selector';
 
 if(environment.production) enableProdMode();
 
@@ -15,12 +16,6 @@ const MOUNT_POINT = combineCssSelectors(
   '#yt-masthead-signin',
   '#end',
 );
-
-async function waitSelector(selector: string) {
-  while(document.querySelector(selector) === null) {
-    await new Promise(resolve => requestAnimationFrame(resolve));
-  }
-}
 
 async function mountApp() {
   await migrate();
