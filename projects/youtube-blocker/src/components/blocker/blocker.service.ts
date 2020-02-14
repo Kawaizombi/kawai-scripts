@@ -7,13 +7,13 @@ import {
   CHANNEL_NAME_SELECTOR,
 } from './blocker.constants';
 
-const isInBlockList = function(item: string, blockList: string[]) {
+export const isInBlockList = function (item: string, blockList: string[]) {
   return blockList.find((rule) => {
     if(rule.includes('*')) {
       return RegExp(`^${ rule.replace(/\*/g, '.+') }$`, 'i').test(item);
-    } else {
-      return item.toLowerCase() === rule.toLowerCase();
     }
+
+    return item.toLowerCase() === rule.toLowerCase();
   });
 };
 

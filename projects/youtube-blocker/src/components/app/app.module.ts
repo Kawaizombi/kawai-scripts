@@ -9,6 +9,7 @@ import { BlockerModule } from '../blocker/blocker.module';
 import { StoreModule } from '../../store/store.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     BlockerModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
 })

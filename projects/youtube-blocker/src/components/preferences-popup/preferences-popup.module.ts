@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { BackupAndRestoreModule } from '../backup-and-restore/backup-and-restore.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [PreferencesPopupComponent],
@@ -25,6 +26,7 @@ import { BackupAndRestoreModule } from '../backup-and-restore/backup-and-restore
     FormsModule,
     CommonModule,
     BackupAndRestoreModule,
+    MatDialogModule,
   ],
 })
 export class PreferencesPopupModule {

@@ -3,8 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { PreferencesState, PreferencesStateModel } from '../../store/preferences/preferences.state';
-import { ToggleButtonInsert, ToggleSuspend } from '../../store/preferences/preferences.actions';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ToggleButtonInsert, ToggleStopBlocked, ToggleSuspend } from '../../store/preferences/preferences.actions';
 
 @Component({
   selector: 'preferences-popup',
@@ -17,7 +16,6 @@ export class PreferencesPopupComponent {
   @Select(PreferencesState) preferences$: Observable<PreferencesStateModel>;
 
   constructor(
-    public dialogRef: MatDialogRef<PreferencesPopupComponent>,
     private store: Store,
   ) {
   }
@@ -28,5 +26,9 @@ export class PreferencesPopupComponent {
 
   toggleButtons() {
     this.store.dispatch(new ToggleButtonInsert());
+  }
+
+  toggleStopBlocked() {
+    this.store.dispatch(new ToggleStopBlocked());
   }
 }

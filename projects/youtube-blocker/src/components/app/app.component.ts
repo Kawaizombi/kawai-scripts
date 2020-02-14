@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PreferencesPopupComponent } from '../preferences-popup/preferences-popup.component';
-import { BlockerService } from '../blocker/blocker.service';
+import { BlockerService, isInBlockList } from '../blocker/blocker.service';
 import { Select } from '@ngxs/store';
 import { BlockListState } from '../../store/block-list/block-list.state';
 import { Observable, Subscription } from 'rxjs';
@@ -8,8 +8,14 @@ import { PreferencesState, PreferencesStateModel } from '../../store/preferences
 import { BlockButtonInjectorService } from '../blocker/block-button-injector.service';
 import createMutationObserver from '../../utils/mutation-observer.observable';
 import { OBSERVER_CONFIG, OBSERVER_ELEMENT_SELECTOR } from './app.constants';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import autobind from 'autobind-decorator';
+import { YtPlayerControlService } from '../yt-control/yt-player-control.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+const NAVIGATE_EVENT = document.querySelector('ytd-app') ? 'yt-navigate-finish' : 'spfdone';
+const VIDEO_WAS_STOPPED_MSG = 'This video was stopped by youtube blocker because it matches block list!';
 
 @Component({
   selector: 'youtube-blocker',
@@ -26,11 +32,13 @@ export class AppComponent implements OnInit {
   @Select(PreferencesState) preferences$: Observable<PreferencesStateModel>;
 
   private mutations$ = createMutationObserver(document.querySelector(OBSERVER_ELEMENT_SELECTOR), OBSERVER_CONFIG);
+
   private addMutations$ = this.mutations$
     .pipe(
       map(({ addedNodes }) => Array.from(addedNodes)),
       map((nodes) => nodes.filter((node) => node instanceof HTMLElement)),
     );
+
   private removeMutations$ = this.mutations$
     .pipe(
       map(({ removedNodes }) => Array.from(removedNodes)),
@@ -41,25 +49,37 @@ export class AppComponent implements OnInit {
     private dialog: MatDialog,
     private blockerService: BlockerService,
     private blockButtonInjectorService: BlockButtonInjectorService,
+    private playerControlService: YtPlayerControlService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
   ngOnInit() {
     this.preferences$
-      .subscribe(({ insertButtons, suspend }) => {
+      .subscribe(({ insertButtons, suspend, stopBlocked }) => {
         if(suspend) {
           this.blockerSubscription.unsubscribe();
           this.blockerService.suspendBlock();
-        } else {
-          this.startBlocking();
-        }
-
-        if(!suspend && insertButtons) {
-          this.startInjecting();
-        } else {
           this.injectorSubscription.unsubscribe();
           this.blockButtonInjectorService.removeButtons();
+          window.removeEventListener(NAVIGATE_EVENT, this.handleRedirect);
+        } else {
+          this.startBlocking();
+
+          if(insertButtons) {
+            this.startInjecting();
+          }
+
+          if(stopBlocked) {
+            window.addEventListener(NAVIGATE_EVENT, this.handleRedirect);
+          }
         }
+      });
+
+    this.preferences$
+      .pipe(first())
+      .subscribe(({ suspend, stopBlocked }) => {
+        if(!suspend && stopBlocked) this.handleRedirect();
       });
   }
 
@@ -77,6 +97,19 @@ export class AppComponent implements OnInit {
         nodes.forEach((node) => this.blockButtonInjectorService.removeButtonsFromNode(node));
       }),
     );
+  }
+
+  @autobind
+  handleRedirect() {
+    const { author } = this.playerControlService.player.getVideoData();
+    if(author && isInBlockList(author, this.filters)) {
+      this.playerControlService.stop();
+
+      this.snackBar.open(VIDEO_WAS_STOPPED_MSG, null, {
+        duration: 5000,
+        horizontalPosition: 'end',
+      });
+    }
   }
 
   startBlocking() {
@@ -100,6 +133,7 @@ export class AppComponent implements OnInit {
 
   openOptionsPopup(event: MouseEvent) {
     event.stopPropagation();
+
     this.dialog.open(PreferencesPopupComponent, {
       minWidth: 640,
       panelClass: 'dialog-popup',

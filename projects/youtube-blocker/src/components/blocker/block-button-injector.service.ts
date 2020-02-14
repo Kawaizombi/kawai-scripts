@@ -38,8 +38,8 @@ export class BlockButtonInjectorService {
   }
 
   private destroyButton(ref: ComponentRef<BlockVideoComponent>) {
-    ref.location.nativeElement.remove();
     ref.destroy();
+    ref.location.nativeElement.remove();
     this.blockButtons.splice(this.blockButtons.indexOf(ref), 1);
   }
 

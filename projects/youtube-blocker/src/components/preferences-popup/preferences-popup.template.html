@@ -1,5 +1,5 @@
 <div class="header">
-  <button mat-icon-button (click)="dialogRef.close()">
+  <button mat-dialog-close mat-icon-button>
     <fa-icon [icon]="faTimes"></fa-icon>
   </button>
 </div>
@@ -33,6 +33,14 @@
             [ngModel]="(preferences$ | async).insertButtons"
             (change)="toggleButtons()">
             Insert block buttons
+          </mat-slide-toggle>
+        </div>
+
+        <div>
+          <mat-slide-toggle
+            [ngModel]="(preferences$ | async).stopBlocked"
+            (change)="toggleStopBlocked()">
+            Stop blacklisted video
           </mat-slide-toggle>
         </div>
       </mat-card>
