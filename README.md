@@ -10,7 +10,7 @@ Awesome user scripts for your browser
 | [AnimeSpirit ost downloader](./projects/animespirit-ost-downloader#readme) | Adds bulk download for www.animespirit.ru/ost and www.animespirit.su/ost | [Install](./dist/animespirit-ost-downloader.user.js?raw=true) |
 | [Youtube blocker](./projects/youtube-blocker#readme) | Add ability to block youtube videos from specific channels and users | [Install](./dist/youtube-blocker.user.js?raw=true) |
 | [Get Qr code](./projects/get-qrcode#readme) | Generates QR code for page | [Install](./dist/get-qrcode.user.js?raw=true) |
-| [SoundCloud downloader](./projects/soundcloud-downloader#readme) | Add ability to download and track or playlist from www.soundcloud.com | [Install](./dist/soundcloud-downloader.user.js?raw=true) |
+| [SoundCloud downloader](./projects/soundcloud-downloader#readme) | Adds the ability to download any track or playlist from soundcloud.com | [Install](./dist/soundcloud-downloader.user.js?raw=true) |
 
 Note: If you don't have browser plugin to run user scripts install one listed bellow
 
