@@ -1,6 +1,6 @@
 ### Youtube blocker
 
-Add ability to block youtube videos from specific channels and users
+Adds the ability to block youtube videos from specific channels and users
 
 ### Preparation
 
