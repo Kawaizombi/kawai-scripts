@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           @kawai-scripts/soundcloud-downloader
-// @version        1.2.5
+// @version        1.2.6
 // @author         kawaizombi
 // @description    Adds the ability to download any track or playlist from soundcloud.com
 // @homepage       https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/soundcloud-downloader
@@ -13,7 +13,7 @@
 // @description:fr Offre la possibilité de télécharger n'importe quelle piste ou liste de lecture depuis soundcloud.com
 // @description:es Agrega la capacidad de descargar cualquier pista o lista de reproducción de soundcloud.com
 // @description:pt Adiciona a capacidade de baixar qualquer faixa ou lista de reprodução do soundcloud.com
-// @description:uk Додає можливість завантажувати будь-яку трек чи плейлист з soundcloud.com
+// @description:uk Додає можливість завантажувати будь-який трек чи плейлист з soundcloud.com
 // @description:ru Добавляет возможность скачать любой трек или плейлист с soundcloud.com
 // @license        MIT
 // ==/UserScript==
