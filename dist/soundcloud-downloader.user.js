@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           @kawai-scripts/soundcloud-downloader
-// @version        1.2.3
+// @version        1.2.4
 // @author         kawaizombi
 // @description    Adds the ability to download any track or playlist from soundcloud.com
 // @homepage       https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/soundcloud-downloader
@@ -9,7 +9,7 @@
 // @match          *://soundcloud.com/*
 // @noframes       true
 // @run-at         document-idle
-// @icon           data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Cdefs%3E%3ClinearGradient id='a' x2='0%25' y2='100%25'%3E%3Cstop offset='5%25' stop-color='%23fe8000'/%3E%3Cstop offset='95%25' stop-color='%23f83600'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='768' height='768' fill='url(%23a)' rx='40' ry='40'/%3E%3Cpath fill='%23fff' d='M344 128h80c13 0 24 11 24 24v168h88c18 0 26 22 14 34L398 506c-8 8-20 8-28 0L218 354c-12-12-4-34 14-34h88V152c0-13 11-24 24-24zm296 376v112c0 13-11 24-24 24H152c-13 0-24-11-24-24V504c0-13 11-24 24-24h147l49 49c20 20 52 20 72 0l49-49h147c13 0 24 11 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z'/%3E%3C/svg%3E
+// @iconURL        data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Cdefs%3E%3ClinearGradient id='a' x2='0%25' y2='100%25'%3E%3Cstop offset='5%25' stop-color='%23fe8000'/%3E%3Cstop offset='95%25' stop-color='%23f83600'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='768' height='768' fill='url(%23a)' rx='40' ry='40'/%3E%3Cpath fill='%23fff' d='M344 128h80c13 0 24 11 24 24v168h88c18 0 26 22 14 34L398 506c-8 8-20 8-28 0L218 354c-12-12-4-34 14-34h88V152c0-13 11-24 24-24zm296 376v112c0 13-11 24-24 24H152c-13 0-24-11-24-24V504c0-13 11-24 24-24h147l49 49c20 20 52 20 72 0l49-49h147c13 0 24 11 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z'/%3E%3C/svg%3E
 // @description:fr Offre la possibilité de télécharger n'importe quelle piste ou liste de lecture depuis soundcloud.com
 // @description:es Agrega la capacidad de descargar cualquier pista o lista de reproducción de soundcloud.com
 // @description:pt Adiciona a capacidade de baixar qualquer faixa ou lista de reprodução do soundcloud.com
