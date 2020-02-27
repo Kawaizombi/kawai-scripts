@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngxs/store';
 import { AddFilterAction, RemoveFilterAction } from '../../store/block-list/block-list.actions';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'block-video',

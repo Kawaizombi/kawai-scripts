@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngxs/store';
 import { AddFilterAction } from '../../store/block-list/block-list.actions';
 

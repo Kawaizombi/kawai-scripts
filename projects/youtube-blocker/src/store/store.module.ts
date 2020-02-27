@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
-import { BlockListState } from './block-list/block-list.state';
-import { PreferencesState } from './preferences/preferences.state';
+import { NgxsAsyncStoragePluginModule } from '@ngxs-labs/async-storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { environment } from '../environments/environment';
-import { GMStorageEngine } from '../../../youtube-tweaks/src/app/modules/store/storage.engine';
-import { NgxsAsyncStoragePluginModule } from '@ngxs-labs/async-storage-plugin';
+import { GMStorageEngine } from './storage.engine';
+import { BlockListState } from './block-list/block-list.state';
+import { PreferencesState } from './preferences/preferences.state';
 
-if (!environment.production) {
+if(!environment.production) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   // eslint-disable-next-line no-undef
@@ -22,11 +22,11 @@ if (!environment.production) {
     ], {
       developmentMode: !environment.production,
     }),
+    NgxsAsyncStoragePluginModule.forRoot(GMStorageEngine),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Youtube blocker',
       disabled: environment.production,
     }),
-    NgxsAsyncStoragePluginModule.forRoot(GMStorageEngine),
   ],
 })
 export class StoreModule {

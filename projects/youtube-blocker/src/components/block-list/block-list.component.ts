@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { BlockListState } from '../../store/block-list/block-list.state';
 import { RemoveFilterAction } from '../../store/block-list/block-list.actions';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'block-list',

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BlockVideoComponent } from './block-video.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule, MatSnackBarModule } from '@angular/material';
 
 
 @NgModule({

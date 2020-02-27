@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material';
 import { Select, Store } from '@ngxs/store';
-import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
-import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import saveFile from '@kawai-scripts/save-file';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

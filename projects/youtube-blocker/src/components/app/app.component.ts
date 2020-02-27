@@ -9,10 +9,9 @@ import { BlockButtonInjectorService } from '../blocker/block-button-injector.ser
 import createMutationObserver from '../../utils/mutation-observer.observable';
 import { OBSERVER_CONFIG, OBSERVER_ELEMENT_SELECTOR } from './app.constants';
 import { first, map } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import autobind from 'autobind-decorator';
 import { PLAYER_ELEMENT_SELECTOR, YtPlayerControlService } from '../yt-control/yt-player-control.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import waitSelector from '@kawai-scripts/wait-selector';
 
 const NAVIGATE_EVENT = document.querySelector('ytd-app') ? 'yt-navigate-finish' : 'spfdone';
