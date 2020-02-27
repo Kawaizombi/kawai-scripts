@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           @kawai-scripts/youtube-blocker
-// @version        1.5.2
+// @version        1.5.3
 // @author         kawaizombi
-// @description    Adds the ability to block youtube videos from specific channels and users
+// @description    Adds the ability to block videos from specific channels and users
 // @homepage       https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/youtube-blocker
 // @supportURL     https://github.com/Kawaizombi/kawai-scripts/issues
 // @match          *://www.youtube.com/*
@@ -16,11 +16,12 @@
 // @noframes       true
 // @run-at         document-idle
 // @icon           data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAAAxCAMAAABQ1y/PAAAAWlBMVEUAAAD/AAD/AAD/AAD/AAD/AAD9AAD+AAD+AAD+AAD+AAD+AAD+AAD+DAz+FRX+Hx/+Ly/+Rkb+Wlr+cXH+g4P+k5P+oqL+trb+y8v+2tr+6Oj+9PT++/v+/v4M4ypJAAAADHRSTlMAEiNAYHuSrcjd7vzXMBaiAAACkElEQVRIx62XDZuCIAyAyfzAHKKioKj//2/ehtaZB1x3tacyFV7GGNtg7CGX5JqmWZbnRVFwXpLcUCoAoKt7wDkvijzPsjS9Jhd2liQrSoCKuuDl8XOWCptQo+0DZZFfD5BLDv+Vij9ACfeP/SIo3XV5i4J9N33ytyjIuZGtkzcpKBliMnhbSsQUsQZCiMMlKAljtxjkeBNdrEsU0qp+0HroVYcP6ohxrqFX2KkbxnWXSasIp2BpkCKGaT3IrNvgzHhooWqozbou62qdLPR/6kKckuVer5HQTNhxsaOi29ZMM95aFcDcWB6Y0UiqGCI2jcTOgyVOhwP4JOQ2hiizBilRAVHLBloCj43fzox7p6RmZ9bFwH147E8cHcCUP20jQKJ553E+cTq70rRqL8anTL+g/qCXE0cvIXV8mBo0DtujWc8cdCQjfavl2VICGpzTBE194jSATj0rnzpeTDdtGPHMkaDRXINvzVnlmZOy5DK4Ns8c6V4MXm28GHRZTT13zrpxardWf8Ds2sCzPjFtQrYZHcZx5l0f6f76beNdqdGZGE6c2Ep5/EY4v1H7qHV950jyG9xV4mUvpl24q3PgxLy4Csxq7h+cfV6jdUrWr+9w2lS4Cw+cxe14VEa8HG/EFm9wZBexkINg6+JoGwgUgejnYqjVRGgw/AFhlm+7v4bBxq2LxZNp3f3gYjGaCwKxOJgZGpejli0zUAQjXYKZIZynpLZbJF32gNpF8lQ0a+4gFGvUKacfpCpiORy/nRq0MWboOxHP4dGKYgt6jesfqU2o/Pulvnm+BiT5WLX1gdov/1wlyi7lR+riN6t0SL/PDP/HlMfDR5IW/O+oG386wfw8UPHtQHU/T1X3A1XoPPUFM12wQgKaLQIAAAAASUVORK5CYII=
-// @description:fr Ajoute la possibilité de bloquer les vidéos YouTube de chaînes et d'utilisateurs spécifiques
-// @description:pt Adiciona a capacidade de bloquear vídeos do YouTube de canais e usuários específicos
-// @description:es Agrega la capacidad de bloquear videos de YouTube de canales y usuarios específicos
-// @description:uk Додає можливість блокувати відео на YouTube від визначених каналів та користувачів
-// @description:ru Добавляет возможность блокировать видео YouTube от определенных каналов и пользователей
+// @description:de Fügt die Möglichkeit hinzu, Videos von bestimmten Kanälen und Benutzern zu blockieren
+// @description:fr Ajoute la possibilité de bloquer les vidéos de chaînes et d'utilisateurs spécifiques
+// @description:pt Adiciona a capacidade de bloquear vídeos de canais e usuários específicos
+// @description:es Agrega la capacidad de bloquear videos de canales y usuarios específicos
+// @description:uk Додає можливість блокувати відео від визначених каналів та користувачів
+// @description:ru Добавляет возможность блокировать видео от определенных каналов и пользователей
 // @license        MIT
 // ==/UserScript==
 
