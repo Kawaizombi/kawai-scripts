@@ -4,6 +4,15 @@
   align-items: center;
   position: relative;
 
+  &.mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .open-popup-btn {
+      color: #333;
+    }
+  }
+
   .open-popup-btn {
     color: rgba(white, 0.8);
   }

@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { DownloaderService } from '../core/downloader/downloader.service';
 import { DownloadsModel, DownloadsState } from '../store/downloads/downloads.state';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { MOBILE_VERSION } from '../../constants';
 
 @Component({
   selector: 'sc-downloader-download-button',
@@ -15,7 +16,6 @@ export class DownloadButtonComponent implements OnInit, OnDestroy {
   faDownload = faDownload;
 
   @Input() rootUrl: string;
-  @Input() size: 'small' | 'medium' = 'medium';
   @Select(DownloadsState) downloads$: Observable<DownloadsModel>;
   private rootSub = new Subscription();
   inProgress = false;
@@ -23,10 +23,15 @@ export class DownloadButtonComponent implements OnInit, OnDestroy {
   constructor(
     private downloader: DownloaderService,
     private cd: ChangeDetectorRef,
+    private el: ElementRef<HTMLUnknownElement>,
   ) {
   }
 
   ngOnInit() {
+    if(MOBILE_VERSION) {
+      this.el.nativeElement.classList.add('mobile');
+    }
+
     const item$ = this.downloads$.pipe(map(({ [this.rootUrl]: item }) => item));
 
     this.rootSub.add(item$.subscribe((inProgress) => {
@@ -40,7 +45,9 @@ export class DownloadButtonComponent implements OnInit, OnDestroy {
     this.rootSub.unsubscribe();
   }
 
-  download() {
+  download(event: MouseEvent) {
+    event.stopPropagation();
+    event.preventDefault();
     this.downloader.download(this.rootUrl);
   }
 }

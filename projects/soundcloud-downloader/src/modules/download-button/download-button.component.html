@@ -1,6 +1,5 @@
-<button (click)="download()"
+<button (click)="download($event)"
         [disabled]="inProgress"
-        [ngClass]="'sc-button-' + size"
         class="sc-button sc-button-responsive">
   <span *ngIf="inProgress; else idle">In progress</span>
   <ng-template #idle>

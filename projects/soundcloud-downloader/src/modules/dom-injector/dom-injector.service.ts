@@ -8,10 +8,12 @@ import combineCssSelectors from '../core/utils/combine-css-selectors';
 const SOUND_ACTIONS_SELECTOR = combineCssSelectors(
   '.listenEngagement__footer .soundActions',
   '.sound__soundActions .soundActions',
+  '.soundBadge .soundBadge__indicator',
+  '.playlistBadge .g-badge-info',
+  '.sound__info',
 );
-const ROOT_ELEMENT_SELECTOR = '.sound__body';
-const SMALL_UI_CLASSNAME = 'soundActions__small';
-const ROOT_URL_SELECTOR = '.soundTitle__title';
+const ROOT_ELEMENT_SELECTOR = combineCssSelectors('.searchItem', '.sound__body');
+const ROOT_URL_SELECTOR = combineCssSelectors('.soundTitle__title', '.g-badge-link');
 const ROOT_SELECTOR = '[role=main]';
 
 const OBSERVER_OPTIONS: MutationObserverInit = { childList: true, subtree: true };
@@ -48,7 +50,6 @@ export class DomInjectorService {
     el.append(componentRef.location.nativeElement);
 
     componentRef.instance.rootUrl = url;
-    componentRef.instance.size = el.classList.contains(SMALL_UI_CLASSNAME) ? 'small' : 'medium';
     componentRef.changeDetectorRef.detectChanges();
 
     this.refs.push(componentRef);

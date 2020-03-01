@@ -11,8 +11,7 @@ export class HttpSnifferService {
   clientId: string;
 
   enable() {
-    this.snifferSubscription = this
-      .attach()
+    this.snifferSubscription = this.attach()
       .pipe(
         map(([, url]) => url),
         map((url) => new URLSearchParams(url).get('client_id')),

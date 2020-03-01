@@ -8,7 +8,7 @@ import { environment } from './environments/environment';
 if(environment.production) enableProdMode();
 
 function mountApp() {
-  const MOUNT_POINT = 'header .header__right';
+  const MOUNT_POINT = 'header .header__right, header';
   const appElement = document.createElement('sc-downloader-root');
 
   document.querySelector(MOUNT_POINT).append(appElement);

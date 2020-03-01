@@ -1,7 +1,38 @@
-.sc-button {
-  text-indent: initial !important;
+:host {
+  display: inline-block;
 
-  fa-icon {
-    margin-right: 4px;
+  &.mobile {
+    margin-top: 8px;
+    width: 100%;
+    .sc-button {
+      background: white;
+      padding: 0 10px 0 10px;
+      height: 22px;
+      border-radius: 3px;
+      color: #333;
+      border: 1px solid #e5e5e5;
+      width: 100%;
+      &:hover, &:focus {
+        border-color: #ccc;
+      }
+      &[disabled] {
+        background-color: #f2f2f2;
+        color: #ccc;
+      }
+    }
+  }
+
+  .sc-button {
+    font-size: small;
+    text-indent: initial !important;
+
+    .soundActions__small & {
+      height: 22px;
+      padding: 0 8px 0 8px;
+    }
+
+    fa-icon {
+      margin-right: 4px;
+    }
   }
 }
