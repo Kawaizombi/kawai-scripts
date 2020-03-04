@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name           @kawai-scripts/soundcloud-downloader
-// @version        1.3.1
+// @version        1.3.2
 // @author         kawaizombi
 // @description    Adds the ability to download any track or playlist from soundcloud.com
 // @homepage       https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/soundcloud-downloader
 // @supportURL     https://github.com/Kawaizombi/kawai-scripts/issues
 // @match          *://www.soundcloud.com/*
 // @match          *://soundcloud.com/*
-// @match          *:///www.m.soundcloud.com/*
+// @match          *://www.m.soundcloud.com/*
 // @match          *://m.soundcloud.com/*
 // @noframes       true
 // @run-at         document-idle

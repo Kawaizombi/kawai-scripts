@@ -3,7 +3,7 @@
   "match": [
     "*://www.soundcloud.com/*",
     "*://soundcloud.com/*",
-    "*:///www.m.soundcloud.com/*",
+    "*://www.m.soundcloud.com/*",
     "*://m.soundcloud.com/*"
   ],
   "run-at": "document-idle",
