@@ -27,7 +27,7 @@ export class DownloaderService {
   private addId3(buffers: ArrayBuffer[], metadata: TrackMetadata[]) {
     const sources = buffers.map((buffer, index) => {
       const meta = metadata[index];
-      const artworkUrl = meta.artwork_url.replace(/(large)(\..+)$/, `t500x500$2`);
+      const artworkUrl = meta.artwork_url.replace('large', `t500x500`);
 
       return this.api
         .downloadFiles([artworkUrl])
@@ -77,7 +77,7 @@ export class DownloaderService {
         this.store.dispatch(new RemoveDownloadItem(rootUrl));
       }, () => {
         this.snackBar.open('Error has occurred try again later', null, {
-          duration: 2000,
+          duration: 3500,
         });
 
         this.store.dispatch(new RemoveDownloadItem(rootUrl));

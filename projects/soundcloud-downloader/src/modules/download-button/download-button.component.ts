@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { DownloaderService } from '../core/downloader/downloader.service';
-import { DownloadsModel, DownloadsState } from '../store/downloads/downloads.state';
 import { Select } from '@ngxs/store';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { DownloaderService } from '../core/downloader/downloader.service';
+import { DownloadsModel, DownloadsState } from '../store/downloads/downloads.state';
 import { MOBILE_VERSION } from '../../constants';
 
 @Component({
@@ -46,8 +46,8 @@ export class DownloadButtonComponent implements OnInit, OnDestroy {
   }
 
   download(event: MouseEvent) {
-    event.stopPropagation();
     event.preventDefault();
+    event.stopPropagation();
     this.downloader.download(this.rootUrl);
   }
 }
