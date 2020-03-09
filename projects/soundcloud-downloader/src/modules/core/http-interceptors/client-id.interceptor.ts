@@ -27,7 +27,7 @@ export class ClientIdInterceptor implements HttpInterceptor {
   getClientId() {
     try {
       // in mobile version soundcloud use requirejs, so we can just read it straight from store
-      return window['unsafeWindow']['require'](CONFIG_TOKEN).get('client_id');
+      return window['unsafeWindow'].require(CONFIG_TOKEN).get('client_id');
     } catch(e) {
       return this.sniffer.clientId;
     }
