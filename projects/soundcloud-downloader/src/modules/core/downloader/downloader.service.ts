@@ -75,7 +75,9 @@ export class DownloaderService {
 
         saveFile(blob, name);
         this.store.dispatch(new RemoveDownloadItem(rootUrl));
-      }, () => {
+      }, (err) => {
+        console.error('[ERROR](soundcloud-downloader)', err);
+
         this.snackBar.open('Error has occurred try again later', null, {
           duration: 3500,
         });
