@@ -7,8 +7,9 @@ import combineBuffers from '../utils/combine-buffers';
 import { Entry } from './@types/Entry';
 import buildPlaylistManifest from '../utils/build-playlist-manifest';
 
-const RESOLVE_URL = 'https://api.soundcloud.com/resolve';
-const TRACKS_URL = 'https://api-v2.soundcloud.com/tracks';
+const API_URL = 'https://api-v2.soundcloud.com';
+const RESOLVE_URL = `${ API_URL }/resolve`;
+const TRACKS_URL = `${ API_URL }/tracks`;
 
 @Injectable({
   providedIn: 'root',
