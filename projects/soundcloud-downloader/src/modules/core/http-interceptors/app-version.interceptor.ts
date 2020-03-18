@@ -25,7 +25,11 @@ export class AppVersionInterceptor implements HttpInterceptor {
     try {
       return window['unsafeWindow'].require(CONFIG_TOKEN).get('app_version');
     } catch(e) {
-      return window['unsafeWindow'].__sc_version;
+      try {
+        return window['unsafeWindow'].__sc_version;
+      } catch(e) {
+        return null;
+      }
     }
   }
 }
