@@ -8,7 +8,7 @@ import extractMediaUrls from '../utils/extract-media-urls';
 import extractUrlsFromManifest from '../utils/extract-urls-from-manifest';
 import archive from '@kawai-scripts/archive';
 import addId3 from '../utils/add-id3';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import saveFile from '@kawai-scripts/save-file';
 import { AddDownloadItem, RemoveDownloadItem } from '../../store/downloads/downloads.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,13 +27,18 @@ export class DownloaderService {
   private addId3(buffers: ArrayBuffer[], metadata: TrackMetadata[]) {
     const sources = buffers.map((buffer, index) => {
       const meta = metadata[index];
-      const artworkUrl = meta.artwork_url.replace('large', `t500x500`);
 
-      return this.api
-        .downloadFiles([artworkUrl])
-        .pipe(map(([artwork]) => {
-          return addId3(buffer, { ...meta, artwork });
-        }));
+      if (meta.artwork_url) {
+        const artworkUrl = meta.artwork_url.replace('large', `t500x500`);
+
+        return this.api
+          .downloadFiles([artworkUrl])
+          .pipe(
+            map(([artwork]) => addId3(buffer, { ...meta, artwork })),
+          );
+      } else {
+        return of(addId3(buffer, meta));
+      }
     });
 
     return forkJoin(sources);
@@ -58,7 +63,7 @@ export class DownloaderService {
         switchMap((files) => this.api.downloadSegments(files)),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
-          if(buffers.length > 1) {
+          if (buffers.length > 1) {
             const files = buffers.map((file, index) => ({
               file,
               name: `${ metadata[index].title }.mp3`,
