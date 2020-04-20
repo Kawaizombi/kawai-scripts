@@ -36,3 +36,11 @@
     }
   }
 }
+
+.listenEngagement__footer {
+  & :host {
+    float: left;
+    clear: none;
+    vertical-align: middle;
+  }
+}

@@ -6,11 +6,11 @@ import { DownloadButtonComponent } from '../download-button/download-button.comp
 import combineCssSelectors from '../core/utils/combine-css-selectors';
 
 const SOUND_ACTIONS_SELECTOR = combineCssSelectors(
-  '.listenEngagement__footer .soundActions',
-  '.sound__soundActions .soundActions',
-  '.soundBadge .soundBadge__indicator',
-  '.playlistBadge .g-badge-info',
-  '.sound__info',
+  '.listenEngagement__footer .soundActions', // desktop ver sound page
+  '.sound__soundActions .soundActions', // desktop ver search page
+  '.soundBadge .soundBadge__indicator', // mobile ver search page
+  '.playlistBadge .g-badge-info', // mobile ver main page
+  '.sound__info', // mobile ver sound page
 );
 const ROOT_ELEMENT_SELECTOR = combineCssSelectors('.searchItem', '.sound__body');
 const ROOT_URL_SELECTOR = combineCssSelectors('.soundTitle__title', '.g-badge-link');
