@@ -7,11 +7,11 @@
 <mat-tab-group headerPosition="below" mat-align-tabs="center">
   <mat-tab label="Block list">
     <div class="tab-content">
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
         <block-list></block-list>
       </mat-card>
 
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
         <add-filter-form></add-filter-form>
       </mat-card>
     </div>
@@ -19,7 +19,7 @@
 
   <mat-tab label="Preferences">
     <div class="tab-content">
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
         <div>
           <mat-slide-toggle
             [ngModel]="(preferences$ | async).suspend"
@@ -45,7 +45,7 @@
         </div>
       </mat-card>
 
-      <mat-card>
+      <mat-card class="mat-elevation-z4">
         <backup-and-restore></backup-and-restore>
       </mat-card>
     </div>

@@ -2,5 +2,6 @@
   mat-stroked-button
   matTooltip="Open youtube blocker preferences"
   (click)="openOptionsPopup($event)">
-  <span>Youtube Blocker</span>
+  <span>Blocker</span>
+  <span *ngIf="(preferences$ | async).suspend">(Suspended)</span>
 </button>
