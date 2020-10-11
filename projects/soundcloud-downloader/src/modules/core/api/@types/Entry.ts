@@ -1,6 +1,7 @@
 export interface User {
   username: string;
 }
+export type Policies = 'ALLOW' | 'BLOCK';
 
 export interface Track {
   description: string;
@@ -10,6 +11,7 @@ export interface Track {
   id: number;
   kind: 'track';
   user: User;
+  policy: Policies;
 }
 
 export interface Playlist {

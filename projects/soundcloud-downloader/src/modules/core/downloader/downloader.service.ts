@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { Store } from '@ngxs/store';
 import { TrackMetadata } from '../api/@types';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
 import extractIds from '../utils/extract-ids';
 import extractMediaUrls from '../utils/extract-media-urls';
 import extractUrlsFromManifest from '../utils/extract-urls-from-manifest';
 import archive from '@kawai-scripts/archive';
 import addId3 from '../utils/add-id3';
-import { forkJoin, of } from 'rxjs';
+import { forkJoin, from, of } from 'rxjs';
 import saveFile from '@kawai-scripts/save-file';
 import { AddDownloadItem, RemoveDownloadItem } from '../../store/downloads/downloads.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { chunk } from '../utils/chunk';
+
+const TRACK_METADATA_CHUNK_SIZE = 25;
 
 @Injectable({
   providedIn: 'root',
@@ -47,20 +50,28 @@ export class DownloaderService {
   download(rootUrl: string) {
     this.store.dispatch(new AddDownloadItem(rootUrl));
     let rootMetadata;
-    let metadata: TrackMetadata[];
+    let metadata: TrackMetadata[] = [];
 
     this.api
       .resolveByUrl(rootUrl)
       .pipe(
         tap((entry) => (rootMetadata = entry)),
         map(extractIds),
-        switchMap((ids) => this.api.getTracksMetadata(ids)),
-        tap((meta) => (metadata = meta)),
-        map(extractMediaUrls),
-        switchMap((urls) => this.api.getPlaylistUrls(urls)),
-        switchMap((urls) => this.api.getPlaylists(urls)),
-        map(extractUrlsFromManifest),
-        switchMap((files) => this.api.downloadSegments(files)),
+        switchMap(ids => from(chunk(ids, TRACK_METADATA_CHUNK_SIZE))),
+        mergeMap(
+          ids => this.api.getTracksMetadata(ids)
+            .pipe(
+              tap(meta => (metadata = metadata.concat(meta))),
+              map(extractMediaUrls),
+              switchMap(urls => this.api.getPlaylistUrls(urls)),
+              switchMap(urls => this.api.getPlaylists(urls)),
+              map(extractUrlsFromManifest),
+              switchMap(files => this.api.downloadSegments(files)),
+            ),
+          1
+        ),
+        toArray(),
+        map(b => b.reduce((acc, buffers) => [...acc, ...buffers], [])),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if (buffers.length > 1) {
