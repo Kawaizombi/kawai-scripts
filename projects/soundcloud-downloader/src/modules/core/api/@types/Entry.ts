@@ -1,7 +1,7 @@
 export interface User {
   username: string;
 }
-export type Policies = 'ALLOW' | 'BLOCK';
+export type Policies = 'ALLOW' | 'BLOCK' | 'SNIP';
 
 export interface Track {
   description: string;
