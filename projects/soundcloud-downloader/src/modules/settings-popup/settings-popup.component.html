@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Soundcloud downloader settings</h2>
+
+<div mat-dialog-content>
+  <div class="control">
+    <mat-checkbox color="primary" [checked]="addTrackNumberToFileName$ | async" (change)="toggleTrackNumbers($event)">
+      <span>Add track number to file name</span>
+    </mat-checkbox>
+    <fa-icon [icon]="faInfoCircle" matTooltip="Adds track number to file name when downloading archive. Example: 01. Song name.mp3"></fa-icon>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-dialog-close class="sc-button">Close</button>
+</div>
+

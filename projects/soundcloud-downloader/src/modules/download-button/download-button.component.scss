@@ -26,12 +26,16 @@
     font-size: small;
     text-indent: initial !important;
 
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+
     .soundActions__small & {
       height: 22px;
       padding: 0 8px 0 8px;
     }
 
-    fa-icon {
+    &.download-button fa-icon {
       margin-right: 4px;
     }
   }
@@ -43,4 +47,9 @@
     clear: none;
     vertical-align: middle;
   }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
 }

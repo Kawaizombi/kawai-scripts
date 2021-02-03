@@ -1,0 +1,12 @@
+[mat-dialog-content] {
+  height: 200px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  fa-icon {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+}

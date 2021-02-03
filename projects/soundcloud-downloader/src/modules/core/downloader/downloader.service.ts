@@ -47,7 +47,7 @@ export class DownloaderService {
     return forkJoin(sources);
   }
 
-  download(rootUrl: string) {
+  download(rootUrl: string, addTrackNumber: boolean) {
     this.store.dispatch(new AddDownloadItem(rootUrl));
     let rootMetadata;
     let metadata: TrackMetadata[] = [];
@@ -68,17 +68,24 @@ export class DownloaderService {
               map(extractUrlsFromManifest),
               switchMap(files => this.api.downloadSegments(files)),
             ),
-          1
+          1,
         ),
         toArray(),
         map(b => b.reduce((acc, buffers) => [...acc, ...buffers], [])),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if (buffers.length > 1) {
-            const files = buffers.map((file, index) => ({
-              file,
-              name: `${ metadata[index].title }.mp3`,
-            }));
+            const files = buffers.map((file, index) => {
+              const i = rootMetadata.tracks.findIndex(item => item.id === metadata[index].id)
+              const prefix = addTrackNumber
+                ? `${ (i + 1).toString().padStart(buffers.length.toString().length, '0') }.`
+                : '';
+
+              return ({
+                file,
+                name: `${ prefix } ${ metadata[index].title }.mp3`.trim(),
+              });
+            });
             return archive(files);
           }
           return Promise.resolve(new Blob([buffers[0]]));

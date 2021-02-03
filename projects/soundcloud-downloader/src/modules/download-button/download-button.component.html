@@ -1,9 +1,13 @@
 <button (click)="download($event)"
         [disabled]="inProgress"
-        class="sc-button sc-button-responsive">
+        class="sc-button sc-button-responsive download-button">
   <span *ngIf="inProgress; else idle">In progress</span>
   <ng-template #idle>
     <fa-icon [icon]="faDownload"></fa-icon>
     <span>Download</span>
   </ng-template>
+</button>
+
+<button class="sc-button sc-button-responsive" (click)="openSettings()">
+  <fa-icon [icon]="faCog"></fa-icon>
 </button>
