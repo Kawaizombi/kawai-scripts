@@ -7,7 +7,11 @@ export default function addId3(buffer: ArrayBuffer, metadata: any): ArrayBuffer 
     .setFrame('TPE1', [metadata.user.username]);
 
   if (metadata.trackNumber) {
-    writer.setFrame('TRCK', metadata.trackNumber)
+    writer.setFrame('TRCK', metadata.trackNumber);
+  }
+
+  if (metadata.albumTitle) {
+    writer.setFrame('TALB', metadata.albumTitle);
   }
 
   if (metadata.artwork) {

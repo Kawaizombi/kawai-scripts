@@ -32,6 +32,7 @@ export class DownloaderService {
       const trackNumber = buffers.length > 1
         ? rootMetadata.tracks.findIndex(item => item.id === metadata[index].id) + 1
         : undefined;
+      const albumTitle = rootMetadata.is_album ? rootMetadata.title : undefined;
       const meta = metadata[index];
 
       if (meta.artwork_url) {
@@ -40,10 +41,10 @@ export class DownloaderService {
         return this.api
           .downloadFiles([artworkUrl])
           .pipe(
-            map(([artwork]) => addId3(buffer, { ...meta, artwork, trackNumber })),
+            map(([artwork]) => addId3(buffer, { ...meta, artwork, trackNumber, albumTitle })),
           );
       } else {
-        return of(addId3(buffer, { ...meta, trackNumber }));
+        return of(addId3(buffer, { ...meta, trackNumber, albumTitle }));
       }
     });
 
