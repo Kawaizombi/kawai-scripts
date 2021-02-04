@@ -6,6 +6,10 @@ export default function addId3(buffer: ArrayBuffer, metadata: any): ArrayBuffer 
     .setFrame('TIT2', metadata.title)
     .setFrame('TPE1', [metadata.user.username]);
 
+  if (metadata.trackNumber) {
+    writer.setFrame('TRCK', metadata.trackNumber)
+  }
+
   if (metadata.artwork) {
     writer.setFrame('APIC', {
       type: 18,

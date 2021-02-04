@@ -27,8 +27,11 @@ export class DownloaderService {
   ) {
   }
 
-  private addId3(buffers: ArrayBuffer[], metadata: TrackMetadata[]) {
+  private addId3(buffers: ArrayBuffer[], metadata: TrackMetadata[], rootMetadata) {
     const sources = buffers.map((buffer, index) => {
+      const trackNumber = buffers.length > 1
+        ? rootMetadata.tracks.findIndex(item => item.id === metadata[index].id) + 1
+        : undefined;
       const meta = metadata[index];
 
       if (meta.artwork_url) {
@@ -37,10 +40,10 @@ export class DownloaderService {
         return this.api
           .downloadFiles([artworkUrl])
           .pipe(
-            map(([artwork]) => addId3(buffer, { ...meta, artwork })),
+            map(([artwork]) => addId3(buffer, { ...meta, artwork, trackNumber })),
           );
       } else {
-        return of(addId3(buffer, meta));
+        return of(addId3(buffer, { ...meta, trackNumber }));
       }
     });
 
@@ -72,11 +75,11 @@ export class DownloaderService {
         ),
         toArray(),
         map(b => b.reduce((acc, buffers) => [...acc, ...buffers], [])),
-        switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata)),
+        switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata, rootMetadata)),
         switchMap((buffers: ArrayBuffer[]) => {
           if (buffers.length > 1) {
             const files = buffers.map((file, index) => {
-              const i = rootMetadata.tracks.findIndex(item => item.id === metadata[index].id)
+              const i = rootMetadata.tracks.findIndex(item => item.id === metadata[index].id);
               const prefix = addTrackNumber
                 ? `${ (i + 1).toString().padStart(buffers.length.toString().length, '0') }.`
                 : '';
