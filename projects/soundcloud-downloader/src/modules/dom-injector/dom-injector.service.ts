@@ -14,7 +14,7 @@ const SOUND_ACTIONS_SELECTOR = combineCssSelectors(
 );
 const ROOT_ELEMENT_SELECTOR = combineCssSelectors('.searchItem', '.sound__body');
 const ROOT_URL_SELECTOR = combineCssSelectors('.soundTitle__title', '.g-badge-link');
-const ROOT_SELECTOR = '[role=main]';
+const ROOT_SELECTOR = '#app';
 
 const OBSERVER_OPTIONS: MutationObserverInit = { childList: true, subtree: true };
 

@@ -4,7 +4,7 @@
   "description": "Adds the ability to download any track or playlist from soundcloud.com",
   "homepage": "https://github.com/Kawaizombi/kawai-scripts/tree/master/projects/soundcloud-downloader",
   "license": "MIT",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "dependencies": {
     "@fortawesome/angular-fontawesome": "^0.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
