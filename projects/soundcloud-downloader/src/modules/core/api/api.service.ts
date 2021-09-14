@@ -47,10 +47,13 @@ export class ApiService {
   downloadSegments(files: string[][]) {
     return from(files).pipe(
       mergeMap(
-        urls => this.downloadFiles(urls).pipe(map(combineBuffers)),
+        (urls, index) => this.downloadFiles(urls).pipe(
+          map((buffers) => ({ value: combineBuffers(buffers), index })),
+        ),
         3,
       ),
       toArray(),
+      map(pairs => pairs.sort((l, r) => l.index - r.index).map(pair => pair.value)),
     );
   }
 

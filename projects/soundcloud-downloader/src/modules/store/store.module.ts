@@ -6,10 +6,6 @@ import { DownloadsState } from './downloads/downloads.state';
 import { SettingsState } from './settings/settings.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
-if (!environment.production) {
-  window['__REDUX_DEVTOOLS_EXTENSION__'] = window['unsafeWindow']['__REDUX_DEVTOOLS_EXTENSION__'];
-}
-
 @NgModule({
   imports: [
     NgxsModule.forRoot([DownloadsState, SettingsState], {

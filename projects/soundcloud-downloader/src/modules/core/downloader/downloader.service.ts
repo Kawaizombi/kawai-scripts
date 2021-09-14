@@ -63,7 +63,7 @@ export class DownloaderService {
         map(extractIds),
         switchMap(ids => from(chunk(ids, TRACK_METADATA_CHUNK_SIZE))),
         mergeMap(
-          ids => this.api.getTracksMetadata(ids)
+          (ids, index) => this.api.getTracksMetadata(ids)
             .pipe(
               tap(meta => (metadata = metadata.concat(meta))),
               map(extractMediaUrls),
@@ -71,10 +71,12 @@ export class DownloaderService {
               switchMap(urls => this.api.getPlaylists(urls)),
               map(extractUrlsFromManifest),
               switchMap(files => this.api.downloadSegments(files)),
+              map(value => ({ value, index })),
             ),
           1,
         ),
         toArray(),
+        map(pairs => pairs.sort((l, r) => l.index - r.index).map(pair => pair.value)),
         map(b => b.reduce((acc, buffers) => [...acc, ...buffers], [])),
         switchMap((buffers: ArrayBuffer[]) => this.addId3(buffers, metadata, rootMetadata)),
         switchMap((buffers: ArrayBuffer[]) => {
