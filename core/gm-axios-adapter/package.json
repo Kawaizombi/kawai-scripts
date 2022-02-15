@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "devDependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "typescript": "^3.7.5",
     "rimraf": "^3.0.1"
   }
